@@ -2,6 +2,12 @@ package rh6pd.test;
 
 import java.util.HashMap;
 
+import org.drools.builder.KnowledgeBuilder;
+import org.drools.builder.KnowledgeBuilderError;
+import org.drools.builder.KnowledgeBuilderErrors;
+import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.builder.ResourceType;
+import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.ProcessInstance;
 import org.jbpm.test.JbpmJUnitTestCase;
@@ -13,9 +19,9 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 	  
 	protected void createNewSession(String bpmnFile) {
 		isStarted = false; 
-		this.session = createKnowledgeSession("simpleFrameworkTest/sample.bpmn");
-	} 
-	
+		this.session = createKnowledgeSession(bpmnFile);
+	}   
+	  
 	protected void insertVar(String name, Object o) {
 		if (session == null) {
 			throw new RuntimeException("Cannot insert variable, no session has been created.");
@@ -26,6 +32,16 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 		} else {
 			session.insert(o); 
 			props.put(name, o);
+		} 
+	}
+	
+	protected void printBpmnErrors(String bpmnFile) {
+		KnowledgeBuilder kb = KnowledgeBuilderFactory.newKnowledgeBuilder();
+		kb.add(ResourceFactory.newClassPathResource(bpmnFile), ResourceType.BPMN2);
+		KnowledgeBuilderErrors errs = kb.getErrors();
+		
+		for (KnowledgeBuilderError err : errs) {
+			System.out.println(err.toString()); 
 		} 
 	}
  

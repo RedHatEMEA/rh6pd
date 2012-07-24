@@ -12,7 +12,7 @@
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
              xmlns:tns="http://www.jboss.org/drools">
 
-  <itemDefinition id="_personItem" structureRef="com.redhat.Person" />
+  <itemDefinition id="_personItem" structureRef="rh6pd.businessRules.Person" />
   <itemDefinition id="_carItem" structureRef="com.redhat.Car" />
 
   <process processType="Private" isExecutable="true" id="com.redhat.bpmn.insuranceQuote" name="Insurance Quote" >
