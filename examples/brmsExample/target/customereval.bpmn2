@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_Qld0ELX4EeGodIilJAWNVw" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:itemDefinition id="_validRequestItem" structureRef="Boolean"/>
+  <bpmn2:itemDefinition id="_personItem" structureRef="org.jbpm.evaluation.customer.Person"/>
+  <bpmn2:itemDefinition id="_requestItem" structureRef="org.jbpm.evaluation.customer.Request"/>
+  <bpmn2:process id="org.jbpm.customer-evaluation" drools:packageName="org.jbpm.evaluation.customer" drools:version="3" name="Customer Evaluation Demo" isExecutable="true">
+    <bpmn2:property id="validRequest" itemSubjectRef="_validRequestItem"/>
+    <bpmn2:property id="person" itemSubjectRef="_personItem"/>
+    <bpmn2:property id="request" itemSubjectRef="_requestItem"/>
+    <bpmn2:scriptTask id="_17" drools:bgcolor="#00FF00" name="Initialize" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>_1-_17</bpmn2:incoming>
+      <bpmn2:outgoing>_17-_13</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Entering " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+if (request == null) {
+	System.out.println("There as no evaluation objects defined, adding default ones for demo purposes.");
+	
+	// define request object.
+	request = new Request("1");
+	request.setPersonId("erics");
+	request.setAmount(5000);
+	kcontext.setVariable("request", request);	
+	
+	// define person object.
+	person = new Person("erics", "Eric D. Schabell");
+	kcontext.setVariable("person", person);
+}
+
+System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node");
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:startEvent id="_1" drools:bgcolor="#00FF00" name="Start">
+      <bpmn2:outgoing>_1-_17</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:scriptTask id="_16" drools:bgcolor="#993300" name="Underaged" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>_13-_16</bpmn2:incoming>
+      <bpmn2:outgoing>_16-_14</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Entering " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+// Setting our request to invalid.
+System.out.println("Detected and reporting invalid request.");
+kcontext.setVariable("validRequest", false);
+request.setInvalid("Customer is underaged.");
+
+System.out.println("Set validRequest to: " + kcontext.getVariable("validRequest"));
+
+System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+System.out.println("Process ended in End Minor Node.");
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="_19" drools:bgcolor="#00FF00" name="Rich Customer" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>_18-_19</bpmn2:incoming>
+      <bpmn2:outgoing>_19-_21</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Entering " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+// Setting request to valid.
+System.out.println("Detected and reporting valid request");
+System.out.println("Customer has amount: " + request.getAmount() + " in the bank.");
+kcontext.setVariable("validRequest", true);
+
+
+System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+System.out.println("Process ended in End Rich Customer Node.");
+
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:exclusiveGateway id="_18" drools:bgcolor="#ffffff" drools:dg="" name="Decide Financial Status" gatewayDirection="Diverging">
+      <bpmn2:incoming>_22-_18</bpmn2:incoming>
+      <bpmn2:outgoing>_18-_19</bpmn2:outgoing>
+      <bpmn2:outgoing>_18-_20</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:endEvent id="_21" drools:bgcolor="#00FF00" name="End Rich Customer">
+      <bpmn2:incoming>_19-_21</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="_Qld0EbX4EeGodIilJAWNVw"/>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="_20" drools:bgcolor="#FF6600" name="Poor Customer" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>_18-_20</bpmn2:incoming>
+      <bpmn2:outgoing>_20-_12</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Entering " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+// Setting request to invalid.
+System.out.println("Customer has amount: " + request.getAmount() + " in the bank.");
+kcontext.setVariable("validRequest", false);
+
+System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+System.out.println("Process ended in End Poor Customer Node.");
+
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:businessRuleTask id="_22" drools:bgcolor="#FFFF00" drools:ruleFlowGroup="Validation" name="Finance Rules">
+      <bpmn2:incoming>_15-_22</bpmn2:incoming>
+      <bpmn2:outgoing>_22-_18</bpmn2:outgoing>
+    </bpmn2:businessRuleTask>
+    <bpmn2:endEvent id="_12" drools:bgcolor="#FF9900" name="End Poor Customer">
+      <bpmn2:incoming>_20-_12</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="_Qld0ErX4EeGodIilJAWNVw"/>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="_13" drools:bgcolor="#ffffff" drools:dg="" name="Qualify Age" gatewayDirection="Diverging">
+      <bpmn2:incoming>_17-_13</bpmn2:incoming>
+      <bpmn2:outgoing>_13-_16</bpmn2:outgoing>
+      <bpmn2:outgoing>_13-_15</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:endEvent id="_14" drools:bgcolor="#ffffff" name="End Minor ">
+      <bpmn2:incoming>_16-_14</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="_Qld0E7X4EeGodIilJAWNVw"/>
+    </bpmn2:endEvent>
+    <bpmn2:scriptTask id="_15" drools:bgcolor="#00FF00" name="Adult Customer" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>_13-_15</bpmn2:incoming>
+      <bpmn2:outgoing>_15-_22</bpmn2:outgoing>
+      <bpmn2:script><![CDATA[System.out.println("Entering " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+// Setting request to valid.
+System.out.println("Detected and reporting valid request");
+kcontext.setVariable("validRequest", true);
+request.setValid();
+
+System.out.println("Set validRequest to: " + kcontext.getVariable("validRequest"));
+
+// Insert Person and Request into our session for the rules to use.
+insert(person);
+insert(request);
+
+System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node");
+
+System.out.println("Entering Finance Rules Node");
+]]></bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="_1-_17" sourceRef="_1" targetRef="_17"/>
+    <bpmn2:sequenceFlow id="_13-_16" drools:priority="2" name="under age" sourceRef="_13" targetRef="_16">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_QlebILX4EeGodIilJAWNVw" language="http://www.java.com/java"><![CDATA[System.out.println("Gateway: " + kcontext.getNodeInstance().getNodeName());
+return person.getAge() < 18; ]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_18-_19" drools:priority="1" name="loaded" sourceRef="_18" targetRef="_19">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_QlebIbX4EeGodIilJAWNVw" language="http://www.java.com/java"><![CDATA[System.out.println("Leaving Finance Rules Node.");
+
+System.out.println("Gateway: " + kcontext.getNodeInstance().getNodeName());
+
+// determine results of fincancial rules decision by checking if request is valid.
+if (request.isValid()) {
+
+    System.out.println("Determined request is valid, heading to Rich Customer Node");
+	return true;
+}
+
+System.out.println("Determined request is NOT valid, heading to Poor Customer Node");
+System.out.println("Request validity reason is: " + request.getInvalidReason());
+return request.isValid(); 
+]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_22-_18" sourceRef="_22" targetRef="_18"/>
+    <bpmn2:sequenceFlow id="_19-_21" sourceRef="_19" targetRef="_21"/>
+    <bpmn2:sequenceFlow id="_18-_20" drools:priority="2" name="broke" sourceRef="_18" targetRef="_20">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_QlebIrX4EeGodIilJAWNVw" language="http://www.java.com/java"><![CDATA[System.out.println("Leaving Finance Rules Node.");
+
+System.out.println("Gateway: " + kcontext.getNodeInstance().getNodeName());
+System.out.println("Detected  request is invalid, heading to Poor Customer Node");
+System.out.println("Request not valid reason is: " + request.getInvalidReason());
+return true; ]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="_15-_22" sourceRef="_15" targetRef="_22"/>
+    <bpmn2:sequenceFlow id="_20-_12" sourceRef="_20" targetRef="_12"/>
+    <bpmn2:sequenceFlow id="_17-_13" sourceRef="_17" targetRef="_13"/>
+    <bpmn2:sequenceFlow id="_16-_14" sourceRef="_16" targetRef="_14"/>
+    <bpmn2:sequenceFlow id="_13-_15" drools:priority="1" name="adult" sourceRef="_13" targetRef="_15">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_QlebI7X4EeGodIilJAWNVw" language="http://www.java.com/java"><![CDATA[System.out.println("Gateway: " + kcontext.getNodeInstance().getNodeName());
+return person.getAge() > 17;]]></bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+  </bpmn2:process>
+  <bpmndi:BPMNDiagram id="_QlebJLX4EeGodIilJAWNVw">
+    <bpmndi:BPMNPlane id="_QlebJbX4EeGodIilJAWNVw" bpmnElement="org.jbpm.customer-evaluation">
+      <bpmndi:BPMNShape id="_QlebJrX4EeGodIilJAWNVw" bpmnElement="_17">
+        <dc:Bounds height="48.0" width="80.0" x="96.0" y="133.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebJ7X4EeGodIilJAWNVw" bpmnElement="_1">
+        <dc:Bounds height="30.0" width="30.0" x="25.0" y="142.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebKLX4EeGodIilJAWNVw" bpmnElement="_16">
+        <dc:Bounds height="48.0" width="117.0" x="359.0" y="133.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebKbX4EeGodIilJAWNVw" bpmnElement="_19">
+        <dc:Bounds height="48.0" width="106.0" x="477.0" y="195.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebKrX4EeGodIilJAWNVw" bpmnElement="_18">
+        <dc:Bounds height="40.0" width="40.0" x="510.0" y="304.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebK7X4EeGodIilJAWNVw" bpmnElement="_21">
+        <dc:Bounds height="28.0" width="28.0" x="643.0" y="204.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebLLX4EeGodIilJAWNVw" bpmnElement="_20">
+        <dc:Bounds height="48.0" width="106.0" x="477.0" y="405.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebLbX4EeGodIilJAWNVw" bpmnElement="_22">
+        <dc:Bounds height="48.0" width="80.0" x="378.0" y="300.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebLrX4EeGodIilJAWNVw" bpmnElement="_12">
+        <dc:Bounds height="28.0" width="28.0" x="643.0" y="414.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebL7X4EeGodIilJAWNVw" bpmnElement="_13">
+        <dc:Bounds height="40.0" width="40.0" x="225.0" y="137.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebMLX4EeGodIilJAWNVw" bpmnElement="_14">
+        <dc:Bounds height="28.0" width="28.0" x="494.0" y="74.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_QlebMbX4EeGodIilJAWNVw" bpmnElement="_15">
+        <dc:Bounds height="48.0" width="117.0" x="186.0" y="300.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_QlebMrX4EeGodIilJAWNVw" bpmnElement="_1-_17">
+        <di:waypoint xsi:type="dc:Point" x="40.0" y="157.0"/>
+        <di:waypoint xsi:type="dc:Point" x="136.0" y="157.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebM7X4EeGodIilJAWNVw" bpmnElement="_13-_16">
+        <di:waypoint xsi:type="dc:Point" x="245.0" y="157.0"/>
+        <di:waypoint xsi:type="dc:Point" x="417.5" y="157.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebNLX4EeGodIilJAWNVw" bpmnElement="_18-_19">
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="324.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="219.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebNbX4EeGodIilJAWNVw" bpmnElement="_22-_18">
+        <di:waypoint xsi:type="dc:Point" x="418.0" y="324.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="324.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebNrX4EeGodIilJAWNVw" bpmnElement="_19-_21">
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="219.0"/>
+        <di:waypoint xsi:type="dc:Point" x="657.0" y="218.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebN7X4EeGodIilJAWNVw" bpmnElement="_18-_20">
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="324.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="429.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebOLX4EeGodIilJAWNVw" bpmnElement="_15-_22">
+        <di:waypoint xsi:type="dc:Point" x="244.5" y="324.0"/>
+        <di:waypoint xsi:type="dc:Point" x="418.0" y="324.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebObX4EeGodIilJAWNVw" bpmnElement="_20-_12">
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="429.0"/>
+        <di:waypoint xsi:type="dc:Point" x="657.0" y="428.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebOrX4EeGodIilJAWNVw" bpmnElement="_17-_13">
+        <di:waypoint xsi:type="dc:Point" x="136.0" y="157.0"/>
+        <di:waypoint xsi:type="dc:Point" x="245.0" y="157.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebO7X4EeGodIilJAWNVw" bpmnElement="_16-_14">
+        <di:waypoint xsi:type="dc:Point" x="417.5" y="157.0"/>
+        <di:waypoint xsi:type="dc:Point" x="417.0" y="89.0"/>
+        <di:waypoint xsi:type="dc:Point" x="508.0" y="88.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_QlebPLX4EeGodIilJAWNVw" bpmnElement="_13-_15">
+        <di:waypoint xsi:type="dc:Point" x="245.0" y="157.0"/>
+        <di:waypoint xsi:type="dc:Point" x="244.5" y="324.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>
