@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<process xmlns="http://drools.org/drools-5.0/process"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
+         type="RuleFlow" name="flow" id="6pd.businessRules.insuranceQuote" >
+
+  <header>
+  </header>
+
+  <nodes>
+    <start id="1" name="Start" x="25" y="92" width="48" height="48" />
+    <subProcess id="3" name="ValidateVehicle" x="223" y="51" width="179" height="48" >
+    </subProcess>
+    <split id="4" name="Gateway" x="130" y="95" width="49" height="49" />
+    <subProcess id="5" name="ValidatePerson" x="223" y="144" width="172" height="48" >
+    </subProcess>
+    <end id="6" name="End" x="590" y="104" width="48" height="48" />
+    <join id="7" name="Gateway" x="437" y="97" width="49" height="49" />
+  </nodes>
+
+  <connections>
+    <connection from="4" to="3" />
+    <connection from="1" to="4" />
+    <connection from="4" to="5" />
+    <connection from="7" to="6" />
+    <connection from="3" to="7" />
+    <connection from="5" to="7" />
+  </connections>
+
+</process>

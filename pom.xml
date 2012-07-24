@@ -3,11 +3,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
                       
-	<groupId>com.redhat</groupId>
-	<artifactId>6pd</artifactId>
+	<groupId>rh6pd</groupId>
+	<artifactId>rh6pd</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0-SNAPSHOT</version>
 	<modelVersion>4.0.0</modelVersion>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<build>
 	    <plugins>
@@ -24,8 +28,8 @@
 	</build>
 
 	<modules>	
-		<module>6pd-businessRules</module>
-		<module>6pd-web</module>
+		<module>rh6pd-businessRules</module>
+		<module>rh6pd-web</module>
 	</modules> 
 
 </project>
