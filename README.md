@@ -1,3 +1,3 @@
-6pd
+rh6pd
 ===
-This page intentionally left blank. 
+This is the source for the "Red Hat Middleware 6 Products Demo". More information to follow shortly.
