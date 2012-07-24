@@ -7,8 +7,8 @@
 	<packaging>war</packaging>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.redhat</groupId>
-		<artifactId>6pd</artifactId>
+		<groupId>rh6pd</groupId>
+		<artifactId>rh6pd</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<dependencies>
