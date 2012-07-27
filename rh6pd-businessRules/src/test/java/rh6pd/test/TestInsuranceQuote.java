@@ -8,8 +8,8 @@ import rh6pd.businessRules.Vehicle;
 public class TestInsuranceQuote extends AbstractProcessTest {
 	@Test
 	public void testInsuranceQuote() {  
-		this.createNewSession("InsuranceQuote.rf", "InsuranceQuoteValidatePerson.rf", "InsuranceQuoteValidateVehicle.rf");
+		this.createNewSession("rh6pd/businessRules/insuranceQuote/InsuranceQuote.rf", "rh6pd/businessRules/insuranceQuote/InsuranceQuoteValidatePerson.rf", "rh6pd/businessRules/insuranceQuote/InsuranceQuoteValidateVehicle.rf");
 		 
-		this.testProcess("6pd.businessRules.insuranceQuote", "GatewayStart", "GatewayFinish");
+		this.testProcess("rh6pd.businessRules.insuranceQuote", "GatewayStart", "GatewayFinish");
 	}
 } 

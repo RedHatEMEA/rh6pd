@@ -2,15 +2,15 @@
 <process xmlns="http://drools.org/drools-5.0/process"
          xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
          xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
-         type="RuleFlow" name="flow" id="6pd.businessRules.validateVehicle" package-name="rh6pd.businessRules" >
+         type="RuleFlow" name="flow" id="rh6pd.businessRules.validateVehicle" package-name="rh6pd.businessRules.insuranceQuote" >
 
   <header>
   </header>
 
   <nodes>
-    <start id="1" name="Start" x="100" y="100" width="48" height="48" />
-    <end id="2" name="End" x="540" y="132" width="48" height="48" />
-    <actionNode id="3" name="PrintWelcomeMessage" x="231" y="94" width="211" height="48" >
+    <start id="1" name="Start" x="16" y="16" width="48" height="48" />
+    <end id="2" name="End" x="339" y="16" width="48" height="48" />
+    <actionNode id="3" name="PrintWelcomeMessage" x="96" y="16" width="211" height="48" >
         <action type="expression" dialect="mvel" >System.out.println("Execution of Validate Vehicle Node");</action>
     </actionNode>
   </nodes>
