@@ -1,4 +1,4 @@
-package com.redhat.common;
+package rh6pd.web.common;
 
 rule "CalculatePremium" ruleflow-group "calculatePremium"
 	when  

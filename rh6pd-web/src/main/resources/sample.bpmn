@@ -15,7 +15,7 @@
   <itemDefinition id="_personItem" structureRef="com.redhat.common.Person" />
   <itemDefinition id="_carItem" structureRef="com.redhat.common.Car" />
 
-  <process processType="Private" isExecutable="true" id="com.redhat.bpmn.insuranceQuote" name="Insurance Quote" >
+  <process processType="Private" isExecutable="true" id="rh6pd.web.common.bpmn.insuranceQuote" name="Insurance Quote" >
 
     <!-- process variables -->
     <property id="person" itemSubjectRef="_personItem"/>
@@ -101,7 +101,7 @@ System.out.println("Person Age is " + person.getAge());</script>
   </process>
 
   <bpmndi:BPMNDiagram>
-    <bpmndi:BPMNPlane bpmnElement="com.redhat.bpmn.insuranceQuote" >
+    <bpmndi:BPMNPlane bpmnElement="rh6pd.web.common.bpmn.insuranceQuote" >
       <bpmndi:BPMNShape bpmnElement="_1" >
         <dc:Bounds x="30" y="322" width="48" height="48" />
       </bpmndi:BPMNShape>
