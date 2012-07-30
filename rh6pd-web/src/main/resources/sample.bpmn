@@ -12,8 +12,8 @@
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
              xmlns:tns="http://www.jboss.org/drools">
 
-  <itemDefinition id="_personItem" structureRef="com.redhat.common.Person" />
-  <itemDefinition id="_carItem" structureRef="com.redhat.common.Car" />
+  <itemDefinition id="_personItem" structureRef="rh6pd.web.common.Person" />
+  <itemDefinition id="_carItem" structureRef="rh6pd.web.common.Car" />
 
   <process processType="Private" isExecutable="true" id="rh6pd.web.common.bpmn.insuranceQuote" name="Insurance Quote" >
 
@@ -81,8 +81,7 @@ System.out.println("Person Age is " + person.getAge());</script>
     <sequenceFlow id="_5-_8" sourceRef="_5" targetRef="_8" />
     <sequenceFlow id="_15-_9" sourceRef="_15" targetRef="_9" />
     <sequenceFlow id="_8-_10" sourceRef="_8" targetRef="_10" name="model ok" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getCar().getMake().equals("ford");
-</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getCar().getMake().equals("ford");</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
     <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" name="engine size ok" tns:priority="1" >
