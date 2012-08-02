@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_personItem" structureRef="rh6pd.web.common.Person" />
+  <itemDefinition id="_carItem" structureRef="rh6pd.web.common.Car" />
+
+  <process processType="Private" isExecutable="true" id="rh6pd.web.common.bpmn.insuranceQuote" name="Insurance Quote" >
+
+    <!-- process variables -->
+    <property id="person" itemSubjectRef="_personItem"/>
+    <property id="car" itemSubjectRef="_carItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <scriptTask id="_2" name="ProcessStarted" >
+      <script>System.out.println("Running JBPM5 Process");
+System.out.println("Car is " + person.getCar().getModel());
+System.out.println("Person Age is " + person.getAge());</script>
+    </scriptTask>
+    <endEvent id="_3" name="EndProcess" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <exclusiveGateway id="_4" name="AgeCheck" gatewayDirection="Diverging" />
+    <scriptTask id="_5" name="Age OK" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Gateway: Age Check Passed");</script>
+    </scriptTask>
+    <endEvent id="_6" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_7" name="Underage" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Failed age check.");</script>
+    </scriptTask>
+    <exclusiveGateway id="_8" name="CarTypeCheck" gatewayDirection="Diverging" />
+    <endEvent id="_9" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_10" name="Car Model OK" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Passed model check");</script>
+    </scriptTask>
+    <exclusiveGateway id="_11" name="EngineSizeCheck" gatewayDirection="Diverging" />
+    <scriptTask id="_12" name="Engine Size Ok" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Engine Size Ok");</script>
+    </scriptTask>
+    <endEvent id="_13" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_14" name="Model Fail" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Failed Model Check");</script>
+    </scriptTask>
+    <scriptTask id="_15" name="Engine Size Fail" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Engine Size Check Fail");</script>
+    </scriptTask>
+    <scriptTask id="_17" name="GoodbyeMessage" >
+      <script>System.out.println("End of quote!");</script>
+    </scriptTask>
+    <businessRuleTask id="_16" name="CalculatePremium" g:ruleFlowGroup="calculatePremium" >
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_7-_3" sourceRef="_7" targetRef="_3" />
+    <sequenceFlow id="_2-_4" sourceRef="_2" targetRef="_4" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" name="Older than 17" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getAge() &gt; 17;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_14-_6" sourceRef="_14" targetRef="_6" />
+    <sequenceFlow id="_4-_7" sourceRef="_4" targetRef="_7" name="Younger than 17" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getAge() &lt; 17;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_5-_8" sourceRef="_5" targetRef="_8" />
+    <sequenceFlow id="_15-_9" sourceRef="_15" targetRef="_9" />
+    <sequenceFlow id="_8-_10" sourceRef="_8" targetRef="_10" name="model ok" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if ( person.getCar().getMake().equals("ford")){
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" name="engine size ok" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getCar().getEngineSize() &lt;=  1.5;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_17-_13" sourceRef="_17" targetRef="_13" />
+    <sequenceFlow id="_8-_14" sourceRef="_8" targetRef="_14" name="model failed" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return !person.getCar().getMake().equals("ford");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_11-_15" sourceRef="_11" targetRef="_15" name="engine size fail" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getCar().getEngineSize() &gt;  1.5;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_16-_17" sourceRef="_16" targetRef="_17" />
+    <sequenceFlow id="_12-_16" sourceRef="_12" targetRef="_16" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="rh6pd.web.common.bpmn.insuranceQuote" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="30" y="322" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="133" y="322" width="101" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="472" y="485" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="292" y="322" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="225" y="171" width="180" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="544" y="388" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="259" y="482" width="115" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="544" y="173" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="795" y="284" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="473" y="52" width="189" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="790" y="52" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="967" y="52" width="164" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="1024" y="482" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="478" y="286" width="184" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="746" y="186" width="144" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="1010" y="329" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="968" y="201" width="160" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="54" y="346" />
+        <di:waypoint x="183" y="346" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_3" >
+        <di:waypoint x="316" y="506" />
+        <di:waypoint x="496" y="509" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_4" >
+        <di:waypoint x="183" y="346" />
+        <di:waypoint x="316" y="346" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="316" y="346" />
+        <di:waypoint x="315" y="195" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_6" >
+        <di:waypoint x="570" y="310" />
+        <di:waypoint x="568" y="412" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_7" >
+        <di:waypoint x="316" y="346" />
+        <di:waypoint x="316" y="506" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_8" >
+        <di:waypoint x="315" y="195" />
+        <di:waypoint x="568" y="197" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_9" >
+        <di:waypoint x="818" y="210" />
+        <di:waypoint x="819" y="308" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_10" >
+        <di:waypoint x="568" y="197" />
+        <di:waypoint x="567" y="76" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="567" y="76" />
+        <di:waypoint x="814" y="76" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="814" y="76" />
+        <di:waypoint x="1049" y="76" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_13" >
+        <di:waypoint x="1050" y="353" />
+        <di:waypoint x="1048" y="506" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_14" >
+        <di:waypoint x="568" y="197" />
+        <di:waypoint x="570" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_15" >
+        <di:waypoint x="814" y="76" />
+        <di:waypoint x="818" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_17" >
+        <di:waypoint x="1048" y="225" />
+        <di:waypoint x="1050" y="353" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_16" >
+        <di:waypoint x="1049" y="76" />
+        <di:waypoint x="1048" y="225" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
