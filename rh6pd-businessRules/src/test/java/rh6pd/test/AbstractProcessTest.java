@@ -17,9 +17,9 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 	private final HashMap<String, Object> props = new HashMap<String, Object>();
 	private boolean isStarted = false; 
 	  
-	protected void createNewSession(String bpmnFile) {
-		isStarted = false; 
-		this.session = createKnowledgeSession(bpmnFile);
+	protected void createNewSession(String... bpmnFiles) {
+		isStarted = false;   
+		this.session = createKnowledgeSession(bpmnFiles);
 	}   
 	  
 	protected void insertVar(String name, Object o) {
@@ -33,11 +33,15 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 			session.insert(o); 
 			props.put(name, o);
 		} 
-	}
+	} 
 	
-	protected void printBpmnErrors(String bpmnFile) {
+	protected void printBpmnErrors(String... listBpmnFiles) {
 		KnowledgeBuilder kb = KnowledgeBuilderFactory.newKnowledgeBuilder();
-		kb.add(ResourceFactory.newClassPathResource(bpmnFile), ResourceType.BPMN2);
+		
+		for (String bpmnFile : listBpmnFiles) {
+			kb.add(ResourceFactory.newClassPathResource(bpmnFile), ResourceType.BPMN2);
+		}
+		
 		KnowledgeBuilderErrors errs = kb.getErrors();
 		
 		for (KnowledgeBuilderError err : errs) {
