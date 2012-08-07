@@ -1,12 +1,26 @@
 package rh6pd.test.examples.humanTasks;
 
-import org.junit.Assert;
+import java.util.HashMap;
 
 import org.junit.Test;
 
-public class TestHumanTask {
+import rh6pd.test.AbstractProcessTest;
+
+public class TestHumanTask extends AbstractProcessTest{
 	@Test
-	public void testHumanTask() {
-		Assert.assertTrue(true);  
+	public void testSampleHumanTask() {
+		this.createNewSession("humanTask.bpmn");
+		
+		//Test human task with processId and the WorkItem to be tested
+		HashMap<String, String> parameters = new HashMap<String, String>();
+		parameters.put("ActorId", "mary,john");
+		parameters.put("GroupId", "admin");
+		this.testHumanTask("Sample", "Human Task", parameters, "StartProcess", "User Task");
+		
+		
 	}
+
+	
+
+	
 }
