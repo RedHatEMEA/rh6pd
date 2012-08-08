@@ -2,6 +2,7 @@ package rh6pd.test.examples.humanTasks;
 
 import java.util.HashMap;
 
+import org.jbpm.process.workitem.wsht.WSHumanTaskHandler;
 import org.junit.Test;
 
 import rh6pd.test.AbstractProcessTest;
@@ -16,7 +17,6 @@ public class TestHumanTask extends AbstractProcessTest{
 		parameters.put("ActorId", "mary,john");
 		parameters.put("GroupId", "admin");
 		this.testHumanTask("Sample", "Human Task", parameters, "StartProcess", "User Task");
-		
 		
 	}
 

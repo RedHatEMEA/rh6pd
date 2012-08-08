@@ -10,6 +10,6 @@ public class TestInsuranceQuote extends AbstractProcessTest {
 	public void testInsuranceQuote() {  
 		this.createNewSession("rh6pd/businessRules/insuranceQuote/InsuranceQuote.rf", "rh6pd/businessRules/insuranceQuote/InsuranceQuoteValidatePerson.rf", "rh6pd/businessRules/insuranceQuote/InsuranceQuoteValidateVehicle.rf");
 		 
-		this.testProcess("rh6pd.businessRules.insuranceQuote", "GatewayStart", "GatewayFinish");
+		this.testProcess(null, "rh6pd.businessRules.insuranceQuote", "GatewayStart", "GatewayFinish");
 	}
 } 

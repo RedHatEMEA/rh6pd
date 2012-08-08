@@ -66,6 +66,7 @@ System.out.println("Person Age is " + person.getAge());</script>
     </scriptTask>
     <businessRuleTask id="_16" name="CalculatePremium" g:ruleFlowGroup="calculatePremium" >
     </businessRuleTask>
+    </businessRuleTask>
 
     <!-- connections -->
     <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
@@ -106,7 +107,7 @@ System.out.println("Person Age is " + person.getAge());</script>
         <dc:Bounds x="30" y="322" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="133" y="322" width="101" height="48" />
+        <dc:Bounds x="133" y="322" width="111" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
         <dc:Bounds x="468" y="479" width="48" height="48" />
@@ -153,16 +154,19 @@ System.out.println("Person Age is " + person.getAge());</script>
       <bpmndi:BPMNShape bpmnElement="_16" >
         <dc:Bounds x="968" y="201" width="160" height="48" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="1120" y="304" width="80" height="48" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_2" >
         <di:waypoint x="54" y="346" />
-        <di:waypoint x="183" y="346" />
+        <di:waypoint x="188" y="346" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_7-_3" >
         <di:waypoint x="316" y="506" />
         <di:waypoint x="492" y="503" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_2-_4" >
-        <di:waypoint x="183" y="346" />
+        <di:waypoint x="188" y="346" />
         <di:waypoint x="316" y="346" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_5" >

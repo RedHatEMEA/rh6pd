@@ -41,8 +41,12 @@
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
-        <sourceRef>forename</sourceRef>
+        <!-- <sourceRef>forename</sourceRef> -->
         <targetRef>_3_ForenameInput</targetRef>
+         <assignment>
+          <from xsi:type="tFormalExpression">forenameInput</from>
+          <to xsi:type="tFormalExpression">_3_ForenameInput</to>
+        </assignment>
       </dataInputAssociation>
       <dataInputAssociation>
         <targetRef>_3_GroupIdInput</targetRef>
