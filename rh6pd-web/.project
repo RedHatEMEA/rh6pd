@@ -50,5 +50,9 @@
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 		<nature>org.jboss.tools.jst.web.kb.kbnature</nature>
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
+<<<<<<< HEAD
+=======
+		<nature>org.jboss.tools.jsf.jsfnature</nature>
+>>>>>>> 79049e11e3e15aaa48252b5b259a5847603a961c
 	</natures>
 </projectDescription>
