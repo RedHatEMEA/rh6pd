@@ -10,29 +10,39 @@
              xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
              xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
-             xmlns:data="http://www.example.org/HumanTaskExample"
              xmlns:tns="http://www.jboss.org/drools">
-    
-  <!-- Imports -->           
-  <!-- <import importType="http://www.w3.org/2001/XMLSchema" location="HumanTaskExample.xsd" 
-   namespace="http://www.example.org/HumanTaskExample"/> -->     
-     
-     <!-- item definitions -->
-  <itemDefinition id="forenameItem" isCollection="false" itemKind="Information" structureRef="rh6pd.businessRules.Forename" />          
 
+  <itemDefinition id="_personItem" structureRef="rh6pd.businessRules.Person" />
+  <itemDefinition id="_mapItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_nameItem" structureRef="java.lang.String" />
+  
   <process processType="Private" isExecutable="true" id="Sample" name="Sample Process" tns:packageName="rh6pd.businessRulesTests.examples.humanTasks" >
+
+    <!-- process variables -->
+    <property id="person" itemSubjectRef="_personItem"/>
+    <property id="map" itemSubjectRef="_mapItem"/>
+    <property id="name" itemSubjectRef="_nameItem"/>
 
     <!-- nodes -->
     <startEvent id="_1" name="StartProcess" />
-    <endEvent id="_2" name="End" >
-        <terminateEventDefinition/>
-    </endEvent>
-    
-     <!-- data objects -->
-    <dataObject id="_3_ForenameData" itemSubjectRef="tns:forenameItem"/>
- 
-    
-    <userTask id="_3" name="User Task" >
+    <scriptTask id="_2" name="Process Started" >
+      <script>
+      System.out.println("Get customer data");
+      
+      map = new java.util.HashMap();
+      
+       map.put("name", person.getName());
+       <!-- map.put("age", person.getAge()); -->
+      <!-- map.put("name", "TestName"); -->
+      kcontext.setVariable("map", map);
+
+      kcontext.setVariable("name", name);
+     
+     System.out.println("Data successfully retrieved for customer "+person.getName());
+      </script>
+    </scriptTask>
+   
+    <userTask id="_3" name="Fill Customer Form" >
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
           <script>System.out.println("HT Entry");</script>
@@ -42,22 +52,30 @@
         </tns:onExit-script>
       </extensionElements>
       <ioSpecification>
-        <dataInput id="_3_ForenameInput" name="Forename" itemSubjectRef="tns:forename" />
+        <dataInput id="_3_ContentInput" name="Content" />
+        <dataInput id="_3_TaskNameInput" name="TaskName" />
         <dataInput id="_3_GroupIdInput" name="GroupId" />
-        <dataOutput id="_3_ForenameOutput" name="Forename" itemSubjectRef="tns:forename" />
+        <dataOutput id="_3_NameOutput" name="Name" />
         <inputSet>
-          <dataInputRefs>_3_ForenameInput</dataInputRefs>
+          <dataInputRefs>_3_ContentInput</dataInputRefs>
+          <dataInputRefs>_3_TaskNameInput</dataInputRefs>
           <dataInputRefs>_3_GroupIdInput</dataInputRefs>
         </inputSet>
         <outputSet>
-          <dataOutputRefs>_3_ForenameOutput</dataOutputRefs>
+          <dataOutputRefs>_3_NameOutput</dataOutputRefs>
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
-        <!--<sourceRef>forename</sourceRef>-->
-        <sourceRef>_3_ForenameData</sourceRef>
-        <targetRef>_3_ForenameInput</targetRef>
+        <sourceRef>map</sourceRef>
+        <targetRef>_3_ContentInput</targetRef>
       </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ProcessCustomer</from>
+          <to xsi:type="tFormalExpression">_3_TaskNameInput</to>
+        </assignment>
+        </dataInputAssociation>
       <dataInputAssociation>
         <targetRef>_3_GroupIdInput</targetRef>
         <assignment>
@@ -66,9 +84,8 @@
         </assignment>
       </dataInputAssociation>
       <dataOutputAssociation>
-       <sourceRef>_3_ForenameOutput</sourceRef>
-       <targetRef>_3_ForenameData</targetRef>
-      <!-- <targetRef>forename</targetRef> -->
+        <sourceRef>_3_NameOutput</sourceRef>
+        <targetRef>name</targetRef>
       </dataOutputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
@@ -81,32 +98,60 @@
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
+    <scriptTask id="_4" name="Process Ended" >
+    <script>System.out.println("Process ended for customer "+ name);</script>
+    </scriptTask>
+    <endEvent id="_5" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
 
     <!-- connections -->
-    <sequenceFlow id="_3-_2" sourceRef="_3" targetRef="_2" />
-    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
-
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+   
   </process>
-  
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="Sample" >
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="16" y="16" width="48" height="48" />
+        <dc:Bounds x="7" y="24" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="228" y="16" width="48" height="48" />
+        <dc:Bounds x="98" y="27" width="153" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="96" y="16" width="100" height="48" />
+        <dc:Bounds x="300" y="25" width="150" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_3-_2" >
-        <di:waypoint x="146" y="40" />
-        <di:waypoint x="252" y="40" />
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="297" y="111" width="164" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="314" y="201" width="136" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="360" y="278" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="31" y="48" />
+        <di:waypoint x="174" y="51" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
-        <di:waypoint x="40" y="40" />
-        <di:waypoint x="146" y="40" />
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="174" y="51" />
+        <di:waypoint x="375" y="49" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="375" y="49" />
+        <di:waypoint x="379" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="379" y="135" />
+        <di:waypoint x="382" y="225" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_6" >
+        <di:waypoint x="382" y="225" />
+        <di:waypoint x="384" y="302" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
