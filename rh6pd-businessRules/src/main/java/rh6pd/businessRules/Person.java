@@ -7,13 +7,16 @@ public class Person {
 	private Vehicle car;
 	private double premium;
 
+	public Person() {
+	}
+	
 	public Person(String name, int age, Vehicle car, double premium) {
 		this.name = name;
 		this.age = age;
 		this.car = car;
 		this.premium = premium;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
