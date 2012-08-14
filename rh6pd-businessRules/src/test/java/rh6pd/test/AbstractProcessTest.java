@@ -17,6 +17,8 @@ import org.drools.runtime.process.ProcessInstance;
 import org.drools.runtime.process.WorkItem;
 import org.jbpm.process.workitem.wsht.WSHumanTaskHandler;
 import org.jbpm.test.JbpmJUnitTestCase;
+
+import rh6pd.resources.FtlResourceType;
  
 public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 	private StatefulKnowledgeSession session;
@@ -62,6 +64,7 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
  
 	public void testProcess(String ruleFileName, String processId, String... requiredNodes) {	
 		ProcessInstance processInstance = session.startProcess(processId, props);
+		
 		if(ruleFileName!=null && !ruleFileName.isEmpty()){
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 		kbuilder.add(new ClassPathResource(ruleFileName), ResourceType.DRL);
@@ -74,15 +77,25 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 		assertNodeTriggered(processInstance.getId(), requiredNodes);
 	}
 	
-	protected void testHumanTask(String processId, String workItemName, Map humanTaskParameters, String... nodes) {
+	protected void testHumanTask(String formFileName, String processId, String workItemName,  Map humanTaskParameters, Map contentParameters, String... nodes) {
 		TestWorkItemHandler testWorkItemHandler = new TestWorkItemHandler();
 		session.getWorkItemManager().registerWorkItemHandler(workItemName, testWorkItemHandler);
-		ProcessInstance processInstance = session.startProcess(processId);
+		
+		/**
+		//add a freemarker resource type to be able to add the form to the classpath.
+		if(formFileName!=null && ! formFileName.isEmpty()){
+			KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+			kbuilder.add(new ClassPathResource(formFileName), FtlResourceType.FTL);
+			session.getKnowledgeBase().addKnowledgePackages(kbuilder.getKnowledgePackages());
+		}
+		**/
+		
+		ProcessInstance processInstance = session.startProcess(processId, props);
 		
 		
 		// check if the process instance has started
 		assertProcessInstanceActive(processInstance.getId(), session);
-		assertNodeTriggered(processInstance.getId(), nodes);
+//		assertNodeTriggered(processInstance.getId(), nodes);
 		
 		// assert Human Task Parameters
 		WorkItem workItem = testWorkItemHandler.getWorkItem();
@@ -90,6 +103,18 @@ public abstract class AbstractProcessTest extends JbpmJUnitTestCase {
 		assertEquals("Human Task", workItem.getName());
 		assertEquals(workItem.getParameter("ActorId"), humanTaskParameters.get("ActorId"));
 		assertEquals(workItem.getParameter("GroupId"), humanTaskParameters.get("GroupId"));
+		assertEquals(workItem.getParameter("TaskName"), humanTaskParameters.get("TaskName"));
+		
+		HashMap<String, String> actualContent =  (HashMap<String, String>) humanTaskParameters.get("Content");
+		HashMap<String, String> expectedContent =  (HashMap<String, String>) workItem.getParameter("Content");
+		if(actualContent!= null){
+			int contentSize = actualContent.size();
+			for(int i =1; i<=contentSize; i++ ){
+				String key = "content"+i;
+				String contentValue = (String) contentParameters.get(key);
+				assertEquals(expectedContent.get(contentValue), actualContent.get(contentValue));
+			}
+		}
 		
 		// notify the engine the humanTask has been executed
 		session.getWorkItemManager().abortWorkItem(workItem.getId());
