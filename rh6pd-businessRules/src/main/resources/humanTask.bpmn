@@ -15,7 +15,7 @@
   <itemDefinition id="_personItem" structureRef="rh6pd.businessRules.Person" />
   <itemDefinition id="_mapItem" structureRef="java.util.HashMap" />
   <itemDefinition id="_nameItem" structureRef="java.lang.String" />
-  
+
   <process processType="Private" isExecutable="true" id="Sample" name="Sample Process" tns:packageName="rh6pd.businessRulesTests.examples.humanTasks" >
 
     <!-- process variables -->
@@ -32,8 +32,8 @@
       map = new java.util.HashMap();
       
        map.put("name", person.getName());
-       <!-- map.put("age", person.getAge()); -->
-      <!-- map.put("name", "TestName"); -->
+       
+      
       kcontext.setVariable("map", map);
 
       kcontext.setVariable("name", name);
@@ -41,7 +41,6 @@
      System.out.println("Data successfully retrieved for customer "+person.getName());
       </script>
     </scriptTask>
-   
     <userTask id="_3" name="Fill Customer Form" >
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
@@ -75,7 +74,7 @@
           <from xsi:type="tFormalExpression">ProcessCustomer</from>
           <to xsi:type="tFormalExpression">_3_TaskNameInput</to>
         </assignment>
-        </dataInputAssociation>
+      </dataInputAssociation>
       <dataInputAssociation>
         <targetRef>_3_GroupIdInput</targetRef>
         <assignment>
@@ -99,7 +98,7 @@
       </potentialOwner>
     </userTask>
     <scriptTask id="_4" name="Process Ended" >
-    <script>System.out.println("Process ended for customer "+ name);</script>
+      <script>System.out.println("Process ended for customer "+ name);</script>
     </scriptTask>
     <endEvent id="_5" name="End" >
         <terminateEventDefinition/>
@@ -110,48 +109,41 @@
     <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
     <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
     <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
-   
+
   </process>
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="Sample" >
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="7" y="24" width="48" height="48" />
+        <dc:Bounds x="74" y="16" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="98" y="27" width="153" height="48" />
+        <dc:Bounds x="22" y="96" width="153" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="300" y="25" width="150" height="48" />
+        <dc:Bounds x="23" y="176" width="150" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_4" >
-        <dc:Bounds x="297" y="111" width="164" height="48" />
+        <dc:Bounds x="16" y="256" width="164" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_5" >
-        <dc:Bounds x="314" y="201" width="136" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_6" >
-        <dc:Bounds x="360" y="278" width="48" height="48" />
+        <dc:Bounds x="74" y="336" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_2" >
-        <di:waypoint x="31" y="48" />
-        <di:waypoint x="174" y="51" />
+        <di:waypoint x="98" y="40" />
+        <di:waypoint x="98" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_2-_3" >
-        <di:waypoint x="174" y="51" />
-        <di:waypoint x="375" y="49" />
+        <di:waypoint x="98" y="120" />
+        <di:waypoint x="98" y="200" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_3-_4" >
-        <di:waypoint x="375" y="49" />
-        <di:waypoint x="379" y="135" />
+        <di:waypoint x="98" y="200" />
+        <di:waypoint x="98" y="280" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_5" >
-        <di:waypoint x="379" y="135" />
-        <di:waypoint x="382" y="225" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_5-_6" >
-        <di:waypoint x="382" y="225" />
-        <di:waypoint x="384" y="302" />
+        <di:waypoint x="98" y="280" />
+        <di:waypoint x="98" y="360" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
