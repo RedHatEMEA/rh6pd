@@ -13,3 +13,7 @@
 
 # eclipse stuff
 .settings
+
+# All target directories
+target/
+.guvnorinfo
