@@ -8,7 +8,7 @@ import rh6pd.businessRules.Person;
 import rh6pd.businessRules.Vehicle;
 import rh6pd.test.AbstractProcessTest;
 
-public class TestSampleDecisionTableHumanTask extends AbstractProcessTest{
+public class TestSampleDecisionTable extends AbstractProcessTest{
 
 	String processFileName = "SampleDecisionTableHumanTask.bpmn";
 	String processId = "com.redhat.sample.bpmn.decisionTableAndHumanTask";
