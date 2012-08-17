@@ -1,4 +1,8 @@
-1.) Install Postgres 
+##################################################################################################################
+INSTALL AND CONFIGURE POSTGRESQL DATABASE
+##################################################################################################################
+
+1.) Install Postgresql
 2.) Edit the file /var/lib/pgsql/data/pg_hba.conf and add the following:
 
 # "local" is for Unix domain socket connections only
@@ -16,5 +20,10 @@ host    all         all         ::1/128               ident
 		psql
 		\i /home/sample-insurance.sql
 		\q
+		
+##################################################################################################################
+Point the CarInsuranceDataSource to the location of its corresponding InsuranceData.csv file on your local file system
+##################################################################################################################
 
-
+1.) Edit the file .../rh6pd-dataModels/sources/CarInsuranceDataSource.xmi
+2.) Locate the property "FlatFileHomeUrl" and change the path.
