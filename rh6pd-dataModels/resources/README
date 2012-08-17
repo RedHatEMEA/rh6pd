@@ -1,0 +1,20 @@
+1.) Install Postgres 
+2.) Edit the file /var/lib/pgsql/data/pg_hba.conf and add the following:
+
+# "local" is for Unix domain socket connections only
+local   all         all                               password
+# IPv4 local connections:
+host    all         all         127.0.0.1/32          md5
+# IPv6 local connections:
+host    all         all         ::1/128               ident
+
+3.) create the super user postgres
+4.) Create car and person databases with test data:
+	a.) Copy to the /home directory
+	b.) Issue the following commands:
+		su - postgres
+		psql
+		\i /home/sample-insurance.sql
+		\q
+
+
