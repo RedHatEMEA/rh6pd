@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:jdbc="http://www.metamatrix.com/metamodels/JDBC" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational">
+  <mmcore:ModelAnnotation xmi:uuid="mmuuid:5f1faa41-7838-4c1d-ba61-adb93da2223e" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="PHYSICAL" ProducerName="Teiid Designer" ProducerVersion="7.7.1.v20120619-2152-H6-CR1-SOA">
+    <modelImports xmi:uuid="mmuuid:1d2b263f-a026-4ab3-8d38-c7cff4824893" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+  </mmcore:ModelAnnotation>
+  <relational:BaseTable xmi:uuid="mmuuid:adc13260-5fa8-4afb-b6e3-3f6e00562d5f" name="public.cardata" nameInSource="&quot;public&quot;.&quot;cardata&quot;">
+    <columns xmi:uuid="mmuuid:90dc20bc-9ec6-49ca-b514-180b8256b8f8" name="carid" nameInSource="carid" nativeType="int4" fixedLength="true" precision="10" nullable="NO_NULLS" caseSensitive="false" searchability="ALL_EXCEPT_LIKE" uniqueKeys="mmuuid/d9218d8a-56e2-4760-8bef-ab82b8c8af19">
+      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:5aa38c0f-32fe-4159-85b5-c10fb1d8ee53" name="make" nameInSource="make" nativeType="varchar" length="20" nullable="NO_NULLS">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:b4c2e9df-9582-4200-9ca5-26ad8ddc26a6" name="model" nameInSource="model" nativeType="varchar" length="20" nullable="NO_NULLS">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:68e79526-abbd-4623-8eec-ad21a5f19027" name="age" nameInSource="age" nativeType="int4" fixedLength="true" precision="10" nullable="NO_NULLS" caseSensitive="false" searchability="ALL_EXCEPT_LIKE">
+      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    </columns>
+    <primaryKey xmi:uuid="mmuuid:d9218d8a-56e2-4760-8bef-ab82b8c8af19" name="cardata_pkey" nameInSource="cardata_pkey" columns="mmuuid/90dc20bc-9ec6-49ca-b514-180b8256b8f8"/>
+  </relational:BaseTable>
+  <mmcore:AnnotationContainer xmi:uuid="mmuuid:28dec148-b9ce-446d-8be5-2de19b2c5c16">
+    <annotations xmi:uuid="mmuuid:5ccbefe7-f04f-4f79-ba8d-67411b98dc27" annotatedObject="mmuuid/5f1faa41-7838-4c1d-ba61-adb93da2223e">
+      <tags xmi:uuid="mmuuid:adccbef6-d22b-4342-9683-9b5a2487990e" key="connection:driver-class" value="org.postgresql.Driver"/>
+      <tags xmi:uuid="mmuuid:ef027f5c-944b-43af-b71c-2a6e38df0102" key="connectionProfile:connectionProfileName" value="CarPostgreSQL"/>
+      <tags xmi:uuid="mmuuid:be1df486-4644-471f-8e7d-7f8d36b648f1" key="connectionProfile:connectionProfileProviderId" value="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+      <tags xmi:uuid="mmuuid:ceff3874-8879-402d-bdd5-37a2c763235c" key="translator:name" value="postgresql"/>
+      <tags xmi:uuid="mmuuid:8baa25fa-ef29-4298-ac02-04e88d96334b" key="connection:connection-url" value="jdbc:postgresql:car"/>
+      <tags xmi:uuid="mmuuid:1f9c03d0-661d-43b0-8e04-527335da3d32" key="connectionProfile:connectionProfileInstanceID" value="b98be160-e852-11e1-a4d9-cc7782ebfdc3"/>
+      <tags xmi:uuid="mmuuid:2d747995-9eb4-42ef-8de3-22bc77d6f3a8" key="connection:connectionProfileInstanceID" value="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+      <tags xmi:uuid="mmuuid:381c465c-3115-4229-bb5b-fcb1b4bccc16" key="connectionProfile:connectionProfileDescription" value=""/>
+      <tags xmi:uuid="mmuuid:c22eb301-fbf1-40d1-9c33-295bcae1c0c7" key="connection:user-name" value="postgres"/>
+      <tags xmi:uuid="mmuuid:d6f91f22-c3d5-4c44-b893-082360895030" key="connectionProfile:connectionProfileCategory" value="org.eclipse.datatools.connectivity.db.category"/>
+    </annotations>
+  </mmcore:AnnotationContainer>
+  <diagram:DiagramContainer xmi:uuid="mmuuid:7b77ea96-31fd-4ebd-b978-34df71a15857">
+    <diagram xmi:uuid="mmuuid:a31ba0c8-c41c-4800-aa7d-c59a3929404f" type="packageDiagramType" target="mmuuid/5f1faa41-7838-4c1d-ba61-adb93da2223e">
+      <diagramEntity xmi:uuid="mmuuid:8558431b-e804-48aa-ba5a-e30673264782" modelObject="mmuuid/adc13260-5fa8-4afb-b6e3-3f6e00562d5f" xPosition="10" yPosition="10"/>
+    </diagram>
+  </diagram:DiagramContainer>
+  <jdbc:JdbcSource xmi:uuid="mmuuid:426a41aa-2afd-4251-b1bc-929bee22a5d3" name="CarPostgreSQL" driverName="PostgreSQL JDBC Driver" driverClass="org.postgresql.Driver" username="postgres" url="jdbc:postgresql:car">
+    <importSettings xmi:uuid="mmuuid:4a44a838-ad32-42ee-adf2-e89c916af30f" createSchemasInModel="false" generateSourceNamesInModel="FULLY_QUALIFIED" includeApproximateIndexes="false">
+      <includedSchemaPaths>/public</includedSchemaPaths>
+      <includedTableTypes>TABLE</includedTableTypes>
+    </importSettings>
+  </jdbc:JdbcSource>
+</xmi:XMI>

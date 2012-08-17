@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:jdbc="http://www.metamatrix.com/metamodels/JDBC" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational">
+  <mmcore:ModelAnnotation xmi:uuid="mmuuid:4473fa85-8636-4524-956e-ca2bc99d5ad7" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="PHYSICAL" ProducerName="Teiid Designer" ProducerVersion="7.7.1.v20120619-2152-H6-CR1-SOA">
+    <modelImports xmi:uuid="mmuuid:709386eb-915f-498e-a0c7-7528c22e2b32" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+  </mmcore:ModelAnnotation>
+  <relational:BaseTable xmi:uuid="mmuuid:3bf96af7-5573-4889-a95c-baa542f573eb" name="public.persondata" nameInSource="&quot;public&quot;.&quot;persondata&quot;">
+    <columns xmi:uuid="mmuuid:8351ef87-bb0c-415a-a0b0-55937b9a7bdb" name="name" nameInSource="name" nativeType="varchar" length="20" nullable="NO_NULLS" uniqueKeys="mmuuid/369adf94-e9b8-4aef-af78-469d4b9167ea">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:0a8581c0-8a5b-448b-9ffe-07acd4d38eb2" name="age" nameInSource="age" nativeType="int4" fixedLength="true" precision="10" nullable="NO_NULLS" caseSensitive="false" searchability="ALL_EXCEPT_LIKE">
+      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:768c55af-fa8b-4855-99a5-335f8bb905a5" name="personcarid" nameInSource="personcarid" nativeType="varchar" length="20" nullable="NO_NULLS">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <primaryKey xmi:uuid="mmuuid:369adf94-e9b8-4aef-af78-469d4b9167ea" name="persondata_pkey" nameInSource="persondata_pkey" columns="mmuuid/8351ef87-bb0c-415a-a0b0-55937b9a7bdb"/>
+  </relational:BaseTable>
+  <mmcore:AnnotationContainer xmi:uuid="mmuuid:2a54b758-0c4e-4c3b-8be5-a4b27e2e22aa">
+    <annotations xmi:uuid="mmuuid:ef821e92-9e5c-4135-97d7-39fbb99d1fa3" annotatedObject="mmuuid/4473fa85-8636-4524-956e-ca2bc99d5ad7">
+      <tags xmi:uuid="mmuuid:f796ee05-7a3c-49ef-bcf3-8ee806a33a65" key="connection:driver-class" value="org.postgresql.Driver"/>
+      <tags xmi:uuid="mmuuid:a0487f51-1f40-4954-89b5-8ebb178f47c7" key="connectionProfile:connectionProfileName" value="PersonPostgreSQL"/>
+      <tags xmi:uuid="mmuuid:d45ca608-23e1-4830-9f8d-c85536442aef" key="connectionProfile:connectionProfileProviderId" value="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+      <tags xmi:uuid="mmuuid:eefa28e4-e511-4d85-9df6-ff025a03af71" key="translator:name" value="postgresql"/>
+      <tags xmi:uuid="mmuuid:22bae386-72a8-4166-84cf-b5e5271ea394" key="connection:connection-url" value="jdbc:postgresql:person"/>
+      <tags xmi:uuid="mmuuid:a5088aef-d7f5-4a8c-88f4-e32ebae13ba9" key="connectionProfile:connectionProfileInstanceID" value="8cac5470-e84f-11e1-a4d9-cc7782ebfdc3"/>
+      <tags xmi:uuid="mmuuid:ccc7d6cd-f3a8-4c98-a9fe-b95c4a77154e" key="connection:connectionProfileInstanceID" value="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+      <tags xmi:uuid="mmuuid:8957cfa1-443f-4400-a3e5-7675807a2884" key="connectionProfile:connectionProfileDescription" value=""/>
+      <tags xmi:uuid="mmuuid:3276127a-d8dc-4fcd-81a1-67931244bfcd" key="connection:user-name" value="postgres"/>
+      <tags xmi:uuid="mmuuid:998565b3-6d88-448c-ab70-cc445b51625e" key="connectionProfile:connectionProfileCategory" value="org.eclipse.datatools.connectivity.db.category"/>
+    </annotations>
+  </mmcore:AnnotationContainer>
+  <diagram:DiagramContainer xmi:uuid="mmuuid:b5cfc84c-1464-407c-aa43-1e0cef5c6d07">
+    <diagram xmi:uuid="mmuuid:99273271-0b38-46cd-868f-cd0ac09abad4" type="packageDiagramType" target="mmuuid/4473fa85-8636-4524-956e-ca2bc99d5ad7">
+      <diagramEntity xmi:uuid="mmuuid:3904f775-b7c6-495a-b611-15d49464bb84" modelObject="mmuuid/3bf96af7-5573-4889-a95c-baa542f573eb" xPosition="10" yPosition="10"/>
+    </diagram>
+  </diagram:DiagramContainer>
+  <jdbc:JdbcSource xmi:uuid="mmuuid:4e09d6cd-7b86-4e30-82b4-3332941c020b" name="PersonPostgreSQL" driverName="PostgreSQL JDBC Driver" driverClass="org.postgresql.Driver" username="postgres" url="jdbc:postgresql:person">
+    <importSettings xmi:uuid="mmuuid:697c0b90-b289-4532-9303-2ab1293326a4" createSchemasInModel="false" generateSourceNamesInModel="FULLY_QUALIFIED" includeApproximateIndexes="false">
+      <includedSchemaPaths>/public</includedSchemaPaths>
+      <includedTableTypes>TABLE</includedTableTypes>
+    </importSettings>
+  </jdbc:JdbcSource>
+</xmi:XMI>

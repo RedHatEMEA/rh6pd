@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational">
+  <mmcore:ModelAnnotation xmi:uuid="mmuuid:b220c629-bce0-4bb5-bd44-fb0e203a9ccb" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="PHYSICAL" ProducerName="Teiid Designer" ProducerVersion="7.7.1.v20120619-2152-H6-CR1-SOA">
+    <modelImports xmi:uuid="mmuuid:bb6994b4-31e6-45f9-bbef-ad8b1cf9b26b" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+    <modelImports xmi:uuid="mmuuid:4728f903-90f4-4ee5-9d5c-68ac0d778da6" name="SimpleDatatypes-instance" modelLocation="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+  </mmcore:ModelAnnotation>
+  <mmcore:AnnotationContainer xmi:uuid="mmuuid:2cb2b1ad-6699-4317-a09d-a391d22ba3c6">
+    <annotations xmi:uuid="mmuuid:3012bfff-b351-4d93-8689-634e82dbae55" annotatedObject="mmuuid/b220c629-bce0-4bb5-bd44-fb0e203a9ccb">
+      <tags xmi:uuid="mmuuid:1a8ea77b-19f9-4d07-82aa-a71407e37607" key="connection:FlatFileHomeUrl" value="/home/umbuamuh/git/rh6pd/rh6pd-dataModels/resources"/>
+      <tags xmi:uuid="mmuuid:00b47137-a2d4-407f-b242-ffbeee2cd5da" key="connectionProfile:connectionProfileName" value="CarInsuranceDataSource"/>
+      <tags xmi:uuid="mmuuid:303f7506-3edf-4dad-9f40-ef410b56cb7a" key="connection:FlatFileDelimeter" value="COMMA"/>
+      <tags xmi:uuid="mmuuid:95888450-ed46-4bf1-a9a6-e1f9029180cf" key="connectionProfile:connectionProfileProviderId" value="org.eclipse.datatools.connectivity.oda.flatfile"/>
+      <tags xmi:uuid="mmuuid:9a7e49bc-71a0-4730-88f3-69ffebe55485" key="translator:name" value="file"/>
+      <tags xmi:uuid="mmuuid:f73447b8-dc9b-4bbb-887d-fdbd11614a40" key="connection:FlatFileSecondLineDataType" value="NO"/>
+      <tags xmi:uuid="mmuuid:2ef8f269-2d1b-44c0-ae92-c0e41d8daca6" key="connectionProfile:connectionProfileInstanceID" value="d0be5650-e853-11e1-a4d9-cc7782ebfdc3"/>
+      <tags xmi:uuid="mmuuid:073710cf-fedc-427d-89e5-10c08fa846e2" key="connection:FlatFileCharSet" value="UTF-8"/>
+      <tags xmi:uuid="mmuuid:e8332fe9-a360-44b3-b7f9-6984ceb87fc7" key="connection:FlatFileFirstLineColumnName" value="YES"/>
+      <tags xmi:uuid="mmuuid:228c8bd0-dc08-442c-afac-71f4e9bc9a2b" key="connectionProfile:connectionProfileDescription" value=""/>
+      <tags xmi:uuid="mmuuid:e4cc790c-0aae-4e81-9d5a-890f9eafe19c" key="connectionProfile:connectionProfileCategory" value="org.eclipse.datatools.connectivity.oda.flatfile"/>
+    </annotations>
+  </mmcore:AnnotationContainer>
+  <diagram:DiagramContainer xmi:uuid="mmuuid:9e2a20ac-c723-4de6-b778-890ef870a77d">
+    <diagram xmi:uuid="mmuuid:38b56107-d133-495c-8f6a-62156c7619ba" type="packageDiagramType" target="mmuuid/b220c629-bce0-4bb5-bd44-fb0e203a9ccb">
+      <diagramEntity xmi:uuid="mmuuid:758b88bb-e325-4ec5-85d2-9c4637f3e32f" modelObject="mmuuid/9a024fb9-ea8b-4a8d-92af-e35778778080" xPosition="20" yPosition="20"/>
+    </diagram>
+  </diagram:DiagramContainer>
+  <relational:Procedure xmi:uuid="mmuuid:9a024fb9-ea8b-4a8d-92af-e35778778080" name="getTextFiles">
+    <parameters xmi:uuid="mmuuid:8cb46566-d3d5-47ab-9c1f-0212dc14a108" name="pathAndExt" length="4000">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </parameters>
+    <result xmi:uuid="mmuuid:b322710c-dff6-4c97-9227-e530bf031247" name="Result">
+      <columns xmi:uuid="mmuuid:932ec6bc-3a01-4b8f-a723-ae60c01cdadb" name="file">
+        <type href="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance#clob"/>
+      </columns>
+      <columns xmi:uuid="mmuuid:4433289d-f215-42e1-81ce-784b3ddde80b" name="filePath" length="4000">
+        <type href="http://www.w3.org/2001/XMLSchema#string"/>
+      </columns>
+    </result>
+  </relational:Procedure>
+</xmi:XMI>

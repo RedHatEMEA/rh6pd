@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational" xmlns:transformation="http://www.metamatrix.com/metamodels/Transformation">
+  <mmcore:ModelAnnotation xmi:uuid="mmuuid:1c3619ca-50fb-48e9-97d2-7d1c491a98fe" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="VIRTUAL" ProducerName="Teiid Designer" ProducerVersion="7.7.1.v20120619-2152-H6-CR1-SOA">
+    <modelImports xmi:uuid="mmuuid:5baace32-ad5a-4a18-a346-a427772df7bf" name="CarViewModel" modelLocation="CarViewModel.xmi" uuid="mmuuid:7b4b9cfe-5720-494c-993d-37622455bb7f" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+    <modelImports xmi:uuid="mmuuid:83f260c1-0219-4f30-ab4c-5f79d394a3dc" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+    <modelImports xmi:uuid="mmuuid:4b7e0677-4fd1-4017-9545-8dd85291232b" name="PersonViewModel" modelLocation="PersonViewModel.xmi" uuid="mmuuid:f7b24c38-fc22-49c2-9664-39c0dc3d4c35" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+    <modelImports xmi:uuid="mmuuid:b48207ee-2a87-4b51-9499-f0c8ca504af7" name="InsuranceViewModel" modelLocation="InsuranceViewModel.xmi" uuid="mmuuid:45e4fe24-06f7-42f9-9967-3e773f4c0359" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+    <modelImports xmi:uuid="mmuuid:836af2c3-b07d-432b-8109-84a740c0addb" name="SimpleDatatypes-instance" modelLocation="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+  </mmcore:ModelAnnotation>
+  <diagram:DiagramContainer xmi:uuid="mmuuid:b80fd41a-429a-404e-8483-cfa6c7262393">
+    <diagram xmi:uuid="mmuuid:7dcf6222-e7c2-4c25-8a53-e3ce5914aeae" type="packageDiagramType" target="mmuuid/1c3619ca-50fb-48e9-97d2-7d1c491a98fe">
+      <diagramEntity xmi:uuid="mmuuid:1178734a-019d-4a5e-b1f2-b2f3db583c0c" modelObject="mmuuid/3713b830-ee54-4c8e-a49a-3cb3ec005c3d" xPosition="40" yPosition="30"/>
+    </diagram>
+    <diagram xmi:uuid="mmuuid:a443ded4-497b-418c-adcf-f56c0b904ac4" type="transformationDiagramType" target="mmuuid/3713b830-ee54-4c8e-a49a-3cb3ec005c3d">
+      <diagramEntity xmi:uuid="mmuuid:aab9da70-a60f-49d8-919b-14b551a81e74" modelObject="mmuuid/3713b830-ee54-4c8e-a49a-3cb3ec005c3d" xPosition="30" yPosition="50"/>
+      <diagramEntity xmi:uuid="mmuuid:e7760ff6-5a0c-4c39-b621-a4a5ce2a3d2b" name="T" modelObject="mmuuid/cec7036b-c2f8-43da-8a1e-2f499c11655f" xPosition="306" yPosition="50"/>
+      <diagramEntity xmi:uuid="mmuuid:38fe202c-74e3-4f94-a2c9-4c702d6a6be0" xPosition="356" yPosition="50">
+        <modelObject href="CarViewModel.xmi#mmuuid/0eb8fb21-a283-48bf-baaf-58f46da23ad1"/>
+      </diagramEntity>
+      <diagramEntity xmi:uuid="mmuuid:fca91148-07f7-4714-ad12-ac3f0af7ad9c" xPosition="564" yPosition="50">
+        <modelObject href="PersonViewModel.xmi#mmuuid/41a99474-fab1-4076-80c1-48f5739916bf"/>
+      </diagramEntity>
+      <diagramEntity xmi:uuid="mmuuid:925cfd90-dd2d-4271-a139-ba66eca4facb" xPosition="803" yPosition="50">
+        <modelObject href="InsuranceViewModel.xmi#mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b"/>
+      </diagramEntity>
+    </diagram>
+  </diagram:DiagramContainer>
+  <relational:BaseTable xmi:uuid="mmuuid:3713b830-ee54-4c8e-a49a-3cb3ec005c3d" name="CustomerInsuranceTable">
+    <columns xmi:uuid="mmuuid:37b5dd31-63ba-4e06-86ce-e4cccfe3b00b" name="customerName" length="20" nullable="NO_NULLS" updateable="false">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:1b27b7ee-8e70-4008-805d-021c2860e729" name="customerAge" nameInSource="" fixedLength="true" precision="10" nullable="NO_NULLS" updateable="false" caseSensitive="false" searchability="ALL_EXCEPT_LIKE">
+      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:cb84b605-aae1-480a-bc4c-32b4cf7e3138" name="carMake" length="20" nullable="NO_NULLS" updateable="false">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:0d30cca3-53eb-4aa5-b26b-fb8a2f5227c5" name="carModel" length="20" nullable="NO_NULLS" updateable="false">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:62b6d053-f32c-4015-8490-a272753fb076" name="carAge" fixedLength="true" precision="10" nullable="NO_NULLS" updateable="false" caseSensitive="false" searchability="ALL_EXCEPT_LIKE">
+      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:5ac6fbf9-7ab6-4912-acec-cdcea8fb4d79" name="carPrice" length="10" defaultValue="" updateable="false">
+      <type href="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance#bigdecimal"/>
+    </columns>
+  </relational:BaseTable>
+  <transformation:TransformationContainer xmi:uuid="mmuuid:32760b66-94f3-4c51-80cb-dc3e83c824f2">
+    <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:cec7036b-c2f8-43da-8a1e-2f499c11655f" outputs="mmuuid/3713b830-ee54-4c8e-a49a-3cb3ec005c3d" target="mmuuid/3713b830-ee54-4c8e-a49a-3cb3ec005c3d">
+      <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:41fa7e43-1fcb-441a-92fc-886bc7ec966a">
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:89f8c049-b224-40c8-9a6a-b02e5c12383e" selectSql="SELECT PersonViewModel.public.persondata.name AS customerName, PersonViewModel.public.persondata.age AS customerAge, CarViewModel.public.cardata.make AS carMake, CarViewModel.public.cardata.model AS carModel, CarViewModel.public.cardata.carAge, InsuranceViewModel.InsuranceDataViewTable.carPrice FROM CarViewModel.public.cardata, PersonViewModel.public.persondata, InsuranceViewModel.InsuranceDataViewTable WHERE (CarViewModel.public.cardata.carid = PersonViewModel.public.persondata.customercarid) AND (PersonViewModel.public.persondata.customercarid = InsuranceViewModel.InsuranceDataViewTable.carid)"/>
+        <aliases xmi:uuid="mmuuid:dc67c722-7a1c-449e-9b8e-92046058c1c3" alias="public.cardata">
+          <aliasedObject href="CarViewModel.xmi#mmuuid/0eb8fb21-a283-48bf-baaf-58f46da23ad1"/>
+        </aliases>
+        <aliases xmi:uuid="mmuuid:6d547231-7be3-4fed-9e33-0e0bd9020c02" alias="public.persondata">
+          <aliasedObject href="PersonViewModel.xmi#mmuuid/41a99474-fab1-4076-80c1-48f5739916bf"/>
+        </aliases>
+        <aliases xmi:uuid="mmuuid:8d528a2b-ec52-4237-95ae-fe7830338f4c" alias="InsuranceDataViewTable">
+          <aliasedObject href="InsuranceViewModel.xmi#mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b"/>
+        </aliases>
+      </helper>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:09990408-1457-474f-8be8-0dd92cd6fae7" outputs="mmuuid/cb84b605-aae1-480a-bc4c-32b4cf7e3138">
+        <inputs href="CarViewModel.xmi#mmuuid/20fa4534-7cf8-451b-922a-1f2328b9f58c"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:fefde8c0-3c0b-401a-8218-d0376012daea" outputs="mmuuid/0d30cca3-53eb-4aa5-b26b-fb8a2f5227c5">
+        <inputs href="CarViewModel.xmi#mmuuid/f951d567-1042-420c-8c8e-e15daeb10dc5"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:f37c4335-e635-4f5b-b6c7-f7ce4dac78f7" outputs="mmuuid/62b6d053-f32c-4015-8490-a272753fb076">
+        <inputs href="CarViewModel.xmi#mmuuid/15e58004-2dbd-4765-8651-bce65d509b3b"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:532da4cf-daa8-42fc-8753-06c33f22a576" outputs="mmuuid/37b5dd31-63ba-4e06-86ce-e4cccfe3b00b">
+        <inputs href="PersonViewModel.xmi#mmuuid/0d29633e-4192-4508-b002-bcec1e815f53"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:878c29ab-3a2a-4673-bbf2-71f540c1bda1" outputs="mmuuid/1b27b7ee-8e70-4008-805d-021c2860e729">
+        <inputs href="PersonViewModel.xmi#mmuuid/d50c1252-f9f9-40cf-9770-10322b80e7a5"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:c9f0a67c-be15-4713-8f97-4c9e725df2ac" outputs="mmuuid/5ac6fbf9-7ab6-4912-acec-cdcea8fb4d79">
+        <inputs href="InsuranceViewModel.xmi#mmuuid/84af4935-ef1d-44dd-8070-14c2177b985d"/>
+      </nested>
+      <inputs href="CarViewModel.xmi#mmuuid/0eb8fb21-a283-48bf-baaf-58f46da23ad1"/>
+      <inputs href="PersonViewModel.xmi#mmuuid/41a99474-fab1-4076-80c1-48f5739916bf"/>
+      <inputs href="InsuranceViewModel.xmi#mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b"/>
+    </transformationMappings>
+  </transformation:TransformationContainer>
+</xmi:XMI>

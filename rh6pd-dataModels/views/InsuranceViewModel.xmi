@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational" xmlns:transformation="http://www.metamatrix.com/metamodels/Transformation">
+  <mmcore:ModelAnnotation xmi:uuid="mmuuid:45e4fe24-06f7-42f9-9967-3e773f4c0359" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="VIRTUAL" ProducerName="Teiid Designer" ProducerVersion="7.7.1.v20120619-2152-H6-CR1-SOA">
+    <modelImports xmi:uuid="mmuuid:8e8aeb1f-05d7-40d7-99bf-eb9bd6ab9032" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+    <modelImports xmi:uuid="mmuuid:c3ad99b3-af4f-421a-a5b1-b4ca2af5b8a3" name="SimpleDatatypes-instance" modelLocation="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+    <modelImports xmi:uuid="mmuuid:d18fbc2d-50a7-4be8-9600-c50ebf2c079d" name="CarInsuranceDataSource" modelLocation="../sources/CarInsuranceDataSource.xmi" uuid="mmuuid:b220c629-bce0-4bb5-bd44-fb0e203a9ccb" modelType="PHYSICAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+  </mmcore:ModelAnnotation>
+  <mmcore:AnnotationContainer xmi:uuid="mmuuid:03ba1ff2-37a3-4dc7-ad02-2e6dc5a8edac"/>
+  <diagram:DiagramContainer xmi:uuid="mmuuid:8a76735a-30bb-4a52-b6e4-7cf514f121a3">
+    <diagram xmi:uuid="mmuuid:1ee3b4d6-9876-49d3-a82a-4e59a7d5b07d" type="packageDiagramType" target="mmuuid/45e4fe24-06f7-42f9-9967-3e773f4c0359">
+      <diagramEntity xmi:uuid="mmuuid:2e80e987-24f7-4428-9556-8d2760acdf96" modelObject="mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b" xPosition="10" yPosition="10"/>
+    </diagram>
+    <diagram xmi:uuid="mmuuid:3c1573ef-d20f-4c76-8a14-0c6d57d7b923" type="transformationDiagramType" target="mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b">
+      <diagramEntity xmi:uuid="mmuuid:5b5bc84c-3313-4ed8-b80c-c2cc9cb4860a" modelObject="mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b" xPosition="30" yPosition="50"/>
+      <diagramEntity xmi:uuid="mmuuid:65d18313-23ac-4bab-b756-bf284b5ee7d7" name="T" modelObject="mmuuid/b204ab70-0097-43ac-9d2c-a6505f1b0093" xPosition="304" yPosition="50"/>
+      <diagramEntity xmi:uuid="mmuuid:e28229db-4665-4132-a1e5-dc080f863566" xPosition="354" yPosition="50">
+        <modelObject href="../sources/CarInsuranceDataSource.xmi#mmuuid/9a024fb9-ea8b-4a8d-92af-e35778778080"/>
+      </diagramEntity>
+    </diagram>
+  </diagram:DiagramContainer>
+  <transformation:TransformationContainer xmi:uuid="mmuuid:f6a8c5ab-1026-43c5-8624-fcfb23d36b92">
+    <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:b204ab70-0097-43ac-9d2c-a6505f1b0093" outputs="mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b" target="mmuuid/d779b734-5215-439f-8acf-394cb3b9d29b">
+      <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:ddd06be4-84d2-4f47-83b7-d31a33bb79d2">
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:72acad0c-2e28-4ece-9f54-3d98e8dadbcd" selectSql="SELECT&#xa;&#x9;&#x9;A.carid, A.price AS carPrice&#xa;&#x9;FROM&#xa;&#x9;&#x9;(EXEC CarInsuranceDataSource.getTextFiles('InsuranceData.csv')) AS f, TEXTTABLE(file COLUMNS carid string, price bigdecimal HEADER) AS A"/>
+        <aliases xmi:uuid="mmuuid:cdfb65b5-6738-4632-942f-d06ea59365e3" alias="getTextFiles">
+          <aliasedObject href="../sources/CarInsuranceDataSource.xmi#mmuuid/9a024fb9-ea8b-4a8d-92af-e35778778080"/>
+        </aliases>
+      </helper>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:e59fb0a9-6a73-42ca-b667-cff2fe40e5a6" outputs="mmuuid/5d68a744-49df-4461-85d7-d2f4e8b6966e"/>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:4b2ad609-e78f-4bc3-95b1-66607b9c6204" outputs="mmuuid/84af4935-ef1d-44dd-8070-14c2177b985d"/>
+      <inputs href="../sources/CarInsuranceDataSource.xmi#mmuuid/9a024fb9-ea8b-4a8d-92af-e35778778080"/>
+    </transformationMappings>
+  </transformation:TransformationContainer>
+  <relational:BaseTable xmi:uuid="mmuuid:d779b734-5215-439f-8acf-394cb3b9d29b" name="InsuranceDataViewTable" supportsUpdate="false">
+    <columns xmi:uuid="mmuuid:5d68a744-49df-4461-85d7-d2f4e8b6966e" name="carid" nameInSource="carid" length="4000" defaultValue="" updateable="false">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:84af4935-ef1d-44dd-8070-14c2177b985d" name="carPrice" nameInSource="price" length="10" defaultValue="" updateable="false">
+      <type href="http://www.metamatrix.com/metamodels/SimpleDatatypes-instance#bigdecimal"/>
+    </columns>
+  </relational:BaseTable>
+</xmi:XMI>

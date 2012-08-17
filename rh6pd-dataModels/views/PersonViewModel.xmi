@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagram="http://www.metamatrix.com/metamodels/Diagram" xmlns:mmcore="http://www.metamatrix.com/metamodels/Core" xmlns:relational="http://www.metamatrix.com/metamodels/Relational" xmlns:transformation="http://www.metamatrix.com/metamodels/Transformation">
+  <mmcore:ModelAnnotation xmi:uuid="mmuuid:f7b24c38-fc22-49c2-9664-39c0dc3d4c35" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational" modelType="VIRTUAL" ProducerName="Teiid Designer" ProducerVersion="7.7.1.v20120619-2152-H6-CR1-SOA">
+    <modelImports xmi:uuid="mmuuid:99fb4031-39d9-45a1-84bd-0ffeb2e4b461" name="XMLSchema" modelLocation="http://www.w3.org/2001/XMLSchema" modelType="TYPE" primaryMetamodelUri="http://www.eclipse.org/xsd/2002/XSD"/>
+    <modelImports xmi:uuid="mmuuid:cf8e2188-0b69-449f-9216-2297602f62a1" name="PersonDataSourceModel" modelLocation="../sources/PersonDataSourceModel.xmi" uuid="mmuuid:4473fa85-8636-4524-956e-ca2bc99d5ad7" modelType="PHYSICAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+  </mmcore:ModelAnnotation>
+  <relational:BaseTable xmi:uuid="mmuuid:41a99474-fab1-4076-80c1-48f5739916bf" name="public.persondata" nameInSource="&quot;public&quot;.&quot;persondata&quot;" supportsUpdate="false">
+    <columns xmi:uuid="mmuuid:0d29633e-4192-4508-b002-bcec1e815f53" name="name" nameInSource="name" nativeType="varchar" length="20" nullable="NO_NULLS" updateable="false" uniqueKeys="mmuuid/dc6c213f-7f19-48e5-b37c-f5b114ff5d9b">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:d50c1252-f9f9-40cf-9770-10322b80e7a5" name="age" nameInSource="age" nativeType="int4" fixedLength="true" precision="10" nullable="NO_NULLS" updateable="false" caseSensitive="false" searchability="ALL_EXCEPT_LIKE">
+      <type href="http://www.w3.org/2001/XMLSchema#int"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:151d1c46-8164-4647-a2a5-4ca8e9cde29e" name="customercarid" nameInSource="personcarid" nativeType="varchar" length="20" nullable="NO_NULLS" updateable="false">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <primaryKey xmi:uuid="mmuuid:dc6c213f-7f19-48e5-b37c-f5b114ff5d9b" name="persondata_pkey" nameInSource="persondata_pkey" columns="mmuuid/0d29633e-4192-4508-b002-bcec1e815f53"/>
+  </relational:BaseTable>
+  <mmcore:AnnotationContainer xmi:uuid="mmuuid:01a25a3f-88e1-4352-8a01-c1317360709d">
+    <annotations xmi:uuid="mmuuid:d004de7c-c1e7-4fe0-8c46-f705b11628e7">
+      <tags xmi:uuid="mmuuid:940934ab-1d10-4dfd-a4d9-f212f12d308d" key="connection:driver-class" value="org.postgresql.Driver"/>
+      <tags xmi:uuid="mmuuid:02ef34ac-71ad-4051-9eb2-2ad58f301bb8" key="connectionProfile:connectionProfileName" value="PersonPostgreSQL"/>
+      <tags xmi:uuid="mmuuid:eaa66e74-ec23-4bb0-916a-6ce67ae5573d" key="connectionProfile:connectionProfileProviderId" value="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+      <tags xmi:uuid="mmuuid:7fce4667-93ea-4168-93a6-2706e01ccdad" key="translator:name" value="postgresql"/>
+      <tags xmi:uuid="mmuuid:6c628b5d-3dca-4a3c-9f65-8744aebcdb02" key="connection:connection-url" value="jdbc:postgresql:person"/>
+      <tags xmi:uuid="mmuuid:f7e29451-1782-48a8-a50f-654592a985df" key="connectionProfile:connectionProfileInstanceID" value="8cac5470-e84f-11e1-a4d9-cc7782ebfdc3"/>
+      <tags xmi:uuid="mmuuid:4d634b3c-00a7-4b38-bd66-84ec76a67fd8" key="connection:connectionProfileInstanceID" value="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
+      <tags xmi:uuid="mmuuid:01a92f9a-7c0b-4b4d-9bff-5bebb6a488da" key="connectionProfile:connectionProfileDescription" value=""/>
+      <tags xmi:uuid="mmuuid:5809c464-ddb6-4432-b96f-80eaf0ef98df" key="connection:user-name" value="postgres"/>
+      <tags xmi:uuid="mmuuid:e745252c-82dd-497d-bdf3-789f82dac062" key="connectionProfile:connectionProfileCategory" value="org.eclipse.datatools.connectivity.db.category"/>
+      <annotatedObject href="../sources/PersonDataSourceModel.xmi#mmuuid/4473fa85-8636-4524-956e-ca2bc99d5ad7"/>
+    </annotations>
+  </mmcore:AnnotationContainer>
+  <transformation:TransformationContainer xmi:uuid="mmuuid:2284e172-26de-44a4-b399-da88b30c79ac">
+    <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:6139b6e1-7e5e-40f7-afc0-36a6407f838c" outputs="mmuuid/41a99474-fab1-4076-80c1-48f5739916bf" target="mmuuid/41a99474-fab1-4076-80c1-48f5739916bf">
+      <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:ebc30340-dc7c-4a7b-8d78-42c3329e00a5">
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:ed30f585-f47b-45c0-a7e9-dd9d4441eab7" selectSql="SELECT&#xa;&#x9;&#x9;PersonDataSourceModel.public.persondata.name, PersonDataSourceModel.public.persondata.age, PersonDataSourceModel.public.persondata.personcarid AS customercarid&#xa;&#x9;FROM&#xa;&#x9;&#x9;PersonDataSourceModel.public.persondata"/>
+        <aliases xmi:uuid="mmuuid:f3ec6584-5b5b-49e5-9531-5488fcba6505" alias="public.persondata">
+          <aliasedObject href="../sources/PersonDataSourceModel.xmi#mmuuid/3bf96af7-5573-4889-a95c-baa542f573eb"/>
+        </aliases>
+      </helper>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:a53292a6-0d98-489c-9930-9ab17141e7c5" outputs="mmuuid/0d29633e-4192-4508-b002-bcec1e815f53">
+        <inputs href="../sources/PersonDataSourceModel.xmi#mmuuid/8351ef87-bb0c-415a-a0b0-55937b9a7bdb"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:6865c5a9-d2f5-4cb9-a0aa-8ead6b727d29" outputs="mmuuid/d50c1252-f9f9-40cf-9770-10322b80e7a5">
+        <inputs href="../sources/PersonDataSourceModel.xmi#mmuuid/0a8581c0-8a5b-448b-9ffe-07acd4d38eb2"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:1a955c6b-494d-41b9-93de-14def635b17a" outputs="mmuuid/151d1c46-8164-4647-a2a5-4ca8e9cde29e">
+        <inputs href="../sources/PersonDataSourceModel.xmi#mmuuid/768c55af-fa8b-4855-99a5-335f8bb905a5"/>
+      </nested>
+      <inputs href="../sources/PersonDataSourceModel.xmi#mmuuid/3bf96af7-5573-4889-a95c-baa542f573eb"/>
+    </transformationMappings>
+  </transformation:TransformationContainer>
+  <diagram:DiagramContainer xmi:uuid="mmuuid:c578141f-8eda-4458-baf4-ccc78505a47d">
+    <diagram xmi:uuid="mmuuid:d0f9de27-988b-4782-bfc4-7164990570bb" type="packageDiagramType" target="mmuuid/f7b24c38-fc22-49c2-9664-39c0dc3d4c35">
+      <diagramEntity xmi:uuid="mmuuid:65a1cce7-d4ec-4806-a644-e764ce4b3d42" modelObject="mmuuid/41a99474-fab1-4076-80c1-48f5739916bf" xPosition="10" yPosition="10"/>
+    </diagram>
+    <diagram xmi:uuid="mmuuid:264947de-2e3f-4a36-9873-3e24a7f9f6f2" type="transformationDiagramType" target="mmuuid/41a99474-fab1-4076-80c1-48f5739916bf">
+      <diagramEntity xmi:uuid="mmuuid:f5aa4a78-f57e-4ddd-8094-74c648043a01" modelObject="mmuuid/41a99474-fab1-4076-80c1-48f5739916bf" xPosition="30" yPosition="50"/>
+      <diagramEntity xmi:uuid="mmuuid:b77d7ce6-d26b-4c46-9ceb-62e0ce0098ef" name="T" modelObject="mmuuid/6139b6e1-7e5e-40f7-afc0-36a6407f838c" xPosition="257" yPosition="50"/>
+      <diagramEntity xmi:uuid="mmuuid:22963548-9ce9-4a81-a47b-076dbf5df1cc" xPosition="307" yPosition="50">
+        <modelObject href="../sources/PersonDataSourceModel.xmi#mmuuid/3bf96af7-5573-4889-a95c-baa542f573eb"/>
+      </diagramEntity>
+    </diagram>
+  </diagram:DiagramContainer>
+</xmi:XMI>
