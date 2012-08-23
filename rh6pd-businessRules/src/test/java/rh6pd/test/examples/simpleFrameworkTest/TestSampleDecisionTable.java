@@ -10,7 +10,7 @@ import rh6pd.test.AbstractProcessTest;
 
 public class TestSampleDecisionTable extends AbstractProcessTest{
 
-	String processFileName = "SampleDecisionTableHumanTask.bpmn";
+	String processFileName = "SampleDecisionTable.bpmn";
 	String processId = "com.redhat.sample.bpmn.decisionTableAndHumanTask";
 	
 	@Test
