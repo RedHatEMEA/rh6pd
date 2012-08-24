@@ -63,6 +63,7 @@ public class ManagementClient {
 		System.out.println("**** EXECUTE TASK ****");
 		
 		String result = httpWrapper.httpGet(execute_task_url); 
+		System.out.println("Result of executeTask(): "+result);
 
 		//System.out.println("Marshall the Json data into java class.");
 
@@ -83,17 +84,19 @@ public class ManagementClient {
 		System.out.println("**** SHOW ALL DEPLOYMENTS ****");
 		
 		String result = this.httpWrapper.httpGet(deployment_url);
+		
+		System.out.println("Result of showAllDeployments: "+ result);
 
 		//System.out.println("Marshall the Json data into java class.");
-
-		Gson gson = new Gson();
-
-		DeploymentRefWrapper wrapper = gson.fromJson(result,
-				DeploymentRefWrapper.class);
-
-		for (DeploymentRef ref : wrapper.getDeployments()) {
-			System.out.println("deployment name is: " + ref.getName());
-		}
+//
+//		Gson gson = new Gson();
+//
+//		DeploymentRefWrapper wrapper = gson.fromJson(result,
+//				DeploymentRefWrapper.class);
+//
+//		for (DeploymentRef ref : wrapper.getDeployments()) {
+//			System.out.println("deployment name is: " + ref.getName());
+//		}
 		System.out.println("******************************");
 	}
 
@@ -105,13 +108,14 @@ public class ManagementClient {
 
 		//System.out.println("Marshall the Json data into java class.");
 
-		Gson gson = new Gson();
-		ProcessDefinitionRefWrapper wrapper = gson.fromJson(result,ProcessDefinitionRefWrapper.class);
-
-		for (ProcessDefinitionRef ref : wrapper.getDefinitions()) {
-			System.out.println("process name is: " + ref.getName());
-		}
-		System.out.println("******************************");
+//		Gson gson = new Gson();
+//		ProcessDefinitionRefWrapper wrapper = gson.fromJson(result,ProcessDefinitionRefWrapper.class);
+//
+//		for (ProcessDefinitionRef ref : wrapper.getDefinitions()) {
+//			System.out.println("process name is: " + ref.getName());
+//		}
+//		System.out.println("******************************");
+		System.out.println("Process Definitions currently on server: "+result);
 	}
 
 	public void getActiveProcessInstance() throws Exception 
@@ -217,7 +221,7 @@ public class ManagementClient {
 		
 		httpWrapper.httpPost(authentication_form_url, params); 
 
-		/*
+		
 		HttpClient httpclient = new HttpClient();
 		PostMethod authMethod = new PostMethod(authentication_submit_url);
 		
@@ -237,7 +241,7 @@ public class ManagementClient {
 		};
 
 		authMethod.setRequestBody(data);
-		 */
+		 
 		try {
 			int authResult = httpclient.executeMethod(authMethod);
 			System.out.println("HTTP result when attemped to authenticate (should be 200): " + authResult);
@@ -252,12 +256,10 @@ public class ManagementClient {
 	{
 		ManagementClient client = new ManagementClient("admin", "admin");
 		client.doLoginIfNecessary();
-		
 		client.executeTask();
-		
-		//client.showAllDeployments();
-		//client.getActiveProcessInstance();
-		//client.showAllDefinitions(); //Working
-		//client.getHistoricProcessInstance();
+		client.showAllDeployments();
+		client.getActiveProcessInstance(); 
+		client.showAllDefinitions(); //Working
+	//client.getHistoricProcessInstance();//Cannot work for now until we get to be able to see deployed processes in /business-central and subsequently /business-central-server consoles
 	}
 }
