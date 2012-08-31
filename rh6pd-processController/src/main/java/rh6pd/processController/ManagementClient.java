@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.HashSet;   
 
 import com.google.gson.*;
-import com.sun.xml.internal.ws.transport.http.client.HttpCookie;
  
 public class ManagementClient {
 

@@ -69,7 +69,7 @@ public class HttpMethodWrapper {
 		if (cookie != null) {
 			httpclient.getState().addCookie(cookie);
 			System.out.println("\tGET Request with cookie (should include JSESSIONID): " + cookie);
-		}
+		} 
   
 		StringBuffer sb = new StringBuffer();
 
