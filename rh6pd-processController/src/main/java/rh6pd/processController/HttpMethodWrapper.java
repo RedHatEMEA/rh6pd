@@ -5,87 +5,99 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import org.apache.commons.httpclient.Cookie;
-import org.apache.commons.httpclient.Header;
+import org.apache.commons.httpclient.Header; 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.HttpMethod; 
 import org.apache.commons.httpclient.HttpState;
+import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.http.client.params.ClientPNames;
+import org.apache.http.client.params.CookiePolicy;
+import org.apache.http.conn.ConnectionKeepAliveStrategy;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.slf4j.Logger;
   
-public class HttpMethodWrapper {
-	private Cookie cookie;
+public class HttpMethodWrapper { 
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(HttpMethodWrapper.class);
+	
 	private HttpState state; 
-
-	public void setCookie(Cookie cookie) {
-		this.cookie = cookie; 
-	} 
+	private HttpClient client = new HttpClient(); // Use one client here, so that requests go over a single connection. 
 	
-	private String baseUrl = "http://localhost:8080";
-	
+	private String baseUrl = "http://localhost:8080";  
+	 
 	public void setBaseUrl(String baseUrl) {
-		this.baseUrl = baseUrl;  
+		this.baseUrl = baseUrl;   
 	}
 	
-	public void httpPost(String url, HashMap<String, String> params) 
-	{
-		HttpClient client = new HttpClient();
-		PostMethod post = new PostMethod(baseUrl + url);
+	public HttpMethodWrapper() {
+		client.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BROWSER_COMPATIBILITY);
+	} 
+	
+	public String lastContent = ""; 
+	
+	public String httpPost(String url) { 
+		return httpPost(url, new NameValuePair[] {}); 
+	}
+	  
+	public String httpPost(String url, NameValuePair[] params) {
+		url = baseUrl + url;
 		
-		if (cookie != null) {
-			client.getState().addCookie(this.cookie);
-		}
+		log.debug("- HTTP POST: " + url); 
 		
-		StringBuffer sb = new StringBuffer(); 
+		PostMethod post = new PostMethod(url);
 		
-		try {
-			client.executeMethod(post);
+		if (params.length > 0) { 
+			post.setRequestBody(params);
+		} 
+		
+		post.addRequestHeader("Connection", "keep-alive"); 
+		post.addRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+		  
+		try { 
+			int responseCode = client.executeMethod(post);
+			
+			if (responseCode != 200) {  
+				log.debug("Http response code: " + responseCode);
+				return post.getResponseBodyAsString();  
+			}
 		} catch (HttpException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}
-		
-		Header contentType = post.getResponseHeader("Content-Type");
-		
-		if (!contentType.getValue().equals("application/json") )
-		{
-			System.out.println("Did not get JSON back from server! Actually got: " + contentType.getValue());
-			System.out.println(sb.toString());
-		} 
-		else 
-		{
-			System.out.println("JSon Result: => " + sb.toString());
-		} 
+		 
+		return ""; 
 	}
 	 
 	public String httpGet(String url) throws Exception 
-	{
+	{ 
 		url = baseUrl + url; 
-		System.out.println("HTTP GET: " + url);
+		log.debug("HTTP GET: " + url); 
 		 
-		HttpClient httpclient = new HttpClient(); 
-		GetMethod get = new GetMethod(url);
-		 
-		if (cookie != null) {
-			httpclient.getState().addCookie(cookie);
-			System.out.println("\tGET Request with cookie (should include JSESSIONID): " + cookie);
-		} 
+		GetMethod get = new GetMethod(url);  
+		get.addRequestHeader("Connection", "keep-alive"); 
+		get.addRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+		
+		if (client.getState().getCookies().length > 0) {      
+			log.debug("GET Request with cookie (should include JSESSIONID): " + client.getState().getCookies()[0]);
+		} else {
+			log.warn("Previous GET request WITHOUT cookie");  
+		}
   
-		StringBuffer sb = new StringBuffer();
-
 		try {
-			int result = httpclient.executeMethod(get); 
-			
-			if (result != 200) {
-				throw new Exception("Http response code: " + result); 
+			int responseCode = client.executeMethod(get);
+			String responseBody; 
+			 
+			this.state = client.getState();
+			responseBody = get.getResponseBodyAsString();
+			 
+			if (responseCode != 200) {
+				throw new Exception("Http response code: " + responseCode); 
 			}
-			
-			this.state = httpclient.getState(); 
-			
-			sb.append(get.getResponseBodyAsString());
-
-			return sb.toString();
+  
+			return responseBody;
 		} catch (Exception e) {
 			throw e;  
 		} finally {
@@ -95,5 +107,9 @@ public class HttpMethodWrapper {
 
 	public HttpState getState() {
 		return state; 
+	}
+
+	public String getBaseUrl() {
+		return baseUrl; 
 	}
 }
