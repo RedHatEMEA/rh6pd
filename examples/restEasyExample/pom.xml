@@ -8,7 +8,7 @@
 	<name>RESTfulExample Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
-	<repositories>
+	<repositories> 
 		<repository>
 			<id>JBoss repository</id>
 			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
