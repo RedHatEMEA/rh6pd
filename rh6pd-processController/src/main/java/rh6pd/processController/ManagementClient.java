@@ -89,7 +89,7 @@ public class ManagementClient {
 		System.out.println("Result of showAllDeployments: "+ result);
 
 		//System.out.println("Marshall the Json data into java class.");
-//
+// 
 //		Gson gson = new Gson();
 //
 //		DeploymentRefWrapper wrapper = gson.fromJson(result,

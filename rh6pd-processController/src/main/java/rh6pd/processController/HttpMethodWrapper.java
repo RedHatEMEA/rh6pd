@@ -74,7 +74,12 @@ public class HttpMethodWrapper {
 		StringBuffer sb = new StringBuffer();
 
 		try {
-			httpclient.executeMethod(get);
+			int result = httpclient.executeMethod(get); 
+			
+			if (result != 200) {
+				throw new Exception("Http response code: " + result); 
+			}
+			
 			this.state = httpclient.getState(); 
 			
 			sb.append(get.getResponseBodyAsString());
