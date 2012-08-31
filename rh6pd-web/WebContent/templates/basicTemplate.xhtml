@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title><ui:insert name="title">Default title</ui:insert></title>
+        
+        <link rel = "stylesheet" type = "text/css" href = "/resources/stylesheets/main.css"/>
+    </h:head> 
+    <h:body>
+        <div id="header">
+        	<h1>6pd-web</h1>
+		</div>
+        <div id="menu">
+        	<ul id = "navigation">
+        		<li><a href = "index.xhtml">index</a></li>
+        		<li><a href = "pageTwo.xhtml">Page two</a></li>
+        	</ul>
+        </div>
+        <div id="content">
+        	<ui:insert name="content">Default content</ui:insert>
+        </div>
+        <div id="footer">
+        	<hr />
+        	<p>Footer</p>
+        </div>
+    </h:body>
+</html>

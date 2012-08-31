@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="templates/basicTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        New page title here
+    </ui:define>
  
-    <h:body>
+    <ui:define name="content">
     	<h3>JSF 2.0 + BRMS Hello World Example</h3>
  
     	<h:form>
+    	
+    	<div align="center">                     
+    	
     	   <h:panelGrid columns="2" footerClass="subtitle" 
     	   headerClass="subtitlebig" styleClass="medium" 
-    	   columnClasses="subtitle,medium" style=" width : 500px;">
+    	   columnClasses="subtitle,medium" style=" width : 500px;">    	
     	   
-	    	    <f:facet name="header">
-	    			<h:outputText value="Please Enter You Details"/>
-	  			</f:facet>
+    	   <f:facet name="header">
+                            <h:outputText value="Please Enter Insurance Details!"></h:outputText>
+           </f:facet>
 	    	   
 	    	   <h:outputText value="Name: "/>
 	    	   <h:inputText id="name" value="#{helloBean.name}" style=" width : 195px;"/>
@@ -58,10 +67,15 @@
     	   <h:commandButton value="Submit">
     		 <f:ajax execute="name" render="output" />
     	   </h:commandButton>
+    	   
+    	   <h:commandButton value="BRMS"
+    	    id="submit" action="#{helloBean.testBRMS()}"/>
     	   </p>
  
-    	   <h2><h:outputText id="output" value="#{helloBean.sayWelcome}" /></h2>	
+    	   <h2><h:outputText id="output" value="#{helloBean.sayWelcome}" /></h2>
+    	   
+    	   </div>	
     	</h:form>
  
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
