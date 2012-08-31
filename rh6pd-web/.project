@@ -26,6 +26,11 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+			<name>org.jboss.tools.ws.jaxrs.metamodelBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.wst.validation.validationbuilder</name>
 			<arguments>
 			</arguments>
@@ -51,5 +56,6 @@
 		<nature>org.jboss.tools.jst.web.kb.kbnature</nature>
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 		<nature>org.jboss.tools.jsf.jsfnature</nature>
+		<nature>org.jboss.tools.ws.jaxrs.nature</nature>
 	</natures>
 </projectDescription>

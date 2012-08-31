@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="../templates/basicTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        New page title here
+    </ui:define>
+ 
+    <ui:define name="content">
+    	<h:form>
+    	
+    	<div align="center">                     
+    	
+    	   <h:panelGrid columns="2" footerClass="subtitle" 
+    	   headerClass="subtitlebig" styleClass="medium" 
+    	   columnClasses="subtitle,medium" style=" width : 500px;">    	
+    	   
+    	   <f:facet name="header">
+                            <h:outputText value="Please enter your personal details..."></h:outputText>
+           </f:facet>
+	    	   
+	    	   <h:outputText value="Name: "/>
+	    	   <h:inputText id="name" value="#{helloBean.name}" style=" width : 250px;"/>
+	    	   
+	    	   <h:outputText value="Date of Birth: "/>
+	    	   <h:inputText id="name" value="#{helloBean.name}" style=" width : 250px;"/>
+	    	   
+	    	   <h:outputText value="Address: "/>
+	    	   <h:inputText id="age" value="#{helloBean.age}" style=" width : 250px;"/>
+	    	   
+	    	   &nbsp;
+	    	   <h:inputText id="age" value="#{helloBean.age}" style=" width : 250px;"/>
+	    	   
+	    	   <h:outputText value="City: "/>
+	    	   <h:inputText id="age" value="#{helloBean.age}" style=" width : 250px;"/>
+	    	   
+	    	   <h:outputText value="Postcode: "/>
+	    	   <h:inputText id="age" value="#{helloBean.age}" style=" width : 250px;"/>
+	    	   
+	    	   <f:facet name="footer">  
+     
+                  <h:commandButton value="Submit">
+    				 <f:ajax execute="name" render="output" />
+    	   		</h:commandButton>  
+
+            </f:facet>    	   
+
+    	   </h:panelGrid>
+    	   
+    	 
+    	   
+    	   </div>	
+    	</h:form>
+ 
+    </ui:define>
+</ui:composition>

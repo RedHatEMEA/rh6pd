@@ -14,12 +14,14 @@
 
   <itemDefinition id="_personItem" structureRef="rh6pd.web.common.Person" />
   <itemDefinition id="_carItem" structureRef="rh6pd.web.common.Car" />
+  <itemDefinition id="_motorsItem" structureRef="java.util.ArrayList" />
 
   <process processType="Private" isExecutable="true" id="rh6pd.web.common.bpmn.insuranceQuote" name="Insurance Quote" >
 
     <!-- process variables -->
     <property id="person" itemSubjectRef="_personItem"/>
     <property id="car" itemSubjectRef="_carItem"/>
+    <property id="motors" itemSubjectRef="_motorsItem"/>
 
     <!-- nodes -->
     <startEvent id="_1" name="StartProcess" />
@@ -81,7 +83,12 @@ System.out.println("Person Age is " + person.getAge());</script>
     <sequenceFlow id="_5-_8" sourceRef="_5" targetRef="_8" />
     <sequenceFlow id="_15-_9" sourceRef="_15" targetRef="_9" />
     <sequenceFlow id="_8-_10" sourceRef="_8" targetRef="_10" name="model ok" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return person.getCar().getMake().equals("ford");</conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if ( person.getCar().getMake().equals("ford")){
+				System.out.println(motors);				
+	return true;
+} else {
+	return false;
+}</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
     <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" name="engine size ok" tns:priority="1" >
@@ -111,7 +118,7 @@ System.out.println("Person Age is " + person.getAge());</script>
         <dc:Bounds x="472" y="485" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_4" >
-        <dc:Bounds x="292" y="322" width="48" height="48" />
+        <dc:Bounds x="292" y="325" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_5" >
         <dc:Bounds x="225" y="171" width="180" height="48" />
@@ -162,10 +169,10 @@ System.out.println("Person Age is " + person.getAge());</script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_2-_4" >
         <di:waypoint x="183" y="346" />
-        <di:waypoint x="316" y="346" />
+        <di:waypoint x="316" y="349" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_5" >
-        <di:waypoint x="316" y="346" />
+        <di:waypoint x="316" y="349" />
         <di:waypoint x="315" y="195" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_14-_6" >
@@ -173,7 +180,7 @@ System.out.println("Person Age is " + person.getAge());</script>
         <di:waypoint x="568" y="412" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_7" >
-        <di:waypoint x="316" y="346" />
+        <di:waypoint x="316" y="349" />
         <di:waypoint x="316" y="506" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_5-_8" >

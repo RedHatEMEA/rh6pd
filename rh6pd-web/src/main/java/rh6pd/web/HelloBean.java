@@ -11,10 +11,13 @@ import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 
+import rh6pd.processController.ManagementClient;
+import rh6pd.web.common.Car;
 import rh6pd.web.common.Person;
 import rh6pd.web.common.Vehicle;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 	 
 @ManagedBean(name="helloBean")
@@ -41,7 +44,7 @@ public class HelloBean implements Serializable {
 			
 			//Build Statefull Knowledge Session
 			ksession = kbase.newStatefulKnowledgeSession();
-			
+		
 			System.out.println("DEBUG TEST: Knowledgebase Succesfully Built");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -50,6 +53,21 @@ public class HelloBean implements Serializable {
 		}
 		
 		
+	}
+	
+	
+	public String testBRMS(){
+		
+		ManagementClient MC = new ManagementClient("admin", "admin");
+		
+		try {
+			 MC.showAllDefinitions();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "great Success!";
 	}
 	 
 	public String getName() {
@@ -69,12 +87,27 @@ public class HelloBean implements Serializable {
 			Vehicle car = new Vehicle(make, model, engine);
 			Person person = new Person(name, age, car, 200);
 			
+			ArrayList<Car> motors = new ArrayList<Car>();
+			motors.add(new Car("ford", "fiesta", 2.0));  
+			motors.add(new Car("audi", "a5", 2.0));  
+			motors.add(new Car("bmw", "3 Series", 2.0));  
+			motors.add(new Car("volvo", "d90", 3.0));  
+			motors.add(new Car("nissan", "350z", 2.5));				
+			
 			// declare a hashmap for our properties and pass them to the process
 			HashMap<String, Object> props = new HashMap<String, Object>(); 
 			props.put("person", person); 
-			props.put("car", car);
+			props.put("car", car);	
+			props.put("motors", motors);	
+			
+			if (motors.contains(person.getCar())){
+				System.out.println("Motors Contains: " + person.getCar().getMake().toString());
+			} else {
+				System.out.println("Not Found! : " + person.getCar().getMake());
+			}
 			
 			ksession.insert(person);
+			ksession.insert(motors);
 			
 			// start a new process instance
 			ksession.startProcess("rh6pd.web.common.bpmn.insuranceQuote", props);
