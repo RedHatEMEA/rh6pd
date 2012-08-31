@@ -6,19 +6,20 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.jboss.bpm.console.client.model.*;
 import org.jboss.deployers.plugins.deployers.DeployerWrapper;
+import org.jboss.logging.Logger;
 
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.Wrapper; 
-import java.util.HashMap;
+import java.util.HashMap;  
 import java.util.HashSet;   
-
-import com.google.gson.*;
  
-public class ManagementClient {
-
+import com.google.gson.*;
+   
+public class ManagementClient {  
+	private static final Logger log = Logger.getLogger(ManagementClient.class);
 
 	// Used for authentication.
 	//private static final String authentication_form_url = "/business-central-server/rs/";
@@ -81,7 +82,7 @@ public class ManagementClient {
 	
 	public void showAllDeployments() throws Exception 
 	{
-		System.out.println("**** SHOW ALL DEPLOYMENTS ****");
+		log.debug("SHOW ALL DEPLOYMENTS ****"); 
 		
 		String result = this.httpWrapper.httpGet(deployment_url);
 		

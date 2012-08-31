@@ -65,5 +65,15 @@
 			<artifactId>gwt-console-rpc</artifactId>
 			<version>2.4.1.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-logging</artifactId>
+			<version>7.1.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging-log4j</artifactId>
+			<version>2.2.0.CR1</version>
+		</dependency>
   </dependencies>
 </project>

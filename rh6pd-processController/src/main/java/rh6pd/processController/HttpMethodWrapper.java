@@ -21,7 +21,7 @@ public class HttpMethodWrapper {
 		this.cookie = cookie; 
 	} 
 	
-	private String baseUrl = "http://localhost:8080/";
+	private String baseUrl = "http://localhost:8080";
 	
 	public void setBaseUrl(String baseUrl) {
 		this.baseUrl = baseUrl;  
@@ -58,14 +58,15 @@ public class HttpMethodWrapper {
 			System.out.println("JSon Result: => " + sb.toString());
 		} 
 	}
-	
+	 
 	public String httpGet(String url) throws Exception 
 	{
+		url = baseUrl + url; 
 		System.out.println("HTTP GET: " + url);
-		
+		 
 		HttpClient httpclient = new HttpClient(); 
-		GetMethod get = new GetMethod(baseUrl + url);
-		
+		GetMethod get = new GetMethod(url);
+		 
 		if (cookie != null) {
 			httpclient.getState().addCookie(cookie);
 			System.out.println("\tGET Request with cookie (should include JSESSIONID): " + cookie);
