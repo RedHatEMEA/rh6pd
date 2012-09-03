@@ -84,7 +84,7 @@ public class ManagementClient {
 //		for (DeploymentRef ref : wrapper.getDeployments()) {
 //			System.out.println("deployment name is: " + ref.getName());
 //		}
-	}
+	}    
  
 	public List<ProcessDefinitionRef> getAllDefinitions() throws Exception 
 	{  

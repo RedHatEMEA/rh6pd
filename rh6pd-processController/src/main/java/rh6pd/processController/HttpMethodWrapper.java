@@ -1,22 +1,25 @@
 package rh6pd.processController;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.Header; 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.HttpMethod; 
+import org.apache.commons.httpclient.HttpMethod;   
 import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.GetMethod; 
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.client.params.ClientPNames;
 import org.apache.http.client.params.CookiePolicy;
 import org.apache.http.conn.ConnectionKeepAliveStrategy;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient; 
 import org.slf4j.Logger;
   
 public class HttpMethodWrapper { 
@@ -60,15 +63,32 @@ public class HttpMethodWrapper {
 			
 			if (responseCode != 200) {  
 				log.debug("Http response code: " + responseCode);
-				return post.getResponseBodyAsString();  
+				return isToString(post.getResponseBodyAsStream());  
 			}
-		} catch (HttpException e) {
+		} catch (HttpException e) { 
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (IOException e) { 
 			e.printStackTrace(); 
 		}
 		 
 		return ""; 
+	}
+	
+	// FIXME 
+	private String isToString(InputStream is ) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		StringBuilder b = new StringBuilder();
+		String line;
+		   
+		try {
+			while ((line = br.readLine()) != null) {
+				b.append(line + "\n"); 
+			}
+		} catch (IOException e) {
+			log.error("Exception while reading response IS ", e);   
+		} 
+		
+		return b.toString();
 	}
 	 
 	public String httpGet(String url) throws Exception 
