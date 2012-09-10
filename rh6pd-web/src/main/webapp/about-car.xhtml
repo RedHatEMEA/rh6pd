@@ -1,0 +1,71 @@
+<ui:composition template="templates/basicTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        New page title here
+    </ui:define>
+
+    <ui:define name="content">
+
+    		<div class="page-header">
+				<h1 class="page-title">JBoss Collaborative Demo</h1>		
+			<!--END .page-header -->
+			</div>
+ 
+    	<h:form>
+    	
+    	<div align="center"> 
+    	
+    	<h3 class="header-title"> <h:outputText value="Please Enter Your Car Details!"></h:outputText> </h3>                   
+    	
+    	   <h:panelGrid columns="2" footerClass="subtitle" 
+    	   headerClass="subtitlebig" styleClass="medium" 
+    	   columnClasses="subtitle,medium" style=" width : 600px; line-height:20px;"
+    	   rowClasses="order-table-odd-row,order-table-even-row">    	
+    	   
+	    	   <h:outputText value="Car Make: "/>
+	    	   <h:selectOneMenu id="make"
+				 value="#{helloBean.model}" styleClass="form-dropdown-style">
+					<f:selectItem itemLabel="Audi" itemValue="audi" />  
+	            	<f:selectItem itemLabel="BMW" itemValue="bmw" />  
+	            	<f:selectItem itemLabel="VW" itemValue="vw" />
+	            	<f:selectItem itemLabel="etc..." itemValue="other" />
+				</h:selectOneMenu> 
+				
+			   <h:outputText value="Car Model: "/>
+	    	   <h:selectOneMenu id="model"
+				 value="#{helloBean.model}" styleClass="form-dropdown-style">
+					<f:selectItem itemLabel="Some Model" itemValue="model1" />  
+	            	<f:selectItem itemLabel="Another Model" itemValue="model2" />  
+	            	<f:selectItem itemLabel="Setup DB!" itemValue="vw" />
+				</h:selectOneMenu> 
+				
+			   <h:outputText value="Car Year: "/>
+	    	   <h:selectOneMenu id="year"
+				 value="#{helloBean.model}" styleClass="form-dropdown-style">
+					<f:selectItem itemLabel="Some Year" itemValue="model1" />  
+				</h:selectOneMenu> 
+	    	   
+    	   </h:panelGrid>
+    	   
+		<div style="height:10em; margin-top:2em;">
+    	   <h:commandButton value="Back" style="float:left;margin-left:160px; width:100px;"/>
+    	   
+    	   <h:commandButton value="Next" style="float:right;margin-right:160px; width:100px;"/>
+
+    	   <h2>
+    	   	<h:outputText id="output" value="#{helloBean.sayWelcome}"/>
+    	   	</h2>
+		</div>
+    	  
+    	   
+    	   </div>	
+    	</h:form>
+
+    </ui:define>
+    
+</ui:composition>
+ 

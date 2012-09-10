@@ -76,6 +76,8 @@ public class HttpMethodWrapper {
 	
 	// FIXME 
 	private String isToString(InputStream is ) {
+		log.warn("Using a nasty method to convert is to string"); 
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		StringBuilder b = new StringBuilder();
 		String line;
@@ -111,7 +113,7 @@ public class HttpMethodWrapper {
 			String responseBody; 
 			 
 			this.state = client.getState();
-			responseBody = get.getResponseBodyAsString();
+			responseBody = isToString(get.getResponseBodyAsStream());
 			 
 			if (responseCode != 200) {
 				throw new Exception("Http response code: " + responseCode); 

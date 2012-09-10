@@ -10,6 +10,7 @@ import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.jboss.bpm.console.client.model.ProcessDefinitionRef;
 
 import rh6pd.processController.ManagementClient;
 import rh6pd.web.common.Car;
@@ -19,6 +20,7 @@ import rh6pd.web.common.Vehicle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 	 
 @ManagedBean(name="helloBean")
 @SessionScoped
@@ -31,7 +33,8 @@ public class HelloBean implements Serializable {
 	private String make;
 	private String model;
 	private double engine;
-	
+	private List<String> brmsDefinitions;
+
 	private StatefulKnowledgeSession ksession;
 		
 	@PostConstruct
@@ -56,18 +59,25 @@ public class HelloBean implements Serializable {
 	}
 	
 	
-	public String testBRMS(){
+	public List<String> testBRMS(){
 		
 		ManagementClient MC = new ManagementClient("admin", "admin");
+		MC.doLoginIfNecessary();
 		
+		brmsDefinitions = new ArrayList<String>();
 		try {
-			 MC.showAllDefinitions();
+			 for (ProcessDefinitionRef ref : MC.getAllDefinitions()) {
+					 		 
+			 brmsDefinitions.add(new String(ref.toString()));
+			 
+			 }
+			 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return "great Success!";
+		return brmsDefinitions;
 	}
 	 
 	public String getName() {
@@ -125,6 +135,16 @@ public class HelloBean implements Serializable {
 		kbuilder.add(ResourceFactory.newClassPathResource("sample.bpmn"), ResourceType.BPMN2);
 		return kbuilder.newKnowledgeBase();
 
+	}
+	
+	
+	public List<String> getBrmsDefinitions() {
+		return brmsDefinitions;
+	}
+
+
+	public void setBrmsDefinitions(List<String> brmsDefinitions) {
+		this.brmsDefinitions = brmsDefinitions;
 	}
 
 	/**

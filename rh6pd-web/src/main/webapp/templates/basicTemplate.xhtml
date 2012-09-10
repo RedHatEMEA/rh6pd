@@ -8,28 +8,82 @@
         <title><ui:insert name="title">Default title</ui:insert></title>
         
         <!-- <link rel = "stylesheet" type = "text/css" href = "resources/stylesheets/main.css"/> -->
-        <link rel = "stylesheet" type = "text/css" href = "resources/stylesheets/style.css"/>
+        <script type="text/javascript" src="resources/js/jquery-1.8.1.min.js"></script>
+        <link rel = "stylesheet" type = "text/css" href = "resources/stylesheets/style.css"/>     
+        
     </h:head> 
-    <h:body>
+    <h:body>    
+    
     <div id="container">
-        <div id="header">
-        	<h1>6pd-web</h1>
-		
-        <div id="menu">
-        	<ul id = "navigation">
-        		<li><a href = "index.xhtml" style="FONT-SIZE: small;">index</a></li>
-        		<li><a href = "pageTwo.xhtml">Page two</a></li>
-        	</ul>
+    
+        <div id="header-top">
+            <p>E: inside.sa@redhat.com | T: +44 (0) 1256 12345</p>
+        <!-- END #header-top -->
         </div>
         
-        </div>
+		<!-- BEGIN #header -->
+		<div id="header" class="clearfix">
+			
+			<!-- BEGIN #logo -->
+			<div id="logo">
+						    <a href="http://jboss.com"><img src="resources/images/jboss_logo.jpg" alt="JBoss" /></a>
+	
+			<!-- END #logo -->
+			</div>
+			
+			
+			<!-- BEGIN #primary-nav -->
+    		<div id="primary-nav">
+    			    			<div class="menu-primary-menu-container"><ul id="menu-primary-menu" class="menu"><li id="menu-item-1236" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1235 current_page_item menu-item-1236"><a href="http://#">Home</a></li>
+<li id="menu-item-1247" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1247"><a href="http://#">Menu Item 1</a></li>
+<li id="menu-item-1248" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1248"><a href="http://#">Menu Item 2</a></li>
+<li id="menu-item-1249" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1249"><a href="http://#">Menu Item 3</a></li>
+<li id="menu-item-1254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1254"><a href="http://#">Menu Item 4</a></li>
+</ul></div>    			    		<!-- END #primary-nav -->
+    		</div>
+    		
+		<!--END #header-->
+		</div>
         <div id="content">
         	<ui:insert name="content">Default content</ui:insert>
         </div>
-        <div id="footer">
-        	<hr />
-        	<p>Footer</p>
+        <!-- BEGIN #footer -->
+		<div id="footer" class="clearfix">
+		    
+		    <div class="column">
+                    	<div id="text-2" class="widget widget_text"><h6>About RedHat</h6>			
+	                    	<div class="textwidget">
+	                    		<p>Red Hat is the world's leading open source Linux Middleware provider. Red Hat is leading Linux, Middleware and open source solutions into the mainstream by making high-quality, low-cost technology accessible.</p>
+							</div>
+						</div>                        
+			</div>
+			
+			<div class="column">
+                    	<div id="text-2" class="widget widget_text"><h6>About JBoss</h6>			
+	                    	<div class="textwidget">
+	                    		<p>With JBoss Enterprise Middleware you can do more. Much more. For much less. Cost-effectively develop, deploy, and manage applications. Update business processes faster. And integrate more services and data. On-premise or in the cloud.</p>
+							</div>
+						</div>                        
+			</div>
+			
+			<div class="column last">
+                    	<div id="text-2" class="widget widget_text"><h6>About JBoss Collaborative Demos</h6>			
+	                    	<div class="textwidget">
+	                    		<p>Some stuff about the 6PD</p>
+							</div>
+						</div>                        
+			</div>
+
         </div>
+        
+        <div id="footer_bottom">
+                
+                	<p class="left">&#169; 2012 <a href="http://www.redhat.com">RedHat</a></p>
+                    <p class="right">Powered by <a href="http://redhat.com/">RedHat</a> | <a href="http://www.jboss.com">JBoss</a> &#38; <a href="http://www.jboss.org">JBoss Community</a></p>
+                    
+                    <div class="clear"></div>
+                
+         </div><!--bottom-->
         </div>
     </h:body>
 </html>
