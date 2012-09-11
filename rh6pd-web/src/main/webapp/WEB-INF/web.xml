@@ -10,7 +10,7 @@ Change to "Production" when you are ready to deploy
 
 <!-- Welcome page -->
 <welcome-file-list>
-	<welcome-file>faces/helloAjax.xhtml</welcome-file>
+	<welcome-file>faces/home.xhtml</welcome-file>
 </welcome-file-list>
 
 <!-- JSF mapping -->
