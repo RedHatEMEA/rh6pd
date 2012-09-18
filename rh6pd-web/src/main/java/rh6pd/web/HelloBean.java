@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 	 
-@ManagedBean(name="helloBean")
-@SessionScoped
+//@ManagedBean(name="helloBean")
+//@SessionScoped
 public class HelloBean implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
@@ -53,9 +53,7 @@ public class HelloBean implements Serializable {
 			// TODO Auto-generated catch block
 			System.out.println("DEBUG TEST: Knowledgebase Un-Succesfully Built");
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 	
 	

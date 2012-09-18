@@ -24,6 +24,8 @@ textarea {
 	padding:0.5em; 
 }
 
+input.watermark { color: #999; } //light silver color
+
 .hidden { display: none; }
 
 .alignleft { float: left; }
@@ -78,6 +80,17 @@ a img {
     vertical-align: bottom;
 }
  
+.order-table-column1 {
+	width:30%;	
+}
+.order-table-column2 {
+	width:50%;	
+}
+.order-table-column3 {
+	width:20%;
+	text-align: right;	
+}
+
 .order-table-odd-row td{
 	text-align:center;
 	background:none repeat scroll 0 0 #FFFFFFF;
@@ -101,6 +114,10 @@ a img {
 .form-dob-dropdown {
 	width : 100px; 
 	height: 30px;
+}
+
+.form-error{
+	color: red
 }
 
 .shadow {
@@ -546,14 +563,12 @@ h6{font-size:15px}
 }
 
 #footer .column.last{
-	background:url(images/duplex_footer_bg.gif) repeat;
 	width:312px;
 }
 
 #footer .widget{
 	padding:0 25px 25px 25px;
 	margin:30px 0 0 0;
-	background:url(images/seperator.png) no-repeat right top;
 }
 
 #footer .column.last .widget{

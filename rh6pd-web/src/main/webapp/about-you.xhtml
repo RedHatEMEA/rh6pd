@@ -1,107 +1,143 @@
 <ui:composition template="templates/basicTemplate.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:define name="title">
+	<ui:define name="title">
         New page title here
     </ui:define>
 
-    <ui:define name="content">
+	<ui:define name="content">
 
-    		<div class="page-header">
-				<h1 class="page-title">JBoss Collaborative Demo</h1>		
+		<div class="page-header">
+			<h1 class="page-title">JBoss Collaborative Demo</h1>
 			<!--END .page-header -->
+		</div>
+
+		<h:form id="form">
+
+			<div align="center">
+
+				<h3 class="header-title">
+					<h:outputText value="Please Enter Your Details!"></h:outputText>
+				</h3>
+
+				<h:panelGrid columns="3" footerClass="subtitle"
+					headerClass="subtitlebig"
+					columnClasses="order-table-column1,order-table-column2,order-table-column3"
+					style=" width : 600px; line-height:20px;"
+					rowClasses="order-table-odd-row,order-table-even-row">
+
+					<h:outputText value="Title: *" />
+					<h:selectOneMenu id="title" value="test"
+						styleClass="form-dropdown-style">
+						<f:selectItem itemLabel="Mr" itemValue="Mr" />
+						<f:selectItem itemLabel="Mrs" itemValue="Mrs" />
+						<f:selectItem itemLabel="Miss" itemValue="Miss" />
+						<f:selectItem itemLabel="Ms" itemValue="Ms" />
+						<f:selectItem itemLabel="Dr" itemValue="Dr" />
+					</h:selectOneMenu>
+					<h:message for="title" errorClass="form-error" />
+
+					<h:outputText for="firstName" value="First Name: *" />
+					<h:inputText id="firstName"
+						value="#{driverValidation.person.firstName}"
+						style="border:1px solid #aaa; width : 195px;">
+						<f:ajax event="blur" render="firstNameMessage" /> 
+					</h:inputText>
+					<h:message id="firstNameMessage" for="firstName"
+						errorClass="form-error" />
+
+					<h:outputText for="surName" value="Surname: *" />
+					<h:inputText id="surName"
+						value="#{driverValidation.person.surName}"
+						style="border:1px solid #aaa; width : 195px;">
+						<f:ajax event="blur" render="surNameMessage" /> 
+					</h:inputText>
+					<h:message id="surNameMessage" for="surName" errorClass="form-error" />
+
+					<h:outputLabel for="dob">Date of Birth: *</h:outputLabel>
+					<h:inputText id="dob" value="#{driverValidation.person.dob}"
+						style="border:1px solid #aaa; width : 195px;">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+						<f:ajax event="blur" render="dobMessage" />
+						<f:validator validatorId="rh6pd.utils.AgedValidator" />
+					</h:inputText>
+					<h:message id="dobMessage" for="dob" errorClass="form-error"/>
+
+
+					<h:outputText value="Martial Status: *" />
+					<h:selectOneMenu id="status" value="test"
+						styleClass="form-dropdown-style">
+						<f:selectItem itemLabel="Single" itemValue="1" />
+						<f:selectItem itemLabel="Living with Partner" itemValue="2" />
+						<f:selectItem itemLabel="Married" itemValue="3" />
+						<f:selectItem itemLabel="Divorce" itemValue="4" />
+						<f:selectItem itemLabel="Widowed" itemValue="5" />
+						<f:selectItem itemLabel="Civil Partnership" itemValue="6" />
+					</h:selectOneMenu>
+					<h:message for="status" errorClass="form-error" />
+
+					<h:outputText for="add1" value="Address Line 1: *" />
+					<h:inputText id="add1" value="#{driverValidation.person.add1}"
+						style="border:1px solid #aaa; width : 195px;">
+						<f:ajax event="blur" render="add1Message" /> 
+					</h:inputText>
+					<h:message id="add1Message" for="add1" errorClass="form-error" />
+
+					<h:outputText value="Address Line 2: *" />
+					<h:inputText id="add2" value="#{driverValidation.person.add2}"
+						style="border:1px solid #aaa; width : 195px;" >
+						<f:ajax event="blur" render="add2Message" /> 
+						</h:inputText>
+					<h:message id="add2Message" for="add2" errorClass="form-error" />
+
+					<h:outputText value="Address Line 3: " />
+					<h:inputText id="add3" value="#{driverValidation.person.add3}"
+						style="border:1px solid #aaa; width : 195px;" />
+					<h:message for="add3" errorClass="form-error" />
+
+					<h:outputText value="County: *" />
+					<h:inputText id="county" value="#{driverValidation.person.county}"
+						style="border:1px solid #aaa; width : 195px;" >
+						<f:ajax event="blur" render="countyMessage" />
+					</h:inputText>
+					<h:message for="county" id="countyMessage" errorClass="form-error" />
+
+					<h:outputText for="postCode" value="Postcode: *" />
+					<h:inputText id="postCode" value="#{driverValidation.person.postCode}"
+						style="border:1px solid #aaa; width : 195px;">
+						<f:ajax event="blur" render="postCodeMessage" />
+					</h:inputText>
+					<h:message id="postCodeMessage" for="postCode" errorClass="form-error" />
+
+				</h:panelGrid>
+
+
+				<div style="height: 10em; margin-top: 2em;">
+					<h:commandButton type="button" value="Back"
+						onclick="history.go(-1)"
+						style="float:left;margin-left:160px; width:100px;" />
+
+
+					<h:commandButton id="submitDriver" value="Next" action="#{driverValidation.submitDriverDetails}"
+						style="float:right;margin-right:160px; width:100px;">
+						<f:ajax execute="@form" render="@form" />
+					</h:commandButton>
+
+					<h:messages errorClass="form-error" infoClass="infoMessage" warnClass="warnMessage" globalOnly="true"/>
+
+				</div>
+
+				<h2>
+					<h:outputText id="output" value="#{helloBean.sayWelcome}" />
+				</h2>
+
+
 			</div>
- 
-    	<h:form>
-    	
-    	<div align="center"> 
-    	
-    	<h3 class="header-title"> <h:outputText value="Please Enter Your Details!"></h:outputText> </h3>                   
-    	
-    	   <h:panelGrid columns="2" footerClass="subtitle" 
-    	   headerClass="subtitlebig" styleClass="medium" 
-    	   columnClasses="subtitle,medium" style=" width : 600px; line-height:20px;"
-    	   rowClasses="order-table-odd-row,order-table-even-row">    	
-    	   
-	    	   <h:outputText value="Title: "/>
-	    	   <h:selectOneMenu id="title"
-				 value="#{helloBean.model}" styleClass="form-dropdown-style">
-					<f:selectItem itemLabel="Mr" itemValue="Mr" />  
-	            	<f:selectItem itemLabel="Mrs" itemValue="Mrs" />  
-	            	<f:selectItem itemLabel="Miss" itemValue="Miss" />
-	            	<f:selectItem itemLabel="Ms" itemValue="Ms" />
-	            	<f:selectItem itemLabel="Dr" itemValue="Dr" />
-				</h:selectOneMenu> 
-	    	   
-	    	   <h:outputText value="First Name: "/>
-	    	   <h:inputText id="name" value="#{helloBean.name}" style="border:1px solid #aaa; width : 195px;"/>
-	    	   
-	    	   <h:outputText value="Surname: "/>
-	    	   <h:inputText id="surname" value="#{helloBean.name}" style="border:1px solid #aaa; width : 195px;"/>
-	    	  
-	    	   <h:outputText value="Date of Birth: "/>
-	    	   <h:panelGrid columns="3" styleClass="form-dob" style="margin: 0px auto; padding:0px;"> 
-		    	   	<h:inputText id="dobd" value="#{helloBean.age}" style="border:1px solid #aaa; width:65px;"/>
-		    	   		<h:selectOneMenu id="dobm" value="#{helloBean.model}" styleClass="form-dob-dropdown">
-							  <f:selectItem itemLabel="Jan" itemValue="jan" />  
-							  <f:selectItem itemLabel="Feb" itemValue="feb" />  
-							  <f:selectItem itemLabel="March" itemValue="mar" />
-							  <f:selectItem itemLabel="April" itemValue="apr" />
-							  <f:selectItem itemLabel="May" itemValue="may" />
-							  <f:selectItem itemLabel="June" itemValue="jun" />
-							  <f:selectItem itemLabel="Jul" itemValue="jul" />
-							  <f:selectItem itemLabel="August" itemValue="aug" />
-							  <f:selectItem itemLabel="September" itemValue="sep" />
-							  <f:selectItem itemLabel="October" itemValue="oct" />
-							  <f:selectItem itemLabel="November" itemValue="nov" />
-							  <f:selectItem itemLabel="December" itemValue="dec" />
-						</h:selectOneMenu> 
-		    	   	<h:inputText id="doby" value="#{helloBean.age}" style="border:1px solid #aaa; width : 65px;"/>    	   
-	    	   </h:panelGrid>
+		</h:form>
 
-	    	   <h:outputText value="Martial Status: "/>
-	    	   <h:selectOneMenu id="status"
-				 value="#{helloBean.model}" styleClass="form-dropdown-style">
-					<f:selectItem itemLabel="Single" itemValue="1" />  
-	            	<f:selectItem itemLabel="Living with Partner" itemValue="2" />  
-	            	<f:selectItem itemLabel="Married" itemValue="3" />
-	            	<f:selectItem itemLabel="Divorce" itemValue="4" />
-	            	<f:selectItem itemLabel="Widowed" itemValue="5" />
-	            	<f:selectItem itemLabel="Civil Partnership" itemValue="6" />
-				</h:selectOneMenu>         
-	    	   
-	    	   <h:outputText value="Address Line 1"/>
-	    	   <h:inputText id="add1" value="#{helloBean.name}" style="border:1px solid #aaa; width : 195px;"/>
-	    	   
-	    	   <h:outputText value="Address Line 2"/>
-	    	   <h:inputText id="add2" value="#{helloBean.name}" style="border:1px solid #aaa; width : 195px;"/>
-	    	   
-	    	   <h:outputText value="Address Line 3"/>
-	    	   <h:inputText id="add3" value="#{helloBean.name}" style="border:1px solid #aaa; width : 195px;"/>
-	    	   
-	    	   <h:outputText value="Postcode"/>
-	    	   <h:inputText id="add4" value="#{helloBean.name}" style="border:1px solid #aaa; width : 195px;"/>
-	    	   
-    	   </h:panelGrid>
-    	   
-    	   <div style="height:10em; margin-top:2em;">  	   
-	    	   <h:commandButton value="Back" style="float:left;margin-left:160px; width:100px;"/>
-	    	   
-	    	   <h:commandButton value="Next" style="float:right;margin-right:160px; width:100px;"/>   	   
-    	   </div>
-    	   
-    	   
- 
-    	   <h2><h:outputText id="output" value="#{helloBean.sayWelcome}" /></h2>
+	</ui:define>
 
-    	   
-    	   </div>	
-    	</h:form>
-
-    </ui:define>
-    
 </ui:composition>
- 
