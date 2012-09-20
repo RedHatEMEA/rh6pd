@@ -17,11 +17,6 @@ import com.google.gson.Gson;
 
 public class ManagementClient {
 	Logger log = org.slf4j.LoggerFactory.getLogger(ManagementClient.class);
-	// Used for authentication.
-	// private static final String authentication_form_url =
-	// "/business-central-server/rs/";
-	// private static final String authentication_form_url =
-	// "/business-central-server/rs/process/definition/org.jbpm.evaluation.carinsurance.quote/instances";
 	private static final String authentication_form_url = "/business-central-server/rs/process/definitions";
 	private static final String authentication_submit_url = "/business-central-server/rs/identity/secure/j_security_check";
 
@@ -64,22 +59,18 @@ public class ManagementClient {
 	}
 
 	public void executeProcess(String processId) throws Exception {
-		String result = this.httpWrapper
-				.httpPost(ManagementClient.execute_process_url.replace(
-						"PROCESS", processId));
+		String result = this.httpWrapper.httpPost(ManagementClient.execute_process_url.replace("PROCESS", processId));
 
 		this.log.debug("Result of executeTask(): " + result);
 	}
 
 	public List<ProcessDefinitionRef> getAllDefinitions() throws Exception {
-		String result = this.httpWrapper
-				.httpGet("/business-central-server/rs/process/definitions");
+		String result = this.httpWrapper.httpGet("/business-central-server/rs/process/definitions");
 
 		this.log.debug("Completed request to show all definitions");
 
 		Gson gson = new Gson();
-		ProcessDefinitionRefWrapper wrapper = gson.fromJson(result,
-				ProcessDefinitionRefWrapper.class);
+		ProcessDefinitionRefWrapper wrapper = gson.fromJson(result, ProcessDefinitionRefWrapper.class);
 
 		return wrapper.getDefinitions();
 	}
@@ -93,25 +84,20 @@ public class ManagementClient {
 		new java.util.Date().getTime();
 
 		// /business-central-server/rs/process/definition/history/org.jbpm.evaluation.carinsurance.quote/nodeInfo
-		String search_url = ManagementClient.history_search_url
-				+ processDefinition + "/nodeInfo";
+		String search_url = ManagementClient.history_search_url + processDefinition + "/nodeInfo";
 
 		// + "/instances?status=" + status + "&starttime=" + starttime
 		// + "&endtime=" + endtime;
 
-		this.log.debug("Get historic process instances from process definition of : "
-				+ processId);
+		this.log.debug("Get historic process instances from process definition of : " + processId);
 
 		String result = this.httpWrapper.httpGet(search_url);
 
 		Gson gson = new Gson();
-		HistoryProcessInstanceRefWrapper wrapper = gson.fromJson(result,
-				HistoryProcessInstanceRefWrapper.class);
+		HistoryProcessInstanceRefWrapper wrapper = gson.fromJson(result, HistoryProcessInstanceRefWrapper.class);
 
 		for (HistoryProcessInstanceRef ref : wrapper.getDefinitions()) {
-			this.log.debug("historic instance id is: "
-					+ ref.getProcessInstanceId() + " definition key is: "
-					+ URLDecoder.decode(ref.getProcessDefinitionId(), "UTF-8"));
+			this.log.debug("historic instance id is: " + ref.getProcessInstanceId() + " definition key is: " + URLDecoder.decode(ref.getProcessDefinitionId(), "UTF-8"));
 		}
 
 	}
@@ -136,22 +122,17 @@ public class ManagementClient {
 		}
 	}
 
-	public List<ProcessInstanceRef> getProcessInstances(String processName)
-			throws Exception {
-		String result = this.httpWrapper
-				.httpGet("/business-central-server/rs/process/definition/{id}/instances"
-						.replace("{id}", processName));
+	public List<ProcessInstanceRef> getProcessInstances(String processName) throws Exception {
+		String result = this.httpWrapper.httpGet("/business-central-server/rs/process/definition/{id}/instances".replace("{id}", processName));
 
 		Gson gson = new Gson();
-		ProcessInstanceRefWrapper wrapper = gson.fromJson(result,
-				ProcessInstanceRefWrapper.class);
+		ProcessInstanceRefWrapper wrapper = gson.fromJson(result, ProcessInstanceRefWrapper.class);
 
 		return wrapper.getInstances();
 	}
 
 	public void showAllDeployments() throws Exception {
-		String result = this.httpWrapper
-				.httpGet(ManagementClient.deployment_url);
+		String result = this.httpWrapper.httpGet(ManagementClient.deployment_url);
 
 		System.out.println("Result of showAllDeployments: " + result);
 
@@ -176,40 +157,14 @@ public class ManagementClient {
 	private void submitLoginForm() {
 		this.log.debug("submiting Login Form");
 
-		this.log.debug("How many cookies do I have?: "
-				+ this.httpWrapper.getState().getCookies());
+		this.log.debug("How many cookies do I have?: " + this.httpWrapper.getState().getCookies());
 
-		this.authenticated = true; // FIXME
-		// FIXME - This is not using HTTP Wrapper
+		NameValuePair[] data = { new NameValuePair("j_username", this.username), new NameValuePair("j_password", this.password) };
 
-		// HashMap<String, String> params = new HashMap<String, String>();
-		// params.put("j_username", this.username);
-		// params.put("j_password", this.password);
-
-		// HttpClient httpclient = new HttpClient();
-		// PostMethod authMethod = new PostMethod(httpWrapper.getBaseUrl() +
-		// authentication_submit_url);
-
-		// Credentials defaultcreds = new UsernamePasswordCredentials("admin",
-		// "admin");
-
-		// set cookie.
-		// httpclient.getState().addCookie(cookie);
-
-		// set scope.
-		// httpclient.getParams().setAuthenticationPreemptive(true);
-		// httpclient.getState().setCredentials(new AuthScope("localhost", 8080,
-		// AuthScope.ANY_REALM), defaultcreds);
-
-		NameValuePair[] data = {
-				new NameValuePair("j_username", this.username),
-				new NameValuePair("j_password", this.password) };
-
-		// authMethod.setRequestBody(data);
-
-		this.httpWrapper.httpPost(ManagementClient.authentication_submit_url,
-				data);
+		this.httpWrapper.httpPost(ManagementClient.authentication_submit_url, data);
 
 		this.log.debug("auth content result: " + this.httpWrapper.lastContent);
+
+		this.authenticated = true; // FIXME
 	}
 }
