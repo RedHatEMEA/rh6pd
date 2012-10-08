@@ -1,0 +1,25 @@
+<rule>
+  <name>retractPolicy</name>
+  <modelVersion>1.0</modelVersion>
+  <attributes>
+    <attribute>
+      <attributeName>ruleflow-group</attributeName>
+      <value>retract</value>
+    </attribute>
+  </attributes>
+  <metadataList/>
+  <lhs>
+    <fact>
+      <factType>Policy</factType>
+      <boundName>policy</boundName>
+      <isNegated>false</isNegated>
+    </fact>
+  </lhs>
+  <rhs>
+    <freeForm>
+      <text>System.out.println(&quot;Retracting policy: &quot; + policy.driverRisk);
+retract(policy);</text>
+    </freeForm>
+  </rhs>
+  <isNegated>false</isNegated>
+</rule>

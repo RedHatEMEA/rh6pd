@@ -1,0 +1,25 @@
+<rule>
+  <name>RetractDriver</name>
+  <modelVersion>1.0</modelVersion>
+  <attributes>
+    <attribute>
+      <attributeName>ruleflow-group</attributeName>
+      <value>retract</value>
+    </attribute>
+  </attributes>
+  <metadataList/>
+  <lhs>
+    <fact>
+      <factType>Driver</factType>
+      <boundName>driver</boundName>
+      <isNegated>false</isNegated>
+    </fact>
+  </lhs>
+  <rhs>
+    <freeForm>
+      <text>System.out.println(&quot;Retracting Driver &quot; + driver.driverName + &quot; - &quot; + driver.age);
+retract(driver);</text>
+    </freeForm>
+  </rhs>
+  <isNegated>false</isNegated>
+</rule>
