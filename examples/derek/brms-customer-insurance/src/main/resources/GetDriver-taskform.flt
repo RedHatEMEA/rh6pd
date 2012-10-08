@@ -1,5 +1,11 @@
 <html>
 <body>
+<style type="text/css">
+body {background-image:url('http://localhost/grey_tile.png');}
+</style>
+
+<img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
+
 <script type='text/javascript'>
 	function notEmpty(elem){
 		if(elem.value.length == 0){
@@ -87,7 +93,7 @@
 
 	#header
 	{
-		background: #ccc;
+		background: #666;
 		padding: 20px;
 		font-family:Arial, Helvetica, sans-serif;
 		font-size: 125%;
@@ -125,6 +131,16 @@
 		padding:10px;
 		margin-top:20px;
 		margin-bottom:20px;
+	}
+
+
+	topbox {
+		font-family:Arial, Helvetica, sans-serif;
+		font-size: 90%;
+		letter-spacing: -1px;
+		font-weight: bold;
+		line-height: 1.1;
+		color:#fff;
 	}
 	legend {
 		font-family:Arial, Helvetica, sans-serif;
@@ -224,17 +240,13 @@
 </style>
 <div id="container">
 	<div id="header">
-		User Task Form: Quote94.GetDriver
+		<topbox> CUSTOMER INURANCE DEMO : Get Driver Information</topbox>
 	</div>
 	<div id="content">
+	<img src="http://localhost/driver.jpg" alt="Car Insurance" width="200" height="100"/>
 	
-		<fieldset>
-            <legend>Task Inputs</legend>
-            <div class="clear"></div>
-          </fieldset>
-          
           <fieldset>
-            <legend>Task Outputs</legend>
+            <legend>Enter Driver Details</legend>
             <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
 
                             		<label for="name">Name</label>
@@ -246,6 +258,8 @@
                             		<div class="div_texbox">
                               		<input name="Age" type="text" class="textbox" id="Age" value="" />
                             		</div>	
+                            		
+                            		
                             
               <div class="button_div">
                 <input name="Submit" type="submit" value="Submit" class="buttons" />

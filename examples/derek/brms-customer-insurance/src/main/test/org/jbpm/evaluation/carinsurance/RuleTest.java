@@ -27,7 +27,7 @@ public class RuleTest extends JbpmJUnitTestCase {
     {    
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();                
         kbuilder.add(ResourceFactory.newClassPathResource("testCalcProcess.jbpm.rf"), ResourceType.BPMN2);
-        kbuilder.add(ResourceFactory.newClassPathResource("testCalc.drl"),ResourceType.DRL); 
+        kbuilder.add(ResourceFactory.newClassPathResource("calcDriverRisk.drl"),ResourceType.DRL); 
           
         return kbuilder.newKnowledgeBase();  
     }  
@@ -54,8 +54,8 @@ public class RuleTest extends JbpmJUnitTestCase {
         assertNodeTriggered(pi.getId(), "Start", "End");
         assertProcessInstanceCompleted(pi.getId(), ksession);  
            
-        assertEquals(99, driver.getCreditScore());
-        assertEquals(99, policy.getDriverRisk());   
+        assertEquals(999, driver.getCreditScore());
+        assertEquals(999, policy.getDriverRisk());   
     } 
     
     @Test 

@@ -1,126 +1,22 @@
 <html>
+
 <body>
-<script type='text/javascript'>
-	function notEmpty(elem){
-		if(elem.value.length == 0){
-			return false;
-		}
-		return true;
-	}
-	
-	function isNumeric(elem){
-		var numericExpression = /^[0-9]+$/;
-		if(elem.value.match(numericExpression)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isAlphabet(elem){
-		var alphaExp = /^[a-zA-Z0-9\_ .-@]+$/;
-		if(elem.value.match(alphaExp)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isAlphanumeric(elem){
-		var alphaExp = /^[a-zA-Z0-9\_ .-@]+$/;
-		if(elem.value.match(alphaExp)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isFloat(elem){
-   		if(elem.value.indexOf(".") < 0){
-     		return false;
-   		} else {
-      		if(parseFloat(elem.value)) {
-              return true;
-          	} else {
-              return false;
-          	}
-   		}
-	}
-	
-	function taskFormValidator() {
-		var i=0;
-		var myInputs = new Array();
+<style type="text/css">
+body {background-image:url('http://localhost/grey_tile.png');}
+</style>
 
-					myInputs[i] = document.getElementById("name");
-					i++;
-				
-					myInputs[i] = document.getElementById("age");
-					i++;
-				
-					myInputs[i] = document.getElementById("risk");
-					i++;
-				
-					myInputs[i] = document.getElementById("ageInt");
-					i++;
-				
-					myInputs[i] = document.getElementById("credit");
-					i++;
-				
-		
-		var j=0;
-
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid name");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid age");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isNumeric(myInputs[j])) {
-							alert("Please enter valid risk");
-							myInputs[j].focus();
-							return false;
-						}
-			
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isNumeric(myInputs[j])) {
-							alert("Please enter valid ageInt");
-							myInputs[j].focus();
-							return false;
-						}
-			
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isNumeric(myInputs[j])) {
-							alert("Please enter valid credit");
-							myInputs[j].focus();
-							return false;
-						}
-			
-					j++;
-				
-		return true;
-	}
-</script>
+<img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
 <style type="text/css">
 	#container
 	{
 		margin: 0 auto;
 		width: 600px;
-		background:#fff;
+		background:#eee;
 	}
 
 	#header
 	{
-		background: #ccc;
+		background: #666;
 		padding: 20px;
 		font-family:Arial, Helvetica, sans-serif;
 		font-size: 125%;
@@ -159,6 +55,15 @@
 		margin-top:20px;
 		margin-bottom:20px;
 	}
+	topbox {
+		font-family:Arial, Helvetica, sans-serif;
+		font-size: 90%;
+		letter-spacing: -1px;
+		font-weight: bold;
+		line-height: 1.1;
+		color:#fff;
+	}
+	
 	legend {
 		font-family:Arial, Helvetica, sans-serif;
 		font-size: 90%;
@@ -241,6 +146,13 @@
 		height:35px;
 		margin-top:3px;
 		padding:5px 32px 3px;
+     }
+	.button_div2 {
+		float:right;
+		text-align:right;
+		height:35px;
+		margin-top:3px;
+		padding:5px 32px 3px;
 	}
 	.buttons {
 		background: #e3e3db;
@@ -257,15 +169,19 @@
 </style>
 <div id="container">
 	<div id="header">
-		New Process Instance: org.jbpm.evaluation.carinsurance.Quote94
+	     <topbox>CUSTOMER INURANCE DEMO</topbox>
+	</div>
+	<div>
+	<img src="http://localhost/auto_insurance-car.png" alt="Car Insurance" width="400" height="150"/>
 	</div>
 	<div id="content">
 		<fieldset>
-            <legend>Process inputs</legend>
-            <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
-                
-              <div class="button_div">
-                <input name="Submit" type="submit" value="Submit" class="buttons" />
+            <form action="complete" method="POST" 
+				enctype="multipart/form-data" onsubmit="return taskFormValidator()">
+                <legend>Welcome to the JBoss Insurance Demo <br/>
+                click OK to start</legend>
+              <div class="button_div2">
+                <input name="Submit" type="submit" value="OK" class="buttons" />
               </div>
             </form>
             <div class="clear"></div>
