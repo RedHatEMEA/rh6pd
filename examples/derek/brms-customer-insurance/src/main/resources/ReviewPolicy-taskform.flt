@@ -1,7 +1,13 @@
 <html>
+
 <body>
 <style type="text/css">
-body {background-image:url('http://localhost/grey_tile.png');}
+body {
+background-image:url('http://localhost/grey_tile.png'); 
+background-size:1200px 500px;
+background-repeat:no-repeat;
+}
+
 </style>
 
 <img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
@@ -261,9 +267,13 @@ body {background-image:url('http://localhost/grey_tile.png');}
                             
                             		<label for="name">Risk</label>
                             		<div class="div_checkbox">
-                              		
+                              		${Risk}
                             		</div>
-                            
+                           
+                            		<label for="name">Price</label>
+                            		<div class="div_checkbox">
+                              		${Price}
+                            		</div>
             <div class="clear"></div>
           </fieldset>
                             

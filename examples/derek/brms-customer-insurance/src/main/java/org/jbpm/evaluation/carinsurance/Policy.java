@@ -14,13 +14,13 @@ public class Policy implements Serializable
   	private Date requestDate   = new Date();
     private String policyType  = "AUTO"; // COMPREHENSIVE, FIRE_THEFT, THIRD_PARTY
     
-	private int totalRisk      = new Integer(0);
-	private int driverRisk     = new Integer(0);
-	private int carRisk        = new Integer(0);
-	private int historyRisk    = new Integer(0);
+	private int totalRisk      = 0;
+	private int driverRisk     = 0;
+	private int carRisk        = 0;
+	private int historyRisk    = 0;
 	
-	private int price          = new Integer(0);
-	private int priceDiscount  = new Integer(0);
+	private int price          = 0;
+	private int priceDiscount  = 0;
 	private String carReg      = "BOTTOM CAR";
 	
 	private Driver driver      = new Driver();

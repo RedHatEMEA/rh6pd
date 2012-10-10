@@ -19,12 +19,11 @@
   <itemDefinition id="_policyItem" structureRef="org.jbpm.evaluation.carinsurance.Policy" />
   <itemDefinition id="_ageIntItem" structureRef="Integer" />
   <itemDefinition id="_creditItem" structureRef="Integer" />
-  <itemDefinition id="_fh1Item" structureRef="org.drools.runtime.rule.FactHandle" />
-  <itemDefinition id="_fh2Item" structureRef="org.drools.runtime.rule.FactHandle" />
-  <itemDefinition id="_priceItem" structureRef="Integer" />
   <itemDefinition id="_riskItem" structureRef="String" />
+  <itemDefinition id="_priceIntItem" structureRef="Integer" />
+  <itemDefinition id="_priceItem" structureRef="String" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote126" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote157" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -34,10 +33,9 @@
     <property id="policy" itemSubjectRef="_policyItem"/>
     <property id="ageInt" itemSubjectRef="_ageIntItem"/>
     <property id="credit" itemSubjectRef="_creditItem"/>
-    <property id="fh1" itemSubjectRef="_fh1Item"/>
-    <property id="fh2" itemSubjectRef="_fh2Item"/>
-    <property id="price" itemSubjectRef="_priceItem"/>
     <property id="risk" itemSubjectRef="_riskItem"/>
+    <property id="priceInt" itemSubjectRef="_priceIntItem"/>
+    <property id="price" itemSubjectRef="_priceItem"/>
 
     <!-- nodes -->
     <startEvent id="_1" name="Start" />
@@ -49,7 +47,10 @@
 System.out.println("Name is " + name);
 System.out.println("Age  is " + age);
 risk="Not Set Yet";
+price="Not Set Yet";
+priceInt=999;
 System.out.println("Risk is " + risk );
+System.out.println("PriceInt is " + priceInt );
 
 // Calculate Age
 ageInt = Integer.parseInt(age);
@@ -67,9 +68,14 @@ driver.setCreditScore(999);
 driver.setDriverName(name);
 driver.setAge(ageInt);
 
-// insert driver &amp; policy
+// insert driver &amp; policy worksheet  variables
 kcontext.setVariable("driver",driver);
 kcontext.setVariable("policy",policy);
+kcontext.setVariable("name",name);
+kcontext.setVariable("age",age);
+kcontext.setVariable("risk",risk);
+kcontext.setVariable("price",price);
+kcontext.setVariable("priceInt",priceInt); 
 
 // Insert Driver and Policy into our session for the rules to use.
 insert(driver); 
@@ -82,19 +88,39 @@ System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node
     </scriptTask>
     <userTask id="_4" name="GetDriver" >
       <ioSpecification>
+        <dataInput id="_4_CommentInput" name="Comment" />
+        <dataInput id="_4_SkippableInput" name="Skippable" />
         <dataInput id="_4_TaskNameInput" name="TaskName" />
         <dataInput id="_4_GroupIdInput" name="GroupId" />
+        <dataInput id="_4_PriorityInput" name="Priority" />
         <dataOutput id="_4_NameOutput" name="Name" />
         <dataOutput id="_4_AgeOutput" name="Age" />
         <inputSet>
+          <dataInputRefs>_4_CommentInput</dataInputRefs>
+          <dataInputRefs>_4_SkippableInput</dataInputRefs>
           <dataInputRefs>_4_TaskNameInput</dataInputRefs>
           <dataInputRefs>_4_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_4_PriorityInput</dataInputRefs>
         </inputSet>
         <outputSet>
           <dataOutputRefs>_4_NameOutput</dataOutputRefs>
           <dataOutputRefs>_4_AgeOutput</dataOutputRefs>
         </outputSet>
       </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_4_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">null</from>
+          <to xsi:type="tFormalExpression">_4_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_SkippableInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_4_SkippableInput</to>
+        </assignment>
+      </dataInputAssociation>
       <dataInputAssociation>
         <targetRef>_4_TaskNameInput</targetRef>
         <assignment>
@@ -107,6 +133,13 @@ System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node
         <assignment>
           <from xsi:type="tFormalExpression">HR</from>
           <to xsi:type="tFormalExpression">_4_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">null</from>
+          <to xsi:type="tFormalExpression">_4_PriorityInput</to>
         </assignment>
       </dataInputAssociation>
       <dataOutputAssociation>
@@ -129,17 +162,26 @@ System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node
         <terminateEventDefinition/>
     </endEvent>
     <scriptTask id="_8" name="PrintMeAgain1" scriptFormat="http://www.java.com/java" >
-      <script>// get policy out of rules engine.
+      <script>System.out.println("Start PrintMe Again");
+// get policy out of rules engine.
 System.out.println("We think policy model is " + kcontext.getVariable("policy"));
 policy =  (org.jbpm.evaluation.carinsurance.Policy) kcontext.getVariable("policy");
-
+System.out.println("We think policy model is " + kcontext.getVariable("policy"));
 // Get car risk value from policy.
 riskInt = policy.getDriverRisk();
-risk = riskInt.toString();
-ageInt = Integer.parseInt(age);
+System.out.println("Risk Int is " + riskInt);
+risk      = riskInt.toString();
+System.out.println("Risk is " + risk);
 
-// Get Credit Score from Driver Object.
-credit = driver.getCreditScore();
+System.out.println("PriceInt is " + priceInt);
+price    = priceInt.toString();
+System.out.println("Price is " + price);
+
+ageInt = Integer.parseInt(age);
+System.out.println("Age Int is " + ageInt);
+
+credit  = driver.getCreditScore();
+System.out.println("Credit  is " + credit);
 
 // Print everything out
 System.out.println("========== P O L I CY ==========");
@@ -147,10 +189,26 @@ System.out.println("Policy is ..... ");
 System.out.println("Name is " + name );
 System.out.println("Age is "    + age );
 System.out.println("Driver Credit Score is " + credit );
-System.out.println("Policy Driver intRisk is " + riskInt );
-System.out.println("Policy Driver String Risk is " + risk );
+System.out.println("Policy  Driver intRisk is " + riskInt );
+System.out.println("Policy  Driver String Risk is " + risk );
+System.out.println("Policy  PriceString is " + priceInt );
 System.out.println("=== E N D === P O L I CY ==========");
-</script>
+
+// create new policy
+policy = new Policy();
+
+// reset driver risk
+policy.setDriverRisk(riskInt);
+
+System.out.println("Prepare CalcPremium");
+kcontext.setVariable("driver",driver);
+kcontext.setVariable("policy",policy);
+kcontext.setVariable("name",name);
+kcontext.setVariable("age",age);
+kcontext.setVariable("risk",risk);
+kcontext.setVariable("price",price);
+insert(driver);
+insert(policy);</script>
     </scriptTask>
     <businessRuleTask id="_9" name="Retract" g:ruleFlowGroup="retract" >
     </businessRuleTask>
@@ -159,22 +217,24 @@ System.out.println("=== E N D === P O L I CY ==========");
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_NameInput" name="Name" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RiskInput" name="Risk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput" name="Age" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput" name="Price" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CommentInput" name="Comment" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_SkippableInput" name="Skippable" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_TaskNameInput" name="TaskName" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_GroupIdInput" name="GroupId" />
-        <dataOutput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_NameOutput" name="Name" />
-        <dataOutput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RiskOutput" name="Risk" />
-        <dataOutput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeOutput" name="Age" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriorityInput" name="Priority" />
         <inputSet>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_NameInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CommentInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_SkippableInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_TaskNameInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriorityInput</dataInputRefs>
         </inputSet>
         <outputSet>
-          <dataOutputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_NameOutput</dataOutputRefs>
-          <dataOutputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RiskOutput</dataOutputRefs>
-          <dataOutputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeOutput</dataOutputRefs>
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
@@ -190,6 +250,24 @@ System.out.println("=== E N D === P O L I CY ==========");
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
+        <sourceRef>price</sourceRef>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">null</from>
+          <to xsi:type="tFormalExpression">_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_SkippableInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_B09AA1BF-19DA-4F57-B074-F36CB7E94178_SkippableInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_TaskNameInput</targetRef>
         <assignment>
           <from xsi:type="tFormalExpression">ReviewPolicy</from>
@@ -203,24 +281,40 @@ System.out.println("=== E N D === P O L I CY ==========");
           <to xsi:type="tFormalExpression">_B09AA1BF-19DA-4F57-B074-F36CB7E94178_GroupIdInput</to>
         </assignment>
       </dataInputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_NameOutput</sourceRef>
-        <targetRef>name</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RiskOutput</sourceRef>
-        <targetRef>risk</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeOutput</sourceRef>
-        <targetRef>age</targetRef>
-      </dataOutputAssociation>
+      <dataInputAssociation>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">null</from>
+          <to xsi:type="tFormalExpression">_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
           <formalExpression>mary</formalExpression>
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
+    <businessRuleTask id="_11" name="CalcPrice" g:ruleFlowGroup="calcPrice" >
+    </businessRuleTask>
+    <scriptTask id="_12" name="SetPrice" scriptFormat="http://www.java.com/java" >
+      <script>
+// get policy out of rules engine.
+System.out.println("SetPrice : We think policy model is " + kcontext.getVariable("policy"));
+policy =  (org.jbpm.evaluation.carinsurance.Policy) kcontext.getVariable("policy");
+System.out.println("SetPrice : We think policy model is " + kcontext.getVariable("policy"));
+//policy.setPrice(5555);
+priceInt= policy.getPrice();
+System.out.println("PriceInt is " + priceInt );
+price=priceInt.toString();
+System.out.println("Price is " + price );
+
+System.out.println("Policy Risk is " + policy.getDriverRisk());
+kcontext.setVariable("name",name);
+kcontext.setVariable("age",age);
+kcontext.setVariable("risk",risk);
+kcontext.setVariable("price",price);
+kcontext.setVariable("priceInt",priceInt);</script>
+    </scriptTask>
 
     <!-- connections -->
     <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
@@ -230,7 +324,9 @@ System.out.println("=== E N D === P O L I CY ==========");
     <sequenceFlow id="_9-_7" sourceRef="_9" targetRef="_7" />
     <sequenceFlow id="_6-_8" sourceRef="_6" targetRef="_8" />
     <sequenceFlow id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" sourceRef="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" targetRef="_9" />
-    <sequenceFlow id="_8-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" sourceRef="_8" targetRef="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" />
+    <sequenceFlow id="_12-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" sourceRef="_12" targetRef="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" />
+    <sequenceFlow id="_8-_11" sourceRef="_8" targetRef="_11" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" />
 
   </process>
 
@@ -252,16 +348,22 @@ System.out.println("=== E N D === P O L I CY ==========");
         <dc:Bounds x="536" y="85" width="124" height="66" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_7" >
-        <dc:Bounds x="316" y="240" width="48" height="48" />
+        <dc:Bounds x="160" y="235" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_8" >
-        <dc:Bounds x="690" y="75" width="146" height="71" />
+        <dc:Bounds x="693" y="78" width="146" height="71" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_9" >
-        <dc:Bounds x="420" y="244" width="80" height="48" />
+        <dc:Bounds x="258" y="237" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <dc:Bounds x="570" y="242" width="104" height="51" />
+        <dc:Bounds x="369" y="224" width="126" height="78" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="693" y="232" width="142" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="539" y="235" width="116" height="58" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_2" >
         <di:waypoint x="52" y="118" />
@@ -280,21 +382,30 @@ System.out.println("=== E N D === P O L I CY ==========");
         <di:waypoint x="598" y="118" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_9-_7" >
-        <di:waypoint x="460" y="268" />
-        <di:waypoint x="340" y="264" />
+        <di:waypoint x="298" y="261" />
+        <di:waypoint x="184" y="259" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6-_8" >
         <di:waypoint x="598" y="118" />
-        <di:waypoint x="763" y="110" />
+        <di:waypoint x="766" y="113" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" >
-        <di:waypoint x="622" y="267" />
-        <di:waypoint x="460" y="268" />
+        <di:waypoint x="432" y="263" />
+        <di:waypoint x="298" y="261" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_8-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <di:waypoint x="763" y="110" />
-        <di:waypoint x="763" y="267" />
-        <di:waypoint x="622" y="267" />
+      <bpmndi:BPMNEdge bpmnElement="_12-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
+        <di:waypoint x="597" y="264" />
+        <di:waypoint x="432" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_11" >
+        <di:waypoint x="766" y="113" />
+        <di:waypoint x="763" y="187" />
+        <di:waypoint x="765" y="187" />
+        <di:waypoint x="764" y="267" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="764" y="267" />
+        <di:waypoint x="597" y="264" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

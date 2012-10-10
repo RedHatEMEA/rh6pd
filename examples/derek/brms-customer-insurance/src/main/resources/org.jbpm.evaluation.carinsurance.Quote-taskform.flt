@@ -2,8 +2,13 @@
 
 <body>
 <style type="text/css">
-body {background-image:url('http://localhost/grey_tile.png');}
+body {
+background-image:url('http://localhost/grey_tile.png');
+background-size:1200px 500px;
+background-repeat:no-repeat;
+}
 </style>
+
 
 <img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
 <style type="text/css">
