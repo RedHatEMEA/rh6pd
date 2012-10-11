@@ -23,7 +23,7 @@
   <itemDefinition id="_priceIntItem" structureRef="Integer" />
   <itemDefinition id="_priceItem" structureRef="String" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote157" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote179" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -62,6 +62,7 @@ policy = new Policy();
 
 // Set Variables to default values.
 policy.setDriverRisk(999);
+policy.setPrice(999);
 driver.setCreditScore(999);
 
 // Set driver name and age.
@@ -163,10 +164,7 @@ System.out.println("Leaving " + kcontext.getNodeInstance().getNodeName() +" Node
     </endEvent>
     <scriptTask id="_8" name="PrintMeAgain1" scriptFormat="http://www.java.com/java" >
       <script>System.out.println("Start PrintMe Again");
-// get policy out of rules engine.
-System.out.println("We think policy model is " + kcontext.getVariable("policy"));
-policy =  (org.jbpm.evaluation.carinsurance.Policy) kcontext.getVariable("policy");
-System.out.println("We think policy model is " + kcontext.getVariable("policy"));
+
 // Get car risk value from policy.
 riskInt = policy.getDriverRisk();
 System.out.println("Risk Int is " + riskInt);
@@ -195,20 +193,30 @@ System.out.println("Policy  PriceString is " + priceInt );
 System.out.println("=== E N D === P O L I CY ==========");
 
 // create new policy
-policy = new Policy();
+//policy = new Policy();
 
 // reset driver risk
 policy.setDriverRisk(riskInt);
 
-System.out.println("Prepare CalcPremium");
-kcontext.setVariable("driver",driver);
-kcontext.setVariable("policy",policy);
-kcontext.setVariable("name",name);
-kcontext.setVariable("age",age);
-kcontext.setVariable("risk",risk);
-kcontext.setVariable("price",price);
-insert(driver);
-insert(policy);</script>
+
+//System.out.println("Prepare CalcPremium");
+//kcontext.setVariable("driver",driver);
+//kcontext.setVariable("policy",policy);
+//kcontext.setVariable("name",name);
+//kcontext.setVariable("age",age);
+//kcontext.setVariable("risk",risk);
+//kcontext.setVariable("price",price);
+//System.out.println("Policy:" + policy);
+//insert(driver);
+
+//kcontext.getKnowledgeRuntime().retract(kcontext.getKnowledgeRuntime().getFactHandle(policy));
+//insert(policy);
+
+kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
+
+
+
+</script>
     </scriptTask>
     <businessRuleTask id="_9" name="Retract" g:ruleFlowGroup="retract" >
     </businessRuleTask>
@@ -299,14 +307,13 @@ insert(policy);</script>
     <scriptTask id="_12" name="SetPrice" scriptFormat="http://www.java.com/java" >
       <script>
 // get policy out of rules engine.
-System.out.println("SetPrice : We think policy model is " + kcontext.getVariable("policy"));
-policy =  (org.jbpm.evaluation.carinsurance.Policy) kcontext.getVariable("policy");
-System.out.println("SetPrice : We think policy model is " + kcontext.getVariable("policy"));
+System.out.println("SetPrice. Policy is: " + policy + " with a price of " + policy.getPrice());
 //policy.setPrice(5555);
 priceInt= policy.getPrice();
 System.out.println("PriceInt is " + priceInt );
 price=priceInt.toString();
 System.out.println("Price is " + price );
+risk=new Integer(policy.getDriverRisk()).toString();
 
 System.out.println("Policy Risk is " + policy.getDriverRisk());
 kcontext.setVariable("name",name);
@@ -348,7 +355,7 @@ kcontext.setVariable("priceInt",priceInt);</script>
         <dc:Bounds x="536" y="85" width="124" height="66" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_7" >
-        <dc:Bounds x="160" y="235" width="48" height="48" />
+        <dc:Bounds x="143" y="273" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_8" >
         <dc:Bounds x="693" y="78" width="146" height="71" />
@@ -383,7 +390,7 @@ kcontext.setVariable("priceInt",priceInt);</script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_9-_7" >
         <di:waypoint x="298" y="261" />
-        <di:waypoint x="184" y="259" />
+        <di:waypoint x="167" y="297" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6-_8" >
         <di:waypoint x="598" y="118" />

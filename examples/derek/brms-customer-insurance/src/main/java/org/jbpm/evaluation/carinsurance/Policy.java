@@ -122,7 +122,11 @@ public class Policy implements Serializable
 		return carReg;
 	}
 	public void setCarReg(String driverName) {
-		this.carReg = driverName;
+		this.carReg = driverName; 
+	}
+	
+	public String toString() {
+		return "Policy.toString() " + super.toString() + " Driver Risk: " + this.driverRisk + " Price: " + this.price ; 
 	}
 
 	
