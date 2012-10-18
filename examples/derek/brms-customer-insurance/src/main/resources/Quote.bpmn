@@ -28,7 +28,7 @@
   <itemDefinition id="_driverRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_carRiskIntItem" structureRef="Integer" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote204" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote206" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -131,7 +131,10 @@
 driverRiskInt  = policy.getDriverRisk();
 driverRisk      =  new Integer (driverRiskInt).toString();
 
-System.out.println("I am the update rules node and the driver risk from the policy is: " + policy.getDriverRisk());
+System.out.println("Policy object from worksheet: " + policy);
+System.out.println("Policy object from kcontext:" + kcontext.getVariable("policy"));
+
+System.out.println("Update Rule : I am the update rules node and the driver risk from the policy is: " + policy.getDriverRisk());
 			
 carRiskInt      = policy.getCarRisk();
 carRisk           = new Integer (carRiskInt).toString();
@@ -140,10 +143,10 @@ carRisk           = new Integer (carRiskInt).toString();
 //price    = priceInt.toString();
 //credit  = driver.getCreditScore();
 
-policy.setDriverRisk(driverRiskInt);
-policy.setCarRisk(carRiskInt);
+//policy.setDriverRisk(driverRiskInt);
+//policy.setCarRisk(carRiskInt);
 
-System.out.println(policy);
+//System.out.println(policy);
 
 // Update working memory
 kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
@@ -339,7 +342,7 @@ policy.setDriverRisk(999);
 policy.setPrice(999);
 driver.setCreditScore(999);
 driver.setName(name);
-//driver.setAge(new Integer age.toString());
+driver.setAge(Integer.parseInt(age));
 
 //Insert into session.
 kcontext.setVariable("driver",driver);
@@ -376,11 +379,13 @@ car.setYear(year);
 System.out.println("setCar Section 2 done");
 
 //Insert into session.
+kcontext.setVariable("car",car);
 kcontext.setVariable("make",make);
 kcontext.setVariable("model",model);
 kcontext.setVariable("reg",reg);
 kcontext.setVariable("year",year);
 kcontext.setVariable("carRisk",carRisk);
+kcontext.setVariable("driverRisk",driverRisk);
 
 System.out.println("setCar Section 3 done");
 
@@ -421,7 +426,7 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <dc:Bounds x="693" y="50" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_8" >
-        <dc:Bounds x="72" y="229" width="146" height="71" />
+        <dc:Bounds x="74" y="219" width="146" height="71" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_9" >
         <dc:Bounds x="677" y="120" width="80" height="48" />
@@ -461,7 +466,7 @@ System.out.println("*** Exiting	 Set Car ***");</script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_14-_8" >
         <di:waypoint x="440" y="136" />
-        <di:waypoint x="145" y="264" />
+        <di:waypoint x="147" y="254" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" >
         <di:waypoint x="718" y="249" />
@@ -472,7 +477,7 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <di:waypoint x="718" y="249" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_8-_11" >
-        <di:waypoint x="145" y="264" />
+        <di:waypoint x="147" y="254" />
         <di:waypoint x="429" y="258" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_11-_12" >
