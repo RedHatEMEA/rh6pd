@@ -11,35 +11,35 @@ import java.util.Date;
 public class Policy implements Serializable
 {
     private static final long serialVersionUID = 1L;
-  	private Date requestDate   = new Date();
-    private String policyType  = "AUTO"; // COMPREHENSIVE, FIRE_THEFT, THIRD_PARTY
+  	private Date    policyDate   = new Date();
+  	
+  	// COMPREHENSIVE, FIRE_THEFT, THIRD_PARTY
+  	private String  policyType           = "Policy: Not Set Yet"; 
     
-	private int totalRisk      = 0;
-	private int driverRisk     = 0;
-	private int carRisk        = 0;
-	private int historyRisk    = 0;
-	
-	private int price          = 0;
-	private int priceDiscount  = 0;
-	private String carReg      = "BOTTOM CAR";
-	
-	private Driver driver      = new Driver();
-	
-	// Date
-	public Date getRequestDate() {
-		return requestDate;
-	}
+	private int     policyTotalRisk      = 0;
+	private int     policyDriverRisk     = 0;
+	private int     policyCarRisk        = 0;
+	private int     policyHistoryRisk    = 0;
+	private int     policyAccidentRisk   = 0;
 
-	public void setRequestDate(Date requestDate) {
-		this.requestDate = requestDate;
+	private int     policyPrice          = 0;
+	private int     policyDiscount       = 0;
+	
+
+	
+	// Policy Date
+	public Date getDate(){
+		return policyDate;
+	}
+	public void setDate(Date policyDate){
+		this.policyDate = policyDate;
 	}
 
 	// Policy Type
-	public String getPolicyType() {
+	public String getType(){
 		return policyType;
 	}
-
-	public void setPolicyType(String policyType) {
+	public void setType(String policyType){
 		this.policyType = policyType;
 	}
 	
@@ -48,86 +48,64 @@ public class Policy implements Serializable
 	// and determine the price.
 	
 	// Policy Total Risk
-	public int getTotalRisk() 
-	{
-		return totalRisk;
+	public int getTotalRisk(){
+		return policyTotalRisk;
 	}
-	public void setTotalRisk(int totalRisk) 
-	{
-		this.totalRisk = totalRisk;
+	public void setTotalRisk(int policyTotalRisk){
+		this.policyTotalRisk = policyTotalRisk;
 	}	
 		
 	// Policy Driver Risk
-	public int getDriverRisk() 
-	{
-		return driverRisk;
+	public int getDriverRisk(){
+		return policyDriverRisk;
 	}
-	public void setDriverRisk(int driverRisk) 
-	{
-		this.driverRisk = driverRisk;
+	public void setDriverRisk(int policyDriverRisk){
+		this.policyDriverRisk = policyDriverRisk;
 	}	
 	
 	// Policy Car Risk
-	public int getCarRisk() 
-	{
-		return carRisk;
+	public int getCarRisk(){
+		return policyCarRisk;
 	}
-	public void setCarRisk(int carRisk) 
-	{
-		this.carRisk = carRisk;
+	public void setCarRisk(int carRisk){
+		this.policyCarRisk = carRisk;
 	}	
 	
 	// Policy History Risk
 	public int getHistoryRisk() 
 	{
-		return historyRisk;
+		return policyHistoryRisk;
 	}
-	public void setHistoryRisk(int historyRisk) 
-	{
-		this.historyRisk = historyRisk;
+	public void setHistoryRisk(int policyHistoryRisk){
+		this.policyHistoryRisk = policyHistoryRisk;
 	}	
 	
-	
+	// Policy Accident Risk
+	public int getAccidentRisk(){
+		return policyAccidentRisk;
+	}
+	public void setAccidentRisk(int policyAccidentRisk) {
+		this.policyAccidentRisk = policyAccidentRisk;
+	}	
 	
 	// Policy Price
-	public int getPrice() {
-		return price;
+	public int getPrice() 
+	{
+		return policyPrice;
 	}
-
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(int policyPrice){
+		this.policyPrice = policyPrice;
 	}	
 
-	
 	// Policy Discount
-	public int getPriceDiscount() {
-		return priceDiscount;
+	public int getDiscount(){
+		return policyDiscount;
 	}
 
-	public void setPriceDiscount(int priceDiscount) {
-		this.priceDiscount = priceDiscount;
+	public void setDiscount(int policyDiscount){
+		this.policyDiscount = policyDiscount;
 	}
 
-	// Policy Named Driver
-	public Driver getDriver() {
-		return driver;
-	}
 
-	public void setDriver(Driver driver) {
-		this.driver = driver;
-	}
 
-	// Registration of the Car on the Policy
-	public String getCarReg() {
-		return carReg;
-	}
-	public void setCarReg(String driverName) {
-		this.carReg = driverName; 
-	}
-	
-	public String toString() {
-		return "Policy.toString() " + super.toString() + " Driver Risk: " + this.driverRisk + " Price: " + this.price ; 
-	}
-
-	
 }

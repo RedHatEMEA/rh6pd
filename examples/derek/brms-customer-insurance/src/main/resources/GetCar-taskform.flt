@@ -1,16 +1,13 @@
 <html>
-
+<body>
 <body>
 <style type="text/css">
 body {
-background-image:url('http://localhost/grey_tile.png'); 
+background-image:url('http://localhost/grey_tile.png');
 background-size:1200px 500px;
 background-repeat:no-repeat;
 }
-
 </style>
-
-<img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
 
 <script type='text/javascript'>
 	function notEmpty(elem){
@@ -63,24 +60,34 @@ background-repeat:no-repeat;
 		var i=0;
 		var myInputs = new Array();
 
-					myInputs[i] = document.getElementById("Name");
+					myInputs[i] = document.getElementById("Model");
 					i++;
 				
-					myInputs[i] = document.getElementById("Age");
+					myInputs[i] = document.getElementById("Reg");
+					i++;
+				
+					myInputs[i] = document.getElementById("Make");
 					i++;
 				
 		
 		var j=0;
 
 						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Name");
+							alert("Please enter valid Model");
 							myInputs[j].focus();
 							return false;
 						}	
 					j++;
 				
 						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Age");
+							alert("Please enter valid Reg");
+							myInputs[j].focus();
+							return false;
+						}	
+					j++;
+				
+						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
+							alert("Please enter valid Make");
 							myInputs[j].focus();
 							return false;
 						}	
@@ -99,7 +106,7 @@ background-repeat:no-repeat;
 
 	#header
 	{
-		background: #666;
+		background: #ccc;
 		padding: 20px;
 		font-family:Arial, Helvetica, sans-serif;
 		font-size: 125%;
@@ -137,16 +144,6 @@ background-repeat:no-repeat;
 		padding:10px;
 		margin-top:20px;
 		margin-bottom:20px;
-	}
-
-
-	topbox {
-		font-family:Arial, Helvetica, sans-serif;
-		font-size: 90%;
-		letter-spacing: -1px;
-		font-weight: bold;
-		line-height: 1.1;
-		color:#fff;
 	}
 	legend {
 		font-family:Arial, Helvetica, sans-serif;
@@ -246,56 +243,41 @@ background-repeat:no-repeat;
 </style>
 <div id="container">
 	<div id="header">
-		<topbox> CUSTOMER INURANCE DEMO : Review Policy </topbox>
+		User Task Form: Quote188.GetCar
 	</div>
 	<div id="content">
-	<img src="http://localhost/insurance_policy.jpg" alt="Car Insurance" width="200" height="80" align="right"/>
+		
 	
+		<fieldset>
+            <legend>Task Inputs</legend>
+            <div class="clear"></div>
+          </fieldset>
+          
           <fieldset>
-            <legend>Policy Details</legend>
+            <legend>Task Outputs</legend>
             <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
 
-                            		<label for="name">Name</label>
-                            		<div class="div_checkbox">
-                              		${Name}
-                            		</div>
-                            
-                            		<label for="name">Age</label>
-                            		<div class="div_checkbox">
-                              		${Age}
-                            		</div>
-                            
-                            		<label for="name">Driver Risk</label>
-                            		<div class="div_checkbox">
-                              		${DriverRisk}
-                            		</div>
-                            		
                             		<label for="name">Make</label>
-                            		<div class="div_checkbox">
-                              		${Make}
+                            		<div class="div_texbox">
+                              		<input name="Make" type="text" class="textbox" id="Make" value="" />
                             		</div>
                             		
                             		<label for="name">Model</label>
-                            		<div class="div_checkbox">
-                              		${Model}
-                            		</div>
+                            		<div class="div_texbox">
+                              		<input name="Model" type="text" class="textbox" id="Model" value="" />
+                            		</div>	
                             		
-                          
-                           
-                                    <label for="name">CarRisk</label>
-                            		<div class="div_checkbox">
-                              		${CarRisk}
-                            		</div>
-                           
-                            		<label for="name">Price</label>
-                            		<div class="div_checkbox">
-                              		${Price}
-                            		</div>
-            <div class="clear"></div>
-          </fieldset>
+                            	
+                            		
+                            		<label for="name">Reg</label>
+                            		<div class="div_texbox">
+                              		<input name="Reg" type="text" class="textbox" id="Reg" value="" />
+                            		</div>	
+                            
+                            			
                             
               <div class="button_div">
-                <input name="Submit" type="submit" value="Accept" class="buttons" />
+                <input name="Submit" type="submit" value="Submit" class="buttons" />
               </div>
             </form>
             <div class="clear"></div>

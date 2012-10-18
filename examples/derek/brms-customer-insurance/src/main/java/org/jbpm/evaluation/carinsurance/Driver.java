@@ -3,59 +3,58 @@ package org.jbpm.evaluation.carinsurance;
 import java.io.Serializable;
 
 /**
- * This represents the driver who is applying for an insurance Policy.
+ * This represents the driver who is applying
+ * for an insurance Policy.
  *
  */
 public class Driver implements Serializable
 {
     private static final long serialVersionUID = 1L; 
-	private String driverName = "Bill Smith";
-	private Integer age = new Integer(0);
-	private String ssn = "0000";	
-	private String dlNumber = "0000";
-	private Integer  creditScore = new Integer(0);
+	private String  driverName        = "Driver: Not Set Yet";
+	private Integer driverAge         =  0;
+	private String  driverSsn         = "Driver: Not Set Yet";	
+	private String  driverLicence     = "Driver: Not Set Yet";
+	private Integer driverCreditScore = 0;
 
 	
 	// Driver name
-	public String getDriverName() {
+	public String getName() {
 		return driverName;
 	}
-	public void setDriverName(String driverName) {
+	public void setName(String driverName) {
 		this.driverName = driverName;
 	}
 	
 	// Driver Age
 	public Integer getAge() {
-		return age;
+		return driverAge;
 	}
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setAge(Integer driverAge) {
+		this.driverAge = driverAge;
 	}
 	
 	// Driver Social Security Number 
 	public String getSsn() {
-		return ssn;
+		return driverSsn;
 	}
-	public void setSsn(String ssn) {
-		this.ssn = ssn;
+	public void setSsn(String driverSsn) {
+		this.driverSsn = driverSsn;
 	}
 	
 	// Driver Licence Number
-	public String getDlNumber() {
-		return dlNumber;
+	public String getLicence() {
+		return driverLicence;
 	}
-	public void setDlNumber(String dlNumber) {
-		this.dlNumber = dlNumber;
+	public void setLicence(String driverLicence) {
+		this.driverLicence = driverLicence;
 	}
 	
 	// Driver Credit Score
 	public int getCreditScore() {
-		return creditScore;
+		return driverCreditScore;
 	}
-	public void setCreditScore(Integer creditScore) {
-		this.creditScore = creditScore;
+	public void setCreditScore(Integer driverCreditScore) {
+		this.driverCreditScore = driverCreditScore;
 	}
-	
-	
 	
 }

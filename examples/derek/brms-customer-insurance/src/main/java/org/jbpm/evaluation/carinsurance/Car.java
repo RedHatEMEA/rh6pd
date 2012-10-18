@@ -9,47 +9,41 @@ import java.io.Serializable;
 public class Car implements Serializable
 {
     private static final long serialVersionUID = 1L;
-	private String carMake ="FORD";
-	private String model ="MONDEO";	
-	private int vehicleYear = new Integer(0);
-	private String carReg ="BOTTOM CAR" ;
+	private String carMake    = "Car: Not Set Yet";
+	private String carModel   = "Car: Not Set Yet";	
+	private int    carYear    = 0;
+	private String carRegMark = "Car: Not Set Yet" ;
 	
 	// Make of car
-	public String getCarMake() {
+	public String getMake() {
 		return carMake;
 	}
-	public void setCarMake(String carMake) {
+	public void setMake(String carMake) {
 		this.carMake = carMake;
 	}
 	
-	
 	// Model of car
 	public String getModel() {
-		return model;
+		return carModel;
 	}
-	public void setModel(String model) {
-		this.model = model;
+	public void setModel(String carModel) {
+		this.carModel = carModel;
 	}
-	
 	
 	// Year of car
-	public int getVehicleYear() {
-		return vehicleYear;
+	public int getYear() {
+		return carYear;
 	}
-
-	public void setVehicleYear(int vehicleYear) {
-		this.vehicleYear = vehicleYear;
-	}
-	
-	// Registration of the Car on the Policy
-	public String getCarReg() {
-			return carReg;
+	public void setYear(int carYear) {
+		this.carYear = carYear;
 	}
 	
-	public void setCarReg(String driverName) {
-		this.carReg = driverName;
+	// Registration mark of the car.
+	public String getReg() {
+			return carRegMark;
 	}
-
-
+	public void setReg(String carRegMark) {
+		this.carRegMark = carRegMark;
+	}
 
 }

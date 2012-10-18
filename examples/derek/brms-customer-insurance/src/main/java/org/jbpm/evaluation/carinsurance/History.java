@@ -7,23 +7,23 @@ package org.jbpm.evaluation.carinsurance;
 public class History {
 
 	
-	private Integer numberOfAccidents = new Integer(0);
-	private Integer numberOfTickets = new Integer(0);
+	private Integer historyAccidents = 0;
+	private Integer historyTickets   = 0;
 	
 	// Driver Accidents 
-	public Integer getNumberOfAccidents() {
-		return numberOfAccidents;
+	public Integer getAccidents() {
+		return historyAccidents;
 	}
-	public void setNumberOfAccidents(Integer numberOfAccidents) {
-		this.numberOfAccidents = numberOfAccidents;
+	public void setAccidents(Integer historyAccidents) {
+		this.historyAccidents = historyAccidents;
 	}
 	
 	// Driver Tickets
-	public Integer getNumberOfTickets() {
-		return numberOfTickets;
+	public Integer getTickets() {
+		return historyTickets;
 	}
-	public void setNumberOfTickets(Integer numberOfTickets) {
-		this.numberOfTickets = numberOfTickets;
+	public void setTickets(Integer historyTickets) {
+		this.historyTickets = historyTickets;
 	}
 	
 }

@@ -1,5 +1,5 @@
 <rule>
-  <name>retractPolicy</name>
+  <name>retractCar</name>
   <modelVersion>1.0</modelVersion>
   <attributes>
     <attribute>
@@ -10,15 +10,15 @@
   <metadataList/>
   <lhs>
     <fact>
-      <factType>Policy</factType>
-      <boundName>policy</boundName>
+      <factType>Car</factType>
+      <boundName>car</boundName>
       <isNegated>false</isNegated>
     </fact>
   </lhs>
   <rhs>
     <freeForm>
-      <text>System.out.println(&quot;Retracting Policy&quot;);
-retract(policy);</text>
+      <text>System.out.println(&quot;Retracting Car &quot;);
+retract(car);</text>
     </freeForm>
   </rhs>
   <isNegated>false</isNegated>
