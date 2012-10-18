@@ -106,6 +106,6 @@ public class Policy implements Serializable
 		this.policyDiscount = policyDiscount;
 	}
 
-
+	//Ends
 
 }
