@@ -27,8 +27,9 @@
   <itemDefinition id="_carRiskItem" structureRef="String" />
   <itemDefinition id="_driverRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_carRiskIntItem" structureRef="Integer" />
+  <itemDefinition id="_address1Item" structureRef="String" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote206" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote220" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -46,6 +47,7 @@
     <property id="carRisk" itemSubjectRef="_carRiskItem"/>
     <property id="driverRiskInt" itemSubjectRef="_driverRiskIntItem"/>
     <property id="carRiskInt" itemSubjectRef="_carRiskIntItem"/>
+    <property id="address1" itemSubjectRef="_address1Item"/>
 
     <!-- nodes -->
     <startEvent id="_1" name="Start" />
@@ -58,6 +60,7 @@
         <dataInput id="_4_PriorityInput" name="Priority" />
         <dataOutput id="_4_NameOutput" name="Name" />
         <dataOutput id="_4_AgeOutput" name="Age" />
+        <dataOutput id="_4_Address1Output" name="Address1" />
         <inputSet>
           <dataInputRefs>_4_CommentInput</dataInputRefs>
           <dataInputRefs>_4_SkippableInput</dataInputRefs>
@@ -68,6 +71,7 @@
         <outputSet>
           <dataOutputRefs>_4_NameOutput</dataOutputRefs>
           <dataOutputRefs>_4_AgeOutput</dataOutputRefs>
+          <dataOutputRefs>_4_Address1Output</dataOutputRefs>
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
@@ -113,6 +117,10 @@
         <sourceRef>_4_AgeOutput</sourceRef>
         <targetRef>age</targetRef>
       </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_Address1Output</sourceRef>
+        <targetRef>address1</targetRef>
+      </dataOutputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
           <formalExpression>mary</formalExpression>
@@ -138,6 +146,7 @@ System.out.println("Update Rule : I am the update rules node and the driver risk
 			
 carRiskInt      = policy.getCarRisk();
 carRisk           = new Integer (carRiskInt).toString();
+System.out.println("Update Policy: Car risk is " + carRisk );
 	
 // Set Variables		
 //price    = priceInt.toString();
@@ -269,9 +278,13 @@ carRisk=new Integer(policy.getCarRisk()).toString();
 
 // set variables.
 kcontext.setVariable("name",name);
+kcontext.setVariable("address1",address1);
 kcontext.setVariable("age",age);
 kcontext.setVariable("driverRisk",driverRisk);
+kcontext.setVariable("carRisk",carRisk);
 kcontext.setVariable("price",price);
+kcontext.setVariable("make",make);
+kcontext.setVariable("model",model);
 
 System.out.println("*** Exiting	 Set Price ***");</script>
     </scriptTask>
@@ -332,14 +345,19 @@ System.out.println("*** Exiting	 Set Price ***");</script>
     </userTask>
     <businessRuleTask id="_14" name="CalcCarRisk" g:ruleFlowGroup="calcCarRisk" >
     </businessRuleTask>
-    <scriptTask id="_15" name="SetDriver" >
+    <scriptTask id="_15" name="SetDriver" scriptFormat="http://www.java.com/java" >
       <script>System.out.println("*** Starting	Set Driver ***");
+
 // Set variables 
 driverRisk="Set Driver: Not Set Yet";
 driver = new Driver();
 policy = new Policy();
+
+// Set policy object with default values
 policy.setDriverRisk(999);
 policy.setPrice(999);
+
+// Set driver object up with variable required for firing rules. 
 driver.setCreditScore(999);
 driver.setName(name);
 driver.setAge(Integer.parseInt(age));
@@ -348,6 +366,7 @@ driver.setAge(Integer.parseInt(age));
 kcontext.setVariable("driver",driver);
 kcontext.setVariable("policy",policy);
 kcontext.setVariable("name",name);
+kcontext.setVariable("address1",address1);
 kcontext.setVariable("age",age);
 kcontext.setVariable("driverRisk",driverRisk);
 
@@ -358,23 +377,59 @@ insert(policy);
 
 System.out.println("*** Exiting	 Set Driver ***");</script>
     </scriptTask>
+    <scriptTask id="_17" name="SetDefaultVariables" >
+      <script>
+
+// Set Variables 
+name ="SetCar: Not Set Yet";
+address1="SetCar: Not Set Yet";
+age="SetCar: Not Set Yet";
+
+make    ="SetCar: Not Set Yet";
+model  ="SetCar: Not Set Yet";
+reg        ="SetCar: Not Set Yet";
+year      =1999;
+
+driverRisk="SetCar: Not Set Yet";
+carRisk="SetCar: Not Set Yet";
+
+// Driver
+kcontext.setVariable("name",name);
+kcontext.setVariable("address1",address1);
+kcontext.setVariable("age",age);
+
+//Car
+kcontext.setVariable("make",make);
+kcontext.setVariable("model",model);
+kcontext.setVariable("reg",reg);
+kcontext.setVariable("year",year);
+
+// Risks
+kcontext.setVariable("carRisk",carRisk);
+kcontext.setVariable("driverRisk",driverRisk);</script>
+    </scriptTask>
     <scriptTask id="_16" name="SetCar" scriptFormat="http://www.java.com/java" >
       <script>System.out.println("*** Starting	Set Car ***");
-// Set Variables 
-carRisk="SetCar: Not Set Yet";
-make   ="SetCar: Not Set Yet";
-model="SetCar: Not Set Yet";
-reg     ="SetCar: Not Set Yett";
-year   =999;
+
 
 System.out.println("setCar Section 1 done");
-
+System.out.println("create new car");
 car = new Car();
+
+// Set policy object with default values
+System.out.println("set car risk to 999");
 policy.setCarRisk(999);
+
+
+// Set car object up with variable required for firing rules.
+System.out.println("set car make to " + make);
 car.setMake(make);
+System.out.println("set car model to " + model);
 car.setModel(model);
+System.out.println("set car reg to " + reg);
 car.setReg(reg);
-car.setYear(year);
+//System.out.println("set car year to " + year);
+//car.setYear(year);
 
 System.out.println("setCar Section 2 done");
 
@@ -391,12 +446,13 @@ System.out.println("setCar Section 3 done");
 
 // Insert into working memory
 insert(car);
+kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
 
 System.out.println("*** Exiting	 Set Car ***");</script>
     </scriptTask>
 
     <!-- connections -->
-    <sequenceFlow id="_1-_4" sourceRef="_1" targetRef="_4" />
+    <sequenceFlow id="_17-_4" sourceRef="_17" targetRef="_4" />
     <sequenceFlow id="_15-_6" sourceRef="_15" targetRef="_6" />
     <sequenceFlow id="_9-_7" sourceRef="_9" targetRef="_7" />
     <sequenceFlow id="_14-_8" sourceRef="_14" targetRef="_8" />
@@ -407,6 +463,7 @@ System.out.println("*** Exiting	 Set Car ***");</script>
     <sequenceFlow id="_6-_13" sourceRef="_6" targetRef="_13" />
     <sequenceFlow id="_16-_14" sourceRef="_16" targetRef="_14" />
     <sequenceFlow id="_4-_15" sourceRef="_4" targetRef="_15" />
+    <sequenceFlow id="_1-_17" sourceRef="_1" targetRef="_17" />
     <sequenceFlow id="_13-_16" sourceRef="_13" targetRef="_16" />
 
   </process>
@@ -417,88 +474,95 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <dc:Bounds x="20" y="17" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_4" >
-        <dc:Bounds x="102" y="12" width="100" height="61" />
+        <dc:Bounds x="210" y="17" width="100" height="61" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_6" >
-        <dc:Bounds x="371" y="8" width="141" height="68" />
+        <dc:Bounds x="494" y="13" width="141" height="68" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_7" >
-        <dc:Bounds x="693" y="50" width="48" height="48" />
+        <dc:Bounds x="739" y="585" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_8" >
-        <dc:Bounds x="74" y="219" width="146" height="71" />
+        <dc:Bounds x="139" y="384" width="146" height="71" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_9" >
-        <dc:Bounds x="677" y="120" width="80" height="48" />
+        <dc:Bounds x="719" y="482" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <dc:Bounds x="655" y="210" width="126" height="78" />
+        <dc:Bounds x="690" y="368" width="126" height="78" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_11" >
-        <dc:Bounds x="358" y="223" width="142" height="70" />
+        <dc:Bounds x="342" y="384" width="142" height="70" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_12" >
-        <dc:Bounds x="534" y="225" width="97" height="60" />
+        <dc:Bounds x="529" y="385" width="97" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_13" >
-        <dc:Bounds x="93" y="113" width="107" height="60" />
+        <dc:Bounds x="190" y="126" width="107" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_14" >
-        <dc:Bounds x="369" y="100" width="143" height="72" />
+        <dc:Bounds x="494" y="123" width="143" height="72" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_15" >
-        <dc:Bounds x="228" y="13" width="101" height="54" />
+        <dc:Bounds x="340" y="22" width="101" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="87" y="16" width="82" height="59" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_16" >
-        <dc:Bounds x="231" y="118" width="100" height="52" />
+        <dc:Bounds x="342" y="133" width="100" height="52" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_1-_4" >
-        <di:waypoint x="44" y="41" />
-        <di:waypoint x="152" y="42" />
+      <bpmndi:BPMNEdge bpmnElement="_17-_4" >
+        <di:waypoint x="128" y="45" />
+        <di:waypoint x="260" y="47" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_15-_6" >
-        <di:waypoint x="278" y="40" />
-        <di:waypoint x="441" y="42" />
+        <di:waypoint x="390" y="49" />
+        <di:waypoint x="564" y="47" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_9-_7" >
-        <di:waypoint x="717" y="144" />
-        <di:waypoint x="717" y="74" />
+        <di:waypoint x="759" y="506" />
+        <di:waypoint x="763" y="609" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_14-_8" >
-        <di:waypoint x="440" y="136" />
-        <di:waypoint x="147" y="254" />
+        <di:waypoint x="565" y="159" />
+        <di:waypoint x="212" y="419" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" >
-        <di:waypoint x="718" y="249" />
-        <di:waypoint x="717" y="144" />
+        <di:waypoint x="753" y="407" />
+        <di:waypoint x="759" y="506" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_12-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <di:waypoint x="582" y="255" />
-        <di:waypoint x="718" y="249" />
+        <di:waypoint x="577" y="415" />
+        <di:waypoint x="753" y="407" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_8-_11" >
-        <di:waypoint x="147" y="254" />
-        <di:waypoint x="429" y="258" />
+        <di:waypoint x="212" y="419" />
+        <di:waypoint x="413" y="419" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_11-_12" >
-        <di:waypoint x="429" y="258" />
-        <di:waypoint x="582" y="255" />
+        <di:waypoint x="413" y="419" />
+        <di:waypoint x="577" y="415" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6-_13" >
-        <di:waypoint x="441" y="42" />
-        <di:waypoint x="146" y="143" />
+        <di:waypoint x="564" y="47" />
+        <di:waypoint x="243" y="156" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_16-_14" >
-        <di:waypoint x="281" y="144" />
-        <di:waypoint x="440" y="136" />
+        <di:waypoint x="392" y="159" />
+        <di:waypoint x="565" y="159" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_15" >
-        <di:waypoint x="152" y="42" />
-        <di:waypoint x="278" y="40" />
+        <di:waypoint x="260" y="47" />
+        <di:waypoint x="390" y="49" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_17" >
+        <di:waypoint x="44" y="41" />
+        <di:waypoint x="128" y="45" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_13-_16" >
-        <di:waypoint x="146" y="143" />
-        <di:waypoint x="281" y="144" />
+        <di:waypoint x="243" y="156" />
+        <di:waypoint x="392" y="159" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
