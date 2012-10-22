@@ -29,6 +29,7 @@ public class ManagementClient {
 	// private static final String execute_task_url =
 	// "/business-central-server/rs/process/definition/org.jbpm.evaluation.carinsurance.quote/new_instance";
 	private static final String execute_process_url = "/business-central-server/rs/engine/job/PROCESS/execute";
+	private static final String render_human_task_url = "/business-central-server/rs/form/task/TASKID/render"; 
 
 	private String username = "admin";
 	private String password = "admin";
@@ -100,6 +101,18 @@ public class ManagementClient {
 			this.log.debug("historic instance id is: " + ref.getProcessInstanceId() + " definition key is: " + URLDecoder.decode(ref.getProcessDefinitionId(), "UTF-8"));
 		}
 
+	}
+	 
+	public String getUrlHumanTaskForm(int taskNumber) throws Exception {
+		return render_human_task_url.replace("TASKID", Integer.toString(taskNumber));
+ 	}
+	
+	public String renderHumanTaskForm(int taskNumber) throws Exception {
+		String renderedForm = this.httpWrapper.httpGet(render_human_task_url.replace("TASKID", Integer.toString(taskNumber)));
+		
+		this.log.debug("Got rendered human task form");
+		
+		return renderedForm;
 	}
 
 	private void getLoginForm() {

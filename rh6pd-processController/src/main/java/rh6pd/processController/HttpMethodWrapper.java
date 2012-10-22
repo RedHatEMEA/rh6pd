@@ -91,8 +91,7 @@ public class HttpMethodWrapper {
 		return b.toString();
 	}
 	 
-	public String httpGet(String url) throws Exception 
-	{ 
+	public String httpGet(String url) throws Exception { 
 		url = baseUrl + url; 
 		log.debug("HTTP GET: " + url); 
 		 
