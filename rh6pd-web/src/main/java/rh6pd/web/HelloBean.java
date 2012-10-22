@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 	 
-//@ManagedBean(name="helloBean")
-//@SessionScoped
+@ManagedBean(name="helloBean")
+@SessionScoped
 public class HelloBean implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +37,7 @@ public class HelloBean implements Serializable {
 
 	private StatefulKnowledgeSession ksession;
 		
-	@PostConstruct
+	//@PostConstruct
 	public void init() {
 		System.out.println("DEBUG TEST: Post Construct Fired");
 		
@@ -56,6 +56,23 @@ public class HelloBean implements Serializable {
 		}		
 	}
 	
+	
+	@PostConstruct
+	public void testManagementClient(){
+		
+		System.out.println("Running BRMS Login");
+		ManagementClient MC = new ManagementClient("admin", "admin");
+		
+		try {
+
+			MC.doLoginIfNecessary();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		
+		System.out.println("Great Success, Management Client Loaded!!!");
+	}
 	
 	public List<String> testBRMS(){
 		
