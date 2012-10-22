@@ -38,7 +38,8 @@ public class HttpMethodWrapper {
 		client.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BROWSER_COMPATIBILITY);
 	} 
 	
-	public String lastContent = ""; 
+	public String lastContent = "";
+	public int lastResponse; 
 	
 	public String httpPost(String url) { 
 		return httpPost(url, new NameValuePair[] {}); 
@@ -50,21 +51,22 @@ public class HttpMethodWrapper {
 		log.debug("- HTTP POST: " + url); 
 		
 		PostMethod post = new PostMethod(url);
-		
+		 
 		if (params.length > 0) { 
-			post.setRequestBody(params);
+			post.setRequestBody(params); 
 		} 
 		
 		post.addRequestHeader("Connection", "keep-alive"); 
 		post.addRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		  
-		try { 
-			int responseCode = client.executeMethod(post);
+		    
+		try {  
+			this.lastResponse = client.executeMethod(post);
 			
-			if (responseCode != 200) {  
-				log.debug("Http response code: " + responseCode);
-				return isToString(post.getResponseBodyAsStream());  
-			}
+			if (this.lastResponse != 200) {   
+				log.debug("Http response code: " + this.lastResponse);  
+			}  
+			
+			return isToString(post.getResponseBodyAsStream());
 		} catch (HttpException e) { 
 			e.printStackTrace();
 		} catch (IOException e) { 

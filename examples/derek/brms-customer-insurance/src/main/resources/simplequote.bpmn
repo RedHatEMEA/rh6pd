@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_startValidQuoteItem" structureRef="String" />
+  <itemDefinition id="_nameItem" structureRef="String" />
+  <itemDefinition id="_ageItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.quote" name="Customer Quote Simple 1-1" tns:packageName="org.jbpm.evaluation.carinsurance" >
+
+    <!-- process variables -->
+    <property id="startValidQuote" itemSubjectRef="_startValidQuoteItem"/>
+    <property id="name" itemSubjectRef="_nameItem"/>
+    <property id="age" itemSubjectRef="_ageItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_3" name="RejectDriverEnd" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <userTask id="_4" name="GetDriver" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Starting to Get Driver");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Exiting Get Driver");</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_4_NameInput" name="Name" />
+        <dataInput id="_4_StartValidQuoteInput" name="StartValidQuote" />
+        <dataInput id="_4_NameInput" name="Name" />
+        <dataInput id="_4_AgeInput" name="Age" />
+        <dataInput id="_4_SSNInput" name="SSN" />
+        <dataInput id="_4_AddressInput" name="Address" />
+        <dataInput id="_4_CommentInput" name="Comment" />
+        <dataInput id="_4_SkippableInput" name="Skippable" />
+        <dataInput id="_4_TaskNameInput" name="TaskName" />
+        <dataInput id="_4_GroupIdInput" name="GroupId" />
+        <dataInput id="_4_PriorityInput" name="Priority" />
+        <dataOutput id="_4_NameOutput" name="Name" />
+        <dataOutput id="_4_AgeOutput" name="Age" />
+        <inputSet>
+          <dataInputRefs>_4_NameInput</dataInputRefs>
+          <dataInputRefs>_4_StartValidQuoteInput</dataInputRefs>
+          <dataInputRefs>_4_NameInput</dataInputRefs>
+          <dataInputRefs>_4_AgeInput</dataInputRefs>
+          <dataInputRefs>_4_SSNInput</dataInputRefs>
+          <dataInputRefs>_4_AddressInput</dataInputRefs>
+          <dataInputRefs>_4_CommentInput</dataInputRefs>
+          <dataInputRefs>_4_SkippableInput</dataInputRefs>
+          <dataInputRefs>_4_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_4_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_4_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_4_NameOutput</dataOutputRefs>
+          <dataOutputRefs>_4_AgeOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>name</sourceRef>
+        <targetRef>_4_NameInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>startValidQuote</sourceRef>
+        <targetRef>_4_StartValidQuoteInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_NameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Fred</from>
+          <to xsi:type="tFormalExpression">_4_NameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_AgeInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">21</from>
+          <to xsi:type="tFormalExpression">_4_AgeInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_SSNInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">12345678</from>
+          <to xsi:type="tFormalExpression">_4_SSNInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_AddressInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">100 High Street</from>
+          <to xsi:type="tFormalExpression">_4_AddressInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">start</from>
+          <to xsi:type="tFormalExpression">_4_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_SkippableInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_4_SkippableInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Task1</from>
+          <to xsi:type="tFormalExpression">_4_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_4_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">1</from>
+          <to xsi:type="tFormalExpression">_4_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_NameOutput</sourceRef>
+        <targetRef>name</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_AgeOutput</sourceRef>
+        <targetRef>age</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>mary</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_19AD7691-BB4D-4CC6-B331-679662FC97BD" name="init" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("startValidQuote is " + startValidQuote);
+System.out.println("Name " + name);
+System.out.println("Age is " + age);</script>
+    </scriptTask>
+    <scriptTask id="_8" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Name  is :" + name );
+System.out.println("Age  is :"     + age );</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_8-_3" sourceRef="_8" targetRef="_3" />
+    <sequenceFlow id="_19AD7691-BB4D-4CC6-B331-679662FC97BD-_4" sourceRef="_19AD7691-BB4D-4CC6-B331-679662FC97BD" targetRef="_4" />
+    <sequenceFlow id="_1-_19AD7691-BB4D-4CC6-B331-679662FC97BD" sourceRef="_1" targetRef="_19AD7691-BB4D-4CC6-B331-679662FC97BD" />
+    <sequenceFlow id="_4-_8" sourceRef="_4" targetRef="_8" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="org.jbpm.evaluation.carinsurance.quote" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="40" y="127" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="683" y="122" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="326" y="124" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19AD7691-BB4D-4CC6-B331-679662FC97BD" >
+        <dc:Bounds x="164" y="124" width="100" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="509" y="121" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_8-_3" >
+        <di:waypoint x="549" y="145" />
+        <di:waypoint x="707" y="146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19AD7691-BB4D-4CC6-B331-679662FC97BD-_4" >
+        <di:waypoint x="214" y="148" />
+        <di:waypoint x="376" y="148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_19AD7691-BB4D-4CC6-B331-679662FC97BD" >
+        <di:waypoint x="64" y="151" />
+        <di:waypoint x="214" y="148" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_8" >
+        <di:waypoint x="376" y="148" />
+        <di:waypoint x="549" y="145" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
