@@ -1,6 +1,6 @@
 package rh6pd.processController;
 
-import java.net.URLDecoder;
+import java.net.URLDecoder; 
 import java.util.List;
 
 import org.apache.commons.httpclient.Cookie;
@@ -12,7 +12,7 @@ import org.jboss.bpm.console.client.model.ProcessDefinitionRefWrapper;
 import org.jboss.bpm.console.client.model.ProcessInstanceRef;
 import org.jboss.bpm.console.client.model.ProcessInstanceRefWrapper;
 import org.slf4j.Logger;
-
+ 
 import com.google.gson.Gson;
 
 public class ManagementClient {
@@ -28,16 +28,10 @@ public class ManagementClient {
 
 	// private static final String execute_task_url =
 	// "/business-central-server/rs/process/definition/org.jbpm.evaluation.carinsurance.quote/new_instance";
-<<<<<<< HEAD
 	private static final String execute_process_url = "/business-central-server/rs/engine/job/PROCESS/execute";
 	private static final String render_human_task_url = "/business-central-server/rs/form/task/TASKID/render"; 
 
-	private String username = "admin";
-=======
-	private static final String execute_process_url = "/business-central-server/rs/process/definition/PROCESS/new_instance";
-	 
 	private String username = "admin"; 
->>>>>>> b5f09c521d035d25e44884aa7e82e175994e80a3
 	private String password = "admin";
  
 	private final String jobs_url = "/business-central-server/rs/engine/jobs";
