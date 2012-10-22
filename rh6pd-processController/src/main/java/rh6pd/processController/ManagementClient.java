@@ -1,7 +1,8 @@
 package rh6pd.processController;
 
-import java.net.URLDecoder;
+import java.net.URLDecoder; 
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.NameValuePair;
@@ -12,7 +13,7 @@ import org.jboss.bpm.console.client.model.ProcessDefinitionRefWrapper;
 import org.jboss.bpm.console.client.model.ProcessInstanceRef;
 import org.jboss.bpm.console.client.model.ProcessInstanceRefWrapper;
 import org.slf4j.Logger;
-
+ 
 import com.google.gson.Gson;
 
 public class ManagementClient {
@@ -20,16 +21,14 @@ public class ManagementClient {
 	private static final String authentication_form_url = "/business-central-server/rs/process/definitions";
 	private static final String authentication_submit_url = "/business-central-server/rs/identity/secure/j_security_check";
 
-	// Show AllDeployments.
 	private static final String deployment_url = "/business-central-server/rs/engine/deployments";
-
-	// Show Historic Process Instance.
 	private static final String history_search_url = "/business-central-server/rs/process/definition/";
 
 	// private static final String execute_task_url =
 	// "/business-central-server/rs/process/definition/org.jbpm.evaluation.carinsurance.quote/new_instance";
-	private static final String execute_process_url = "/business-central-server/rs/process/definition/PROCESS/new_instance";
-	 
+	private static final String execute_process_url = "/business-central-server/rs/engine/job/PROCESS/execute";
+	private static final String render_human_task_url = "/business-central-server/rs/form/task/TASKID/render"; 
+
 	private String username = "admin"; 
 	private String password = "admin";
  
@@ -72,7 +71,7 @@ public class ManagementClient {
 
 		return wrapper.getDefinitions();
 	}
-
+ 
 	public void getHistoricProcessInstance() throws Exception {
 		String processId = "{http://www.jboss.org/bpel/examples}HelloGoodbye-1";
 		// String encodedId = ModelAdaptor.encodeId(processId);
@@ -99,6 +98,18 @@ public class ManagementClient {
 		}
 
 	}
+	 
+	public String getUrlHumanTaskForm(int taskNumber) throws Exception {
+		return render_human_task_url.replace("TASKID", Integer.toString(taskNumber));
+ 	}
+	
+	public String renderHumanTaskForm(int taskNumber) throws Exception {
+		String renderedForm = this.httpWrapper.httpGet(render_human_task_url.replace("TASKID", Integer.toString(taskNumber)));
+		
+		this.log.debug("Got rendered human task form");
+		
+		return renderedForm;
+	}
 
 	private void getLoginForm() {
 		try {
@@ -118,9 +129,9 @@ public class ManagementClient {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-	}
+	} 
 
-	public List<ProcessInstanceRef> getProcessInstances(String processName) throws Exception {
+	public List<ProcessInstanceRef> getRunningProcessInstances(String processName) throws Exception {
 		String result = this.httpWrapper.httpGet("/business-central-server/rs/process/definition/{id}/instances".replace("{id}", processName));
 
 		Gson gson = new Gson();
@@ -150,6 +161,14 @@ public class ManagementClient {
 		String result = this.httpWrapper.httpGet(this.jobs_url);
 
 		this.log.debug("list of jobs: " + result);
+	}
+	
+	private final String urlAvailableHumanTasks = "/business-central-server/rs/tasks/admin/participation";
+	 
+	public String getAvailableHumanTasks() throws Exception { 
+		String response = this.httpWrapper.httpGet(urlAvailableHumanTasks);
+		 
+		return response;
 	}
 
 	private void submitLoginForm() {
