@@ -2,6 +2,7 @@ package rh6pd.processController;
 
 import java.net.URLDecoder; 
 import java.util.List;
+import java.util.Vector;
 
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.NameValuePair;
@@ -20,10 +21,7 @@ public class ManagementClient {
 	private static final String authentication_form_url = "/business-central-server/rs/process/definitions";
 	private static final String authentication_submit_url = "/business-central-server/rs/identity/secure/j_security_check";
 
-	// Show AllDeployments.
 	private static final String deployment_url = "/business-central-server/rs/engine/deployments";
-
-	// Show Historic Process Instance.
 	private static final String history_search_url = "/business-central-server/rs/process/definition/";
 
 	// private static final String execute_task_url =
@@ -72,6 +70,19 @@ public class ManagementClient {
 		ProcessDefinitionRefWrapper wrapper = gson.fromJson(result, ProcessDefinitionRefWrapper.class);
 
 		return wrapper.getDefinitions();
+	}
+	
+	private final String instancesUrl = "business-central-server/rs/process/definition/PROCESS/instances";
+	public List<String> getAllRunningInstances(String processId) throws Exception {
+		Vector<String> instances = new Vector<String>();
+		 
+		String url = instancesUrl.replace("PROCESS", processId);
+		
+		this.httpWrapper.httpGet(url); 
+		
+		log.warn("FIXME The get all instances method returns an empty set! ");
+		
+		return instances;
 	}
 
 	public void getHistoricProcessInstance() throws Exception {
