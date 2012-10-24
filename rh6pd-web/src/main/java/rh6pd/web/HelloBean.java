@@ -74,6 +74,15 @@ public class HelloBean implements Serializable {
 		System.out.println("Great Success, Management Client Loaded!!!");
 	}
 	
+	public void testHelloWorldInstance() throws Exception {
+		
+		ManagementClient brmsClient = new ManagementClient("admin", "admin");
+		brmsClient.doLoginIfNecessary();
+		 
+		brmsClient.executeProcess("helloworld");
+
+	} 
+	
 	public List<String> testBRMS(){
 		
 		ManagementClient MC = new ManagementClient("admin", "admin");

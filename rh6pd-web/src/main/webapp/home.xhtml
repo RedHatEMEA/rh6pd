@@ -18,13 +18,6 @@
 				<h3 class="header-title">
 					<h:outputText value="Welcome to the JBoss Collaborative Labs demo"></h:outputText>
 				</h3>
-				
-				<p>Some sexifying of the homepage needs to be done once the more progress has been made 
-				implementing some of the backend functionality!</p>
-
-				<h:commandButton value="Apply Form" id="testIns" action="about-you"
-					style="margin-top:3em;">
-				</h:commandButton>
 
 				<div
 					style="background: none repeat scroll 0 0 #EFEFEF; border: 1px solid #BBBBBB; margin: 3em; padding: 1em; height: 350px; width: 80%">
@@ -35,10 +28,17 @@
 
 			</div>
 
+				<h:commandButton value="Apply Form" id="testIns" action="about-you"
+					style="margin:3em;">
+				</h:commandButton>
 
-			<h:commandButton value="Test Button to Start BRMS Process"
+			<h:commandButton value="List Processes in jBPM"
 				id="submit" action="#{helloBean.testBRMS()}">
 				<f:ajax execute="brmsOutput" render="brmsOutput" />
+			</h:commandButton>
+			
+			<h:commandButton value="Execute Hello World Process Flow"
+				id="submit1" action="#{helloBean.testHelloWorldInstance()}" style="margin:3em;">
 			</h:commandButton>
 
 			<ul>
