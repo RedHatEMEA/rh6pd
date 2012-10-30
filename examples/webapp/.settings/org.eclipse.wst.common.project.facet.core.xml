@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="brms-standalone-5.3.0 Runtime"/>
+  <runtime name="JBoss BRMS 5.3 Runtime 1"/>
   <fixed facet="jst.web"/>
   <fixed facet="wst.jsdt.web"/>
   <fixed facet="java"/>
