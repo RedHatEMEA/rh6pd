@@ -51,29 +51,6 @@ public class ListDefinitions {
 
 	}
 
-	// @Before
-	@Ignore
-	public void testBasicProcess() throws Exception {
-
-		// Test a basic flow.
-		System.out.println("FIRING!");
-
-		DefinitionsRS defnitionRS = new DefinitionsRS();
-		// defnitionRS.setId("org.jbpm.approval.rewards.helloTest");
-		defnitionRS.setId("org.jbpm.approval.rewards");
-
-		try {
-
-			Process.instance().testStartInstance(defnitionRS);
-
-		} catch (Exception e) {
-
-			System.out.println("DEBUG: " + e);
-
-		}
-
-	}
-
 	@Test
 	@Ignore
 	public void testListProcessInstances() throws Exception {
@@ -117,33 +94,33 @@ public class ListDefinitions {
 
 		}
 
+	} 
+	
+	private DefinitionsRS def; 
+	
+	@Before
+	public void setupATestingProcess() {
+		this.def = new DefinitionsRS();
+		def.setId("org.jbpm.approval.rewards");
 	}
-
+ 
 	@Test
 	public void testRenderForm() throws Exception {
-		DefinitionsRS def = new DefinitionsRS();
-		def.setId("org.jbpm.approval.rewards");
-
-		ProcessDefinitionInstancesRS process = Process.instance()
-				.getProcessInstances(def);
-		// UserTaskVO ut = new UserTaskVO("admin", "admin");
-
-		// Assert.notNull(ut);
-		// Assert.notEmpty(process.getInstances());
-
+		ProcessDefinitionInstancesRS process = Process.instance().getProcessInstances(def);
+  
+		//Assert.notEmpty(process.getInstances());
+		
+		// FIXME: This should go in @Before, so that we dont have tests that depend on each other 
+		// If we put this @Before, then duplicate instances are created which sucks!
 		if (process.getInstances() == null) {
-
 			try {
-
 				Process.instance().testStartInstance(def);
-
 			} catch (Exception e) {
-
 				System.out.println("DEBUG: " + e);
-
 			}
-		} else {
+		}  
 
+		{
 			String html = Process.instance().getProcessRenderHTML(def);
 			Assert.notNull(html);
 
