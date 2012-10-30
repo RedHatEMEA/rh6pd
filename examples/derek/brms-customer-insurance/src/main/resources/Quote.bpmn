@@ -29,7 +29,7 @@
   <itemDefinition id="_carRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_address1Item" structureRef="String" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote220" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote222" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -123,7 +123,7 @@
       </dataOutputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
-          <formalExpression>mary</formalExpression>
+          <formalExpression>admin</formalExpression>
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
@@ -171,6 +171,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput" name="Age" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput" name="Model" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput" name="DriverRisk" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput" name="Price" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput" name="CarRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput" name="Make" />
@@ -184,6 +185,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput</dataInputRefs>
@@ -211,6 +213,10 @@ System.out.println("*** Exiting Update Rules ***");</script>
       <dataInputAssociation>
         <sourceRef>driverRisk</sourceRef>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>address1</sourceRef>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
         <sourceRef>price</sourceRef>
@@ -261,7 +267,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
       </dataInputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
-          <formalExpression>mary</formalExpression>
+          <formalExpression>admin</formalExpression>
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
@@ -339,7 +345,7 @@ System.out.println("*** Exiting	 Set Price ***");</script>
       </dataOutputAssociation>
       <potentialOwner>
         <resourceAssignmentExpression>
-          <formalExpression>mary</formalExpression>
+          <formalExpression>admin</formalExpression>
         </resourceAssignmentExpression>
       </potentialOwner>
     </userTask>
@@ -480,22 +486,22 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <dc:Bounds x="494" y="13" width="141" height="68" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_7" >
-        <dc:Bounds x="739" y="585" width="48" height="48" />
+        <dc:Bounds x="797" y="342" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_8" >
-        <dc:Bounds x="139" y="384" width="146" height="71" />
+        <dc:Bounds x="42" y="244" width="146" height="71" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_9" >
-        <dc:Bounds x="719" y="482" width="80" height="48" />
+        <dc:Bounds x="786" y="253" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <dc:Bounds x="690" y="368" width="126" height="78" />
+        <dc:Bounds x="631" y="238" width="126" height="78" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_11" >
-        <dc:Bounds x="342" y="384" width="142" height="70" />
+        <dc:Bounds x="275" y="245" width="142" height="70" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_12" >
-        <dc:Bounds x="529" y="385" width="97" height="60" />
+        <dc:Bounds x="478" y="251" width="97" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_13" >
         <dc:Bounds x="190" y="126" width="107" height="60" />
@@ -521,28 +527,28 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <di:waypoint x="564" y="47" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_9-_7" >
-        <di:waypoint x="759" y="506" />
-        <di:waypoint x="763" y="609" />
+        <di:waypoint x="826" y="277" />
+        <di:waypoint x="821" y="366" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_14-_8" >
         <di:waypoint x="565" y="159" />
-        <di:waypoint x="212" y="419" />
+        <di:waypoint x="115" y="279" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" >
-        <di:waypoint x="753" y="407" />
-        <di:waypoint x="759" y="506" />
+        <di:waypoint x="694" y="277" />
+        <di:waypoint x="826" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_12-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <di:waypoint x="577" y="415" />
-        <di:waypoint x="753" y="407" />
+        <di:waypoint x="526" y="281" />
+        <di:waypoint x="694" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_8-_11" >
-        <di:waypoint x="212" y="419" />
-        <di:waypoint x="413" y="419" />
+        <di:waypoint x="115" y="279" />
+        <di:waypoint x="346" y="280" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_11-_12" >
-        <di:waypoint x="413" y="419" />
-        <di:waypoint x="577" y="415" />
+        <di:waypoint x="346" y="280" />
+        <di:waypoint x="526" y="281" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6-_13" >
         <di:waypoint x="564" y="47" />

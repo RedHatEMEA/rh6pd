@@ -263,6 +263,11 @@ background-repeat:no-repeat;
                             		<div class="div_texbox">
                               		<input name="Address1" type="text" class="textbox" id="Address1" value="" />
                             		</div>
+                            		
+                            		<label for="name">Address1</label>
+                            		<div class="div_texbox">
+                              		<input name="Address1" type="text" class="textbox" id="Address1" value="" />
+                            		</div>
                             
                             		<label for="name">Age</label>
                             		<div class="div_texbox">

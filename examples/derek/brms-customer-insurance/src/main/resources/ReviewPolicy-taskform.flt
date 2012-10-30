@@ -259,6 +259,11 @@ background-repeat:no-repeat;
                             		<div class="div_checkbox">
                               		${Name}
                             		</div>
+                            		
+                            		<label for="name">Address1</label>
+                            		<div class="div_checkbox">
+                              		${Address1}
+                            		</div>
                             
                             		<label for="name">Age</label>
                             		<div class="div_checkbox">
