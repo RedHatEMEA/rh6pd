@@ -16,7 +16,7 @@
   <itemDefinition id="_mapItem" structureRef="java.util.HashMap" />
   <itemDefinition id="_nameItem" structureRef="java.lang.String" />
 
-  <process processType="Private" isExecutable="true" id="Sample" name="Sample Process" tns:packageName="rh6pd.businessRulesTests.examples.humanTasks" >
+  <process processType="Private" isExecutable="true" id="Sample" name="Sample Process" tns:packageName="rh6pd.businessRules.insuranceQuote" >
 
     <!-- process variables -->
     <property id="person" itemSubjectRef="_personItem"/>

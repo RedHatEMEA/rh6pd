@@ -28,6 +28,10 @@ public class ManagementClient {
 	// "/business-central-server/rs/process/definition/org.jbpm.evaluation.carinsurance.quote/new_instance";
 	private static final String execute_process_url = "/business-central-server/rs/engine/job/PROCESS/execute";
 	private static final String render_human_task_url = "/business-central-server/rs/form/task/TASKID/render"; 
+	
+	//Test String to debug executing a process
+	private static final String test_execute_process_url = "/business-central-server/rs/process/definition/PROCESS/new_instance";
+	
 
 	private String username = "admin"; 
 	private String password = "admin";
@@ -59,6 +63,11 @@ public class ManagementClient {
 
 	public void executeProcess(String processId) throws Exception {
 		this.httpWrapper.httpPost(ManagementClient.execute_process_url.replace("PROCESS", processId));
+	}
+	
+	public void testExecuteProcess(String processId) throws Exception {
+		
+		this.httpWrapper.httpPost(ManagementClient.test_execute_process_url.replace("PROCESS", processId));
 	}
 
 	public List<ProcessDefinitionRef> getAllDefinitions() throws Exception {
