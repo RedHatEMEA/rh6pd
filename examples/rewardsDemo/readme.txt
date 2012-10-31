@@ -1,0 +1,1 @@
+This .zip file contains an entire Guvnor repository export in .xml format. The repository contains two processes ("rewardsapproval" and "rewardsapprovalextended"). These are great simple processes that are useful for testing things like the REST API. Original author believed to be Eric Schabel. 
