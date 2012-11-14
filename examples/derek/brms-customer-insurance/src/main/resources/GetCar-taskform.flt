@@ -10,6 +10,46 @@ background-repeat:no-repeat;
 
 <img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
 
+
+
+<script>
+ function loadModel()
+ {
+   var BMW=new Array("3 Series","5 Series");
+   var FORD=new Array("Fiesta","Escort","Mondeo");
+   var HONDA=new Array("Civic","Accord","CRV");
+
+   var selectedBoxValue=document.form.Make.value;
+   var i;
+   var j;
+
+   var ModelLength=eval(selectedBoxValue).length;
+
+   removeSelectboxOption();
+
+   for(i=0;i<document.form.Make.options.length;i++)
+   {
+    if(selectedBoxValue==document.form.Make.options[i].value)
+    {
+      for(j=0;j<ModelLength;j++)
+      {
+        document.form.Model.options[j]=new Option(eval(selectedBoxValue)[j],eval(selectedBoxValue)[j])
+      }
+    }
+   }
+}
+
+function removeSelectboxOption()
+{
+   var i;
+   for(i=0;i<document.form.Model.options.length;i++)
+   {
+    document.form.Model.remove(i);
+   }
+}
+</script>
+
+
 <script type='text/javascript'>
 	function notEmpty(elem){
 		if(elem.value.length == 0){
@@ -262,20 +302,25 @@ background-repeat:no-repeat;
 	
           <fieldset>
             <legend>Enter Car Details</legend>
-            <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
+            <form name="form" action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
 
-                            		<label for="name">Make</label>
-                            		<div class="div_texbox">
-                              		<input name="Make" type="text" class="textbox" id="Make" value="" />
-                            		</div>
-                            		
-                            		<label for="name">Model</label>
-                            		<div class="div_texbox">
-                              		<input name="Model" type="text" class="textbox" id="Model" value="" />
-                            		</div>	
-                            		
-                            	
-                            		
+									<label for="name">Make</label>
+									<div class="div_texbox">
+									<select id = "Make" name="Make" onChange="loadModel()">
+									<option value="Select" selected = "selected">Select Make</option>
+								    <option value="BMW">BMW</option>
+								    <option value="FORD">FORD</option>
+								    <option value="HONDA">HONDA</option>
+								    </select>
+								    </div>
+									
+								    <label for="name">Model</label>
+									<div class="div_texbox">
+									<select name="Model">
+									<option value="Select">Select Model</option>
+									</select>
+									</div>
+							
                             		<label for="name">Reg</label>
                             		<div class="div_texbox">
                               		<input name="Reg" type="text" class="textbox" id="Reg" value="" />
@@ -293,5 +338,8 @@ background-repeat:no-repeat;
 	<div id="footer">
 	</div>
 </div>
+<script type = "text/javascript">
+document.getElementById("Make").value = "Select";
+</script>
 </body>
 </html>
