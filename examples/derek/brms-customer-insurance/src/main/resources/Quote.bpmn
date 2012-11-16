@@ -28,6 +28,7 @@
   <itemDefinition id="_driverRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_carRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_address1Item" structureRef="String" />
+  <itemDefinition id="_address2Item" structureRef="Object" />
 
   <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote222" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
@@ -48,6 +49,7 @@
     <property id="driverRiskInt" itemSubjectRef="_driverRiskIntItem"/>
     <property id="carRiskInt" itemSubjectRef="_carRiskIntItem"/>
     <property id="address1" itemSubjectRef="_address1Item"/>
+    <property id="address2" itemSubjectRef="_address2Item"/>
 
     <!-- nodes -->
     <startEvent id="_1" name="Start" />
@@ -60,6 +62,7 @@
         <dataInput id="_4_PriorityInput" name="Priority" />
         <dataOutput id="_4_NameOutput" name="Name" />
         <dataOutput id="_4_AgeOutput" name="Age" />
+        <dataOutput id="_4_Address2Output" name="Address2" />
         <dataOutput id="_4_Address1Output" name="Address1" />
         <inputSet>
           <dataInputRefs>_4_CommentInput</dataInputRefs>
@@ -71,6 +74,7 @@
         <outputSet>
           <dataOutputRefs>_4_NameOutput</dataOutputRefs>
           <dataOutputRefs>_4_AgeOutput</dataOutputRefs>
+          <dataOutputRefs>_4_Address2Output</dataOutputRefs>
           <dataOutputRefs>_4_Address1Output</dataOutputRefs>
         </outputSet>
       </ioSpecification>
@@ -116,6 +120,10 @@
       <dataOutputAssociation>
         <sourceRef>_4_AgeOutput</sourceRef>
         <targetRef>age</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_Address2Output</sourceRef>
+        <targetRef>address2</targetRef>
       </dataOutputAssociation>
       <dataOutputAssociation>
         <sourceRef>_4_Address1Output</sourceRef>
@@ -171,6 +179,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput" name="Age" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput" name="Model" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput" name="DriverRisk" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input" name="Address2" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput" name="Price" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput" name="CarRisk" />
@@ -185,6 +194,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_AgeInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput</dataInputRefs>
@@ -213,6 +223,10 @@ System.out.println("*** Exiting Update Rules ***");</script>
       <dataInputAssociation>
         <sourceRef>driverRisk</sourceRef>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>address2</sourceRef>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
         <sourceRef>address1</sourceRef>
@@ -285,6 +299,7 @@ carRisk=new Integer(policy.getCarRisk()).toString();
 // set variables.
 kcontext.setVariable("name",name);
 kcontext.setVariable("address1",address1);
+kcontext.setVariable("address2",address2);
 kcontext.setVariable("age",age);
 kcontext.setVariable("driverRisk",driverRisk);
 kcontext.setVariable("carRisk",carRisk);
@@ -373,6 +388,7 @@ kcontext.setVariable("driver",driver);
 kcontext.setVariable("policy",policy);
 kcontext.setVariable("name",name);
 kcontext.setVariable("address1",address1);
+kcontext.setVariable("address2",address2);
 kcontext.setVariable("age",age);
 kcontext.setVariable("driverRisk",driverRisk);
 
@@ -389,6 +405,7 @@ System.out.println("*** Exiting	 Set Driver ***");</script>
 // Set Variables 
 name ="SetCar: Not Set Yet";
 address1="SetCar: Not Set Yet";
+address2="SetCar: Not Set Yet";
 age="SetCar: Not Set Yet";
 
 make    ="SetCar: Not Set Yet";
@@ -402,6 +419,7 @@ carRisk="SetCar: Not Set Yet";
 // Driver
 kcontext.setVariable("name",name);
 kcontext.setVariable("address1",address1);
+kcontext.setVariable("address2",address2);
 kcontext.setVariable("age",age);
 
 //Car
