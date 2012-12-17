@@ -255,14 +255,21 @@ background-repeat:no-repeat;
             <legend>Policy Details</legend>
             <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
 
+									<div><legend> About You </legend></div>
+									
                             		<label for="name">Name</label>
                             		<div class="div_checkbox">
                               		${Name}
                             		</div>
                             		
-                            		<label for="name">Address1</label>
+                            		<label for="name">Street</label>
                             		<div class="div_checkbox">
                               		${Address1}
+                            		</div>
+                            		
+                            		<label for="name">City</label>
+                            		<div class="div_checkbox">
+                              		${Address2}
                             		</div>
                             
                             		<label for="name">Age</label>
@@ -275,7 +282,8 @@ background-repeat:no-repeat;
                               		${DriverRisk}
                             		</div>
                             		
-                            		<label for="name">Make</label>
+                            		<div><legend> About Your Car </legend></div>
+                            	    <label for="name">Make</label>
                             		<div class="div_checkbox">
                               		${Make}
                             		</div>
@@ -285,14 +293,13 @@ background-repeat:no-repeat;
                               		${Model}
                             		</div>
                             		
-                          
-                           
                                     <label for="name">CarRisk</label>
                             		<div class="div_checkbox">
                               		${CarRisk}
                             		</div>
-                           
-                            		<label for="name">Price</label>
+	                            
+                   					<div><legend> Premium </legend></div>
+                                    <label for="name">Price</label>
                             		<div class="div_checkbox">
                               		${Price}
                             		</div>

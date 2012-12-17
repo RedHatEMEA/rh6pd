@@ -259,14 +259,14 @@ background-repeat:no-repeat;
                               		<input name="Name" type="text" class="textbox" id="Name" value="" />
                             		</div>
                             
-                            		<label for="name">Address1</label>
+                            		<label for="name">Street</label>
                             		<div class="div_texbox">
                               		<input name="Address1" type="text" class="textbox" id="Address1" value="" />
                             		</div>
                             		
-                            		<label for="name">Address1</label>
+                            		<label for="name">City</label>
                             		<div class="div_texbox">
-                              		<input name="Address1" type="text" class="textbox" id="Address1" value="" />
+                              		<input name="Address2" type="text" class="textbox" id="Address1" value="" />
                             		</div>
                             
                             		<label for="name">Age</label>
