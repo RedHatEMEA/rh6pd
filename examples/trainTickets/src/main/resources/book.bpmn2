@@ -1,201 +1,181 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/bpmn20" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_KmFlYBe9EeKnc7zOXHhPxQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" targetNamespace="http://www.omg.org/bpmn20">
-  <bpmn2:itemDefinition id="_originItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_destinationItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="_railcardItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutputItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutputItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutputItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInputItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInputItem" structureRef="String"/>
-  <bpmn2:itemDefinition id="__DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInputItem" structureRef="String"/>
-  <bpmn2:process id="org.train.tickets.book" drools:packageName="org.train.tickets" name="book" isExecutable="true">
-    <bpmn2:property id="origin" itemSubjectRef="_originItem"/>
-    <bpmn2:property id="destination" itemSubjectRef="_destinationItem"/>
-    <bpmn2:property id="railcard" itemSubjectRef="_railcardItem"/>
-    <bpmn2:startEvent id="_318657C6-8A59-4616-8A7B-62E6CDEE0831" drools:bgcolor="#9acd32" name="">
-      <bpmn2:outgoing>_53C1D13A-A2D3-4C8F-9815-F6141F14C1F7</bpmn2:outgoing>
-    </bpmn2:startEvent>
-    <bpmn2:userTask id="_F504201E-4823-4066-BA8B-E93AE1A68018" drools:bgcolor="#fafad2" drools:taskName="Book" drools:scriptFormat="http://www.java.com/java" name="Book">
-      <bpmn2:incoming>_53C1D13A-A2D3-4C8F-9815-F6141F14C1F7</bpmn2:incoming>
-      <bpmn2:outgoing>_3FA6AEF3-B8E3-49D6-9CA5-A098CDC03803</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_KmFlYRe9EeKnc7zOXHhPxQ">
-        <bpmn2:dataInput id="_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput" name="TaskName"/>
-        <bpmn2:dataOutput id="_F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutput" drools:dtype="String" itemSubjectRef="__F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutputItem" name="Origin"/>
-        <bpmn2:dataOutput id="_F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutput" drools:dtype="String" itemSubjectRef="__F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutputItem" name="Destination"/>
-        <bpmn2:dataOutput id="_F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutput" drools:dtype="String" itemSubjectRef="__F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutputItem" name="Railcard"/>
-        <bpmn2:inputSet id="_KmFlYxe9EeKnc7zOXHhPxQ"/>
-        <bpmn2:outputSet id="_KmFlYhe9EeKnc7zOXHhPxQ">
-          <bpmn2:dataOutputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutput</bpmn2:dataOutputRefs>
-          <bpmn2:dataOutputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutput</bpmn2:dataOutputRefs>
-          <bpmn2:dataOutputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutput</bpmn2:dataOutputRefs>
-        </bpmn2:outputSet>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_KmFlZBe9EeKnc7zOXHhPxQ">
-        <bpmn2:targetRef>_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput</bpmn2:targetRef>
-        <bpmn2:assignment id="_KmFlZRe9EeKnc7zOXHhPxQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_KmFlZhe9EeKnc7zOXHhPxQ">Book</bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_KmFlZxe9EeKnc7zOXHhPxQ">_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataOutputAssociation id="_KmFlaBe9EeKnc7zOXHhPxQ">
-        <bpmn2:sourceRef>_F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutput</bpmn2:sourceRef>
-        <bpmn2:targetRef>origin</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-      <bpmn2:dataOutputAssociation id="_KmFlaRe9EeKnc7zOXHhPxQ">
-        <bpmn2:sourceRef>_F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutput</bpmn2:sourceRef>
-        <bpmn2:targetRef>destination</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-      <bpmn2:dataOutputAssociation id="_KmFlahe9EeKnc7zOXHhPxQ">
-        <bpmn2:sourceRef>_F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutput</bpmn2:sourceRef>
-        <bpmn2:targetRef>railcard</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-      <bpmn2:potentialOwner id="_KmFlaxe9EeKnc7zOXHhPxQ">
-        <bpmn2:resourceAssignmentExpression id="_KmFlbBe9EeKnc7zOXHhPxQ">
-          <bpmn2:formalExpression id="_KmFlbRe9EeKnc7zOXHhPxQ">admin</bpmn2:formalExpression>
-        </bpmn2:resourceAssignmentExpression>
-      </bpmn2:potentialOwner>
-    </bpmn2:userTask>
-    <bpmn2:endEvent id="_49A4BC87-2BEE-411D-B79B-9499A49B7185" drools:bgcolor="#ff6347" name="">
-      <bpmn2:incoming>_AA9D61D3-0819-4DE3-B3AD-67BD9156C59D</bpmn2:incoming>
-    </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="_53C1D13A-A2D3-4C8F-9815-F6141F14C1F7" sourceRef="_318657C6-8A59-4616-8A7B-62E6CDEE0831" targetRef="_F504201E-4823-4066-BA8B-E93AE1A68018"/>
-    <bpmn2:userTask id="_DD3362C3-CB8C-41B1-8983-6752DAE31425" drools:bgcolor="#fafad2" drools:taskName="Review" drools:scriptFormat="http://www.java.com/java" name="Review">
-      <bpmn2:incoming>_F924102A-0D16-4CE7-82DA-D5C41F408D98</bpmn2:incoming>
-      <bpmn2:outgoing>_AA9D61D3-0819-4DE3-B3AD-67BD9156C59D</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_KmFlbhe9EeKnc7zOXHhPxQ">
-        <bpmn2:dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput" name="TaskName"/>
-        <bpmn2:dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInput" drools:dtype="String" itemSubjectRef="__DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInputItem" name="Origin"/>
-        <bpmn2:dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInput" drools:dtype="String" itemSubjectRef="__DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInputItem" name="Destination"/>
-        <bpmn2:dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInput" drools:dtype="String" itemSubjectRef="__DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInputItem" name="Railcard"/>
-        <bpmn2:inputSet id="_KmFlbxe9EeKnc7zOXHhPxQ">
-          <bpmn2:dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInput</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInput</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInput</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput</bpmn2:dataInputRefs>
-        </bpmn2:inputSet>
-        <bpmn2:outputSet id="_KmFlcBe9EeKnc7zOXHhPxQ"/>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_KmFlcRe9EeKnc7zOXHhPxQ">
-        <bpmn2:targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput</bpmn2:targetRef>
-        <bpmn2:assignment id="_KmFlche9EeKnc7zOXHhPxQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_KmFlcxe9EeKnc7zOXHhPxQ">Review</bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_KmFldBe9EeKnc7zOXHhPxQ">_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_KmFldRe9EeKnc7zOXHhPxQ">
-        <bpmn2:sourceRef>origin</bpmn2:sourceRef>
-        <bpmn2:targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInput</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_KmGMcBe9EeKnc7zOXHhPxQ">
-        <bpmn2:sourceRef>destination</bpmn2:sourceRef>
-        <bpmn2:targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInput</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_KmGMcRe9EeKnc7zOXHhPxQ">
-        <bpmn2:sourceRef>railcard</bpmn2:sourceRef>
-        <bpmn2:targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInput</bpmn2:targetRef>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:potentialOwner id="_KmGMche9EeKnc7zOXHhPxQ">
-        <bpmn2:resourceAssignmentExpression id="_KmGMcxe9EeKnc7zOXHhPxQ">
-          <bpmn2:formalExpression id="_KmGMdBe9EeKnc7zOXHhPxQ">admin</bpmn2:formalExpression>
-        </bpmn2:resourceAssignmentExpression>
-      </bpmn2:potentialOwner>
-    </bpmn2:userTask>
-    <bpmn2:businessRuleTask id="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" drools:bgcolor="#fafad2" drools:taskName="RouteCost" drools:ruleFlowGroup="RouteCost" name="RouteCost">
-      <bpmn2:incoming>_38B6A857-2FEC-4BCA-A680-003BE9962674</bpmn2:incoming>
-      <bpmn2:outgoing>_FDA5E6CD-9A76-4F30-944E-9ED857F86C76</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_KmGMdRe9EeKnc7zOXHhPxQ">
-        <bpmn2:dataInput id="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE_TaskNameInput" name="TaskName"/>
-        <bpmn2:inputSet id="_KmGMdhe9EeKnc7zOXHhPxQ"/>
-        <bpmn2:outputSet id="_KmGMdxe9EeKnc7zOXHhPxQ"/>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_KmGMeBe9EeKnc7zOXHhPxQ">
-        <bpmn2:targetRef>_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE_TaskNameInput</bpmn2:targetRef>
-        <bpmn2:assignment id="_KmGMeRe9EeKnc7zOXHhPxQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_KmGMehe9EeKnc7zOXHhPxQ">RouteCost</bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_KmGMexe9EeKnc7zOXHhPxQ">_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE_TaskNameInput</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-    </bpmn2:businessRuleTask>
-    <bpmn2:sequenceFlow id="_FDA5E6CD-9A76-4F30-944E-9ED857F86C76" sourceRef="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" targetRef="_E78B4845-D261-4B82-823F-B6F541D5874D"/>
-    <bpmn2:scriptTask id="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" drools:bgcolor="#fafad2" name="MakeObjects" scriptFormat="http://www.java.com/java">
-      <bpmn2:incoming>_3FA6AEF3-B8E3-49D6-9CA5-A098CDC03803</bpmn2:incoming>
-      <bpmn2:outgoing>_38B6A857-2FEC-4BCA-A680-003BE9962674</bpmn2:outgoing>
-      <bpmn2:script><![CDATA[Station objOrigin = new Station();objOrigin.name = origin;   Station objDestination = new Station();objDestination.name = destination; Customer customer = new Customer();customer.ticketPrice = 0;insert(objOrigin);insert(objDestination); insert(customer);]]></bpmn2:script>
-    </bpmn2:scriptTask>
-    <bpmn2:sequenceFlow id="_3FA6AEF3-B8E3-49D6-9CA5-A098CDC03803" sourceRef="_F504201E-4823-4066-BA8B-E93AE1A68018" targetRef="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75"/>
-    <bpmn2:sequenceFlow id="_38B6A857-2FEC-4BCA-A680-003BE9962674" sourceRef="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" targetRef="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE"/>
-    <bpmn2:scriptTask id="_E78B4845-D261-4B82-823F-B6F541D5874D" drools:bgcolor="#fafad2" drools:taskName="UpdateCustomerWithCost" name="UpdateCustomerWithCost" scriptFormat="http://www.java.com/java">
-      <bpmn2:incoming>_FDA5E6CD-9A76-4F30-944E-9ED857F86C76</bpmn2:incoming>
-      <bpmn2:outgoing>_F924102A-0D16-4CE7-82DA-D5C41F408D98</bpmn2:outgoing>
-      <bpmn2:ioSpecification id="_KmGMfBe9EeKnc7zOXHhPxQ">
-        <bpmn2:dataInput id="_E78B4845-D261-4B82-823F-B6F541D5874D_TaskNameInput" name="TaskName"/>
-        <bpmn2:inputSet id="_KmGMfRe9EeKnc7zOXHhPxQ"/>
-        <bpmn2:outputSet id="_KmGMfhe9EeKnc7zOXHhPxQ"/>
-      </bpmn2:ioSpecification>
-      <bpmn2:dataInputAssociation id="_KmGMfxe9EeKnc7zOXHhPxQ">
-        <bpmn2:targetRef>_E78B4845-D261-4B82-823F-B6F541D5874D_TaskNameInput</bpmn2:targetRef>
-        <bpmn2:assignment id="_KmGMgBe9EeKnc7zOXHhPxQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_KmGMgRe9EeKnc7zOXHhPxQ">UpdateCustomerWithCost</bpmn2:from>
-          <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_KmGMghe9EeKnc7zOXHhPxQ">_E78B4845-D261-4B82-823F-B6F541D5874D_TaskNameInput</bpmn2:to>
-        </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:script><![CDATA[System.out.println("test");]]></bpmn2:script>
-    </bpmn2:scriptTask>
-    <bpmn2:sequenceFlow id="_F924102A-0D16-4CE7-82DA-D5C41F408D98" sourceRef="_E78B4845-D261-4B82-823F-B6F541D5874D" targetRef="_DD3362C3-CB8C-41B1-8983-6752DAE31425"/>
-    <bpmn2:sequenceFlow id="_AA9D61D3-0819-4DE3-B3AD-67BD9156C59D" sourceRef="_DD3362C3-CB8C-41B1-8983-6752DAE31425" targetRef="_49A4BC87-2BEE-411D-B79B-9499A49B7185"/>
-  </bpmn2:process>
-  <bpmndi:BPMNDiagram id="_KmGMgxe9EeKnc7zOXHhPxQ">
-    <bpmndi:BPMNPlane id="_KmGMhBe9EeKnc7zOXHhPxQ" bpmnElement="org.train.tickets.book">
-      <bpmndi:BPMNShape id="_KmGMhRe9EeKnc7zOXHhPxQ" bpmnElement="_318657C6-8A59-4616-8A7B-62E6CDEE0831">
-        <dc:Bounds height="30.0" width="30.0" x="60.0" y="105.0"/>
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_originItem" structureRef="String" />
+  <itemDefinition id="_destinationItem" structureRef="String" />
+  <itemDefinition id="_railcardItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="org.train.tickets.book" name="book" tns:packageName="org.train.tickets" >
+
+    <!-- process variables -->
+    <property id="origin" itemSubjectRef="_originItem"/>
+    <property id="destination" itemSubjectRef="_destinationItem"/>
+    <property id="railcard" itemSubjectRef="_railcardItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_318657C6-8A59-4616-8A7B-62E6CDEE0831" name="" />
+    <userTask id="_F504201E-4823-4066-BA8B-E93AE1A68018" name="Book" >
+      <ioSpecification>
+        <dataInput id="_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput" name="TaskName" />
+        <dataOutput id="_F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutput" name="Railcard" />
+        <dataOutput id="_F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutput" name="Origin" />
+        <dataOutput id="_F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutput" name="Destination" />
+        <inputSet>
+          <dataInputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutput</dataOutputRefs>
+          <dataOutputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutput</dataOutputRefs>
+          <dataOutputRefs>_F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Book</from>
+          <to xsi:type="tFormalExpression">_F504201E-4823-4066-BA8B-E93AE1A68018_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_F504201E-4823-4066-BA8B-E93AE1A68018_RailcardOutput</sourceRef>
+        <targetRef>railcard</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_F504201E-4823-4066-BA8B-E93AE1A68018_OriginOutput</sourceRef>
+        <targetRef>origin</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_F504201E-4823-4066-BA8B-E93AE1A68018_DestinationOutput</sourceRef>
+        <targetRef>destination</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_49A4BC87-2BEE-411D-B79B-9499A49B7185" name="" />
+    <userTask id="_DD3362C3-CB8C-41B1-8983-6752DAE31425" name="Review" >
+      <ioSpecification>
+        <dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInput" name="Railcard" />
+        <dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInput" name="Origin" />
+        <dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInput" name="Destination" />
+        <dataInput id="_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput" name="TaskName" />
+        <inputSet>
+          <dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInput</dataInputRefs>
+          <dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInput</dataInputRefs>
+          <dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInput</dataInputRefs>
+          <dataInputRefs>_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>railcard</sourceRef>
+        <targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_RailcardInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>origin</sourceRef>
+        <targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_OriginInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>destination</sourceRef>
+        <targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_DestinationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Review</from>
+          <to xsi:type="tFormalExpression">_DD3362C3-CB8C-41B1-8983-6752DAE31425_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <businessRuleTask id="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" name="RouteCost" g:ruleFlowGroup="RouteCost" >
+    </businessRuleTask>
+    <scriptTask id="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" name="MakeObjects" scriptFormat="http://www.java.com/java" >
+      <script>Station objOrigin = new Station();objOrigin.name = origin;   Station objDestination = new Station();objDestination.name = destination; Customer customer = new Customer();customer.ticketPrice = 0;insert(objOrigin);insert(objDestination); insert(customer);</script>
+    </scriptTask>
+    <scriptTask id="_E78B4845-D261-4B82-823F-B6F541D5874D" name="UpdateCustomerWithCost" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("test");</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_318657C6-8A59-4616-8A7B-62E6CDEE0831-_F504201E-4823-4066-BA8B-E93AE1A68018" sourceRef="_318657C6-8A59-4616-8A7B-62E6CDEE0831" targetRef="_F504201E-4823-4066-BA8B-E93AE1A68018" />
+    <sequenceFlow id="_DD3362C3-CB8C-41B1-8983-6752DAE31425-_49A4BC87-2BEE-411D-B79B-9499A49B7185" sourceRef="_DD3362C3-CB8C-41B1-8983-6752DAE31425" targetRef="_49A4BC87-2BEE-411D-B79B-9499A49B7185" />
+    <sequenceFlow id="_E78B4845-D261-4B82-823F-B6F541D5874D-_DD3362C3-CB8C-41B1-8983-6752DAE31425" sourceRef="_E78B4845-D261-4B82-823F-B6F541D5874D" targetRef="_DD3362C3-CB8C-41B1-8983-6752DAE31425" />
+    <sequenceFlow id="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75-_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" sourceRef="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" targetRef="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" />
+    <sequenceFlow id="_F504201E-4823-4066-BA8B-E93AE1A68018-_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" sourceRef="_F504201E-4823-4066-BA8B-E93AE1A68018" targetRef="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" />
+    <sequenceFlow id="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE-_E78B4845-D261-4B82-823F-B6F541D5874D" sourceRef="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" targetRef="_E78B4845-D261-4B82-823F-B6F541D5874D" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="org.train.tickets.book" >
+      <bpmndi:BPMNShape bpmnElement="_318657C6-8A59-4616-8A7B-62E6CDEE0831" >
+        <dc:Bounds x="39" y="81" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_KmGMhhe9EeKnc7zOXHhPxQ" bpmnElement="_F504201E-4823-4066-BA8B-E93AE1A68018">
-        <dc:Bounds height="80.0" width="100.0" x="135.0" y="80.0"/>
+      <bpmndi:BPMNShape bpmnElement="_F504201E-4823-4066-BA8B-E93AE1A68018" >
+        <dc:Bounds x="115" y="65" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_KmGMhxe9EeKnc7zOXHhPxQ" bpmnElement="_49A4BC87-2BEE-411D-B79B-9499A49B7185">
-        <dc:Bounds height="28.0" width="28.0" x="657.0" y="552.0"/>
+      <bpmndi:BPMNShape bpmnElement="_49A4BC87-2BEE-411D-B79B-9499A49B7185" >
+        <dc:Bounds x="647" y="542" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_KmGMiBe9EeKnc7zOXHhPxQ" bpmnElement="_53C1D13A-A2D3-4C8F-9815-F6141F14C1F7">
-        <di:waypoint xsi:type="dc:Point" x="75.0" y="120.0"/>
-        <di:waypoint xsi:type="dc:Point" x="185.0" y="120.0"/>
+      <bpmndi:BPMNShape bpmnElement="_DD3362C3-CB8C-41B1-8983-6752DAE31425" >
+        <dc:Bounds x="624" y="345" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" >
+        <dc:Bounds x="624" y="71" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" >
+        <dc:Bounds x="285" y="75" width="156" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_E78B4845-D261-4B82-823F-B6F541D5874D" >
+        <dc:Bounds x="532" y="182" width="192" height="78" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_318657C6-8A59-4616-8A7B-62E6CDEE0831-_F504201E-4823-4066-BA8B-E93AE1A68018" >
+        <di:waypoint x="63" y="105" />
+        <di:waypoint x="165" y="105" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_KmGMiRe9EeKnc7zOXHhPxQ" bpmnElement="_DD3362C3-CB8C-41B1-8983-6752DAE31425">
-        <dc:Bounds height="80.0" width="100.0" x="624.0" y="345.0"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_KmGMihe9EeKnc7zOXHhPxQ" bpmnElement="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE">
-        <dc:Bounds height="80.0" width="100.0" x="624.0" y="71.0"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_KmGMixe9EeKnc7zOXHhPxQ" bpmnElement="_FDA5E6CD-9A76-4F30-944E-9ED857F86C76">
-        <di:waypoint xsi:type="dc:Point" x="674.0" y="111.0"/>
-        <di:waypoint xsi:type="dc:Point" x="628.0" y="221.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_DD3362C3-CB8C-41B1-8983-6752DAE31425-_49A4BC87-2BEE-411D-B79B-9499A49B7185" >
+        <di:waypoint x="674" y="385" />
+        <di:waypoint x="671" y="566" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_KmGMjBe9EeKnc7zOXHhPxQ" bpmnElement="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75">
-        <dc:Bounds height="72.0" width="156.0" x="285.0" y="75.0"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_KmGMjRe9EeKnc7zOXHhPxQ" bpmnElement="_3FA6AEF3-B8E3-49D6-9CA5-A098CDC03803">
-        <di:waypoint xsi:type="dc:Point" x="185.0" y="120.0"/>
-        <di:waypoint xsi:type="dc:Point" x="260.0" y="120.0"/>
-        <di:waypoint xsi:type="dc:Point" x="260.0" y="111.0"/>
-        <di:waypoint xsi:type="dc:Point" x="363.0" y="111.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_E78B4845-D261-4B82-823F-B6F541D5874D-_DD3362C3-CB8C-41B1-8983-6752DAE31425" >
+        <di:waypoint x="628" y="221" />
+        <di:waypoint x="628" y="302" />
+        <di:waypoint x="674" y="302" />
+        <di:waypoint x="674" y="385" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="_KmGMjhe9EeKnc7zOXHhPxQ" bpmnElement="_38B6A857-2FEC-4BCA-A680-003BE9962674">
-        <di:waypoint xsi:type="dc:Point" x="363.0" y="111.0"/>
-        <di:waypoint xsi:type="dc:Point" x="674.0" y="111.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75-_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE" >
+        <di:waypoint x="363" y="111" />
+        <di:waypoint x="674" y="111" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_KmGMjxe9EeKnc7zOXHhPxQ" bpmnElement="_E78B4845-D261-4B82-823F-B6F541D5874D">
-        <dc:Bounds height="78.0" width="192.0" x="532.0" y="182.0"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="_KmGMkBe9EeKnc7zOXHhPxQ" bpmnElement="_F924102A-0D16-4CE7-82DA-D5C41F408D98">
-        <di:waypoint xsi:type="dc:Point" x="628.0" y="221.0"/>
-        <di:waypoint xsi:type="dc:Point" x="628.0" y="302.0"/>
-        <di:waypoint xsi:type="dc:Point" x="674.0" y="302.0"/>
-        <di:waypoint xsi:type="dc:Point" x="674.0" y="385.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_F504201E-4823-4066-BA8B-E93AE1A68018-_49F63DA3-B92A-4C73-AB3D-3D1B8A51FE75" >
+        <di:waypoint x="165" y="105" />
+        <di:waypoint x="260" y="111" />
+        <di:waypoint x="363" y="111" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="_KmGMkRe9EeKnc7zOXHhPxQ" bpmnElement="_AA9D61D3-0819-4DE3-B3AD-67BD9156C59D">
-        <di:waypoint xsi:type="dc:Point" x="674.0" y="385.0"/>
-        <di:waypoint xsi:type="dc:Point" x="671.0" y="566.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_E35D5B50-5C91-4AB8-BFC8-B8B741C896AE-_E78B4845-D261-4B82-823F-B6F541D5874D" >
+        <di:waypoint x="674" y="111" />
+        <di:waypoint x="628" y="221" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
-</bpmn2:definitions>
+
+</definitions>
