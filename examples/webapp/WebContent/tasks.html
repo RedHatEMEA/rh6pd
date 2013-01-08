@@ -1,7 +1,6 @@
 <html>
 <body>
 
-<h1>List Of Tasks</h1>
 <div id="placeholder"></div>
 <div><a href="http://www.redhat.com"  id="link">Link</a></div>
 <script>
@@ -25,7 +24,7 @@ http_request.onreadystatechange = function ()
         for (var i in data.tasks)
         {
             output+="<li>" + "ID= " + data.tasks[i].processInstanceId + "   " + data.tasks[i].url + "</li>";
-            document.getElementById("placeholder").innerHTML=output;
+            //document.getElementById("placeholder").innerHTML=output;
             document.getElementById("link").innerHTML= data.tasks[i].url;
             document.getElementById("link").href= data.tasks[i].url;
         }
