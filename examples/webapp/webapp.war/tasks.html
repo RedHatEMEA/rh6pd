@@ -1,0 +1,44 @@
+<html>
+<body>
+
+<div id="placeholder"></div>
+<div><a href="http://www.redhat.com"  id="link">Link</a></div>
+<script>
+var url="http://localhost:8080/business-central-server/rs/tasks/admin/participation";
+var data = {};
+
+var http_request = new XMLHttpRequest();
+
+http_request.open("GET", url, true);
+
+http_request.onreadystatechange = function () 
+{
+    var done = 4, ok = 200;
+  
+    if (http_request.readyState == done && http_request.status == ok) 
+    {
+        data = JSON.parse(http_request.response);
+       
+        var output="<ul>";
+        console.log(data);
+        for (var i in data.tasks)
+        {
+            output+="<li>" + "ID= " + data.tasks[i].processInstanceId + "   " + data.tasks[i].url + "</li>";
+            //document.getElementById("placeholder").innerHTML=output;
+            document.getElementById("link").innerHTML= data.tasks[i].url;
+            document.getElementById("link").href= data.tasks[i].url;
+        }
+        output+="</ul>";
+        ifrm = document.createElement("IFRAME");
+        ifrm.setAttribute("src", data.tasks[i].url);
+        ifrm.style.width = 740+"px";
+        ifrm.style.height = 580+"px";
+        document.body.appendChild(ifrm);
+
+       
+        
+    }
+}
+http_request.send(null);
+</script>
+</body></html>

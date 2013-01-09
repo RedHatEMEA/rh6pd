@@ -1,0 +1,81 @@
+<html><body><h1>New Task List 11!</h1>
+
+<div id="placeholder1"></div>
+<div id="placeholder2"></div>
+<div id="placeholder3"></div>
+<div id="placeholder4"></div>
+<div id="placeholder5"></div>
+<script>
+
+var url="http://localhost:8080/business-central-server/rs/tasks/admin/participation";
+var data ={};
+
+var http_request = new XMLHttpRequest();
+http_request.open("GET", url, true);
+
+http_request.onreadystatechange = function () 
+{
+    var done = 4, ok = 200;
+    document.getElementById("placeholder1").innerHTML="readyState " + http_request.readyState;
+    document.getElementById("placeholder2").innerHTML="status "     + http_request.status;
+    //document.getElementById("placeholder3").innerHTML="response "   + http_request.responseText;
+    if (http_request.readyState == done && http_request.status == ok) 
+    {
+        //data = JSON.parse(http_request.responseText);
+        data =
+        {
+            "tasks":
+
+            [
+        
+        	{
+            "id":1,
+            "processInstanceId":"236",
+            "processId":"org.jbpm.evaluation.carinsurance.Quote",
+            "name":"GetDriver",
+            "assignee":"",
+            "isBlocking":true,
+            "isSignalling":false,
+            "outcomes":[],
+            "currentState":"OPEN",
+            "participantUsers":[],
+            "participantGroups":[],
+            "url":"http://localhost:8080/business-central-server/rs/form/task/1/render",
+            "priority":0
+        	},
+
+        	{
+            "id":2,
+            "processInstanceId":"237",
+            "processId":"org.jbpm.evaluation.carinsurance.Quote",
+            "name":"GetDriver",
+            "assignee":"",
+            "isBlocking":true,
+            "isSignalling":false,
+            "outcomes":[],
+            "currentState":"OPEN",
+            "participantUsers":[],
+            "participantGroups":[],
+            "url":"http://localhost:8080/business-central-server/rs/form/task/2/render",
+            "priority":0
+        	}
+            ]
+        };
+        //document.getElementById("placeholder4").innerHTML="JSON object " + data;
+	}   
+};
+http_request.send(null);
+
+// now print the object
+var output="<ul>";
+    for (var i in data.tasks) {
+        output+="<li>" + "ID IS = " + data.tasks[i].id + "PROCESS INSTANCE = " + data.tasks[i].processInstanceId + "PROCESS ID " + data.tasks[i].processId+"</li>";
+	
+    }
+    output+="</ul>";
+
+    document.getElementById("placeholder").innerHTML=output;
+    document.getElementById("action").innerHTML=action;
+</script>
+</body>
+</html>
