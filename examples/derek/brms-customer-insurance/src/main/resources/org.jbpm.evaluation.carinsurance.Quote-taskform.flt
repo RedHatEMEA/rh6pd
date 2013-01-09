@@ -10,7 +10,7 @@ background-repeat:no-repeat;
 </style>
 
 
-<img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
+<img src="/webapp/redhat_logo.png" alt="Red Hat logo" />
 <style type="text/css">
 	#container
 	{
@@ -177,7 +177,7 @@ background-repeat:no-repeat;
 	     <topbox>CUSTOMER INSURANCE DEMO</topbox>
 	</div>
 	<div>
-	<img src="http://localhost/auto_insurance-car.png" alt="Car Insurance" width="400" height="150"/>
+	<img src="/webapp/auto_insurance-car.png" alt="Car Insurance" width="400" height="150"/>
 	</div>
 	<div id="content">
 		<fieldset>
