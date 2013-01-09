@@ -245,7 +245,7 @@ background-repeat:no-repeat;
 </style>
 <div id="container">
 	<div id="header">
-		<topbox> CUSTOMER INURANCE DEMO : Get Driver Information</topbox>
+		<topbox> CUSTOMER INSURANCE DEMO : Get Driver Information</topbox>
 	</div>
 	<div id="content">
 	<img src="http://localhost/driver.jpg" alt="Car Insurance" width="200" height="100"/>
