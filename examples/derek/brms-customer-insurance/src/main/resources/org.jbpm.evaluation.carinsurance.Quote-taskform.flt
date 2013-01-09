@@ -174,7 +174,7 @@ background-repeat:no-repeat;
 </style>
 <div id="container">
 	<div id="header">
-	     <topbox>CUSTOMER INURANCE DEMO</topbox>
+	     <topbox>CUSTOMER INSURANCE DEMO</topbox>
 	</div>
 	<div>
 	<img src="http://localhost/auto_insurance-car.png" alt="Car Insurance" width="400" height="150"/>

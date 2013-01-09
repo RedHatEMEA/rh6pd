@@ -294,7 +294,7 @@ function removeSelectboxOption()
 </style>
 <div id="container">
 	<div id="header">
-		<topbox> CUSTOMER INURANCE DEMO : Get Car Information</topbox>
+		<topbox> CUSTOMER INSURANCE DEMO : Get Car Information</topbox>
 	</div>
 	<div id="content">
 		
