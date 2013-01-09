@@ -9,7 +9,7 @@ background-repeat:no-repeat;
 }
 </style>
 
-<img src="http://localhost/redhat_logo.png" alt="Red Hat logo" />
+<img src="/webapp/redhat_logo.png" alt="Red Hat logo" />
 
 <script type='text/javascript'>
 	function notEmpty(elem){
@@ -248,7 +248,7 @@ background-repeat:no-repeat;
 		<topbox> CUSTOMER INSURANCE DEMO : Get Driver Information</topbox>
 	</div>
 	<div id="content">
-	<img src="http://localhost/driver.jpg" alt="Car Insurance" width="200" height="100"/>
+	<img src="/webapp/driver.jpg" alt="Car Insurance" width="200" height="100"/>
 	
           <fieldset>
             <legend>Enter Driver Details</legend>
