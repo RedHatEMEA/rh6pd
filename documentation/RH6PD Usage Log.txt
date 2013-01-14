@@ -1,0 +1,23 @@
+Log entry by Derek Howlett 14th Jan 2013
+SA Meeting 29th October
+=======================
+Initial demo of the insurance quote demo from 6PD to an audience of approx 20 UK solution architects.
+Introduced them to the project, shared specification and goals. Pointer to github for contributors.
+
+Log entry by Derek Howlett 14th Jan 2013
+Dublin / Sabeo Event 23rd November 2012
+=======================================
+Presented JBoss and the Insurance Quote demo from 6PD to an audience of approx 50 partners in Dublin.
+Well received, interest in BRMS and JBPM5.
+
+Log entry by Derek Howlett 14th Jan 2013
+Thames Water - Reading 
+======================
+Presented BRMS and JBPM to Thames Water for a project to replace a pricing engine. Presented the car insurance 
+quote from 6PD to an audience of 10 people. Well received.
+
+Log entry by Derek Howlett 14th Jan 2013
+SA Training 9th January 2013
+===========================
+Organized a meeting of the UK JBoss solutions architects to get the first version of the insurance car quote from 6PD on their laptops.
+
