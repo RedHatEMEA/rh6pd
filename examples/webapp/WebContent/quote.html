@@ -7,50 +7,61 @@
 <img src="auto_insurance-car.png" alt="JBoss"width="400" height="150"/>
 	
 
-<div id="placeholder"></div>
-<div id="action"></div>
-
+PLACEHOLDER<div id="placeholder"></div>
+ACTION <div id="action"></div>
+POST <div id="post_response"></div>
 <script>
-//helper function to create the form
-function getNewSubmitForm(){
- var submitForm = document.createElement("FORM");
- document.body.appendChild(submitForm);
- submitForm.method = "POST";
- return submitForm;
-}
+var action = "EMPTY";
 
-//helper function to add elements to the form
-function createNewFormElement(inputForm, elementName, elementValue){
- var newElement = document.createElement("<input name='"+elementName+"' type='hidden'>");
- inputForm.appendChild(newElement);
- newElement.value = elementValue;
- return newElement;
-}
+function createFormAndSubmit(action)
+{
+  
+	var http_request_post = new XMLHttpRequest();
+	document.getElementById("post_response").innerHTML=action;
+	http_request_post.open("POST", action, true);
+	http_request_post.onreadystatechange = function () 
+	{
+	    var done = 4, ok = 200;
+	  
+	    if (http_request_post.readyState == done && http_request_post.status == ok) 
+	    {
+	        data = JSON.parse(http_request_post.response);
+	       
+	        var output="<ul>";
+	        console.log(data);
 
-//function that creates the form, adds some elements
-//and then submits it
-function createFormAndSubmit(){
- var submitForm = getNewSubmitForm();
- //createNewFormElement(submitForm, "field1", "somevalue");
- //createNewFormElement(submitForm, "field2", "somevalue");
- submitForm.action= action;
- submitForm.submit();
+		    document.getElementById("post_response").innerHTML = data.id;
+		    
+	        //for (var i in data.definitions) 
+	        //{
+		    //    console.log("never gets executed");
+	        //    output+="<li>" + "Availabe Process Business Process is :- " + data.definitions[i].name + "<br>" + data.definitions[i].packageName+"</li>";
+	        //	
+	        //	document.getElementById("post_response").innerHTML=output;
+	        //    
+	        //}
+	        output+="</ul>";
+	    }
+	}
+	http_request_post.send(null);
+
+	window.location = "tasks.html"; 
 }
 
 // now create the ajax connection and get the list of process definitions.
-var action = "EMPTY";
+
 //var data = {"definitions":[{"id":"org.jbpm.evaluation.carinsurance.hello","name":"hello","version":0,"packageName":"org.jbpm.evaluation.carinsurance","deploymentId":"N/A","suspended":false,"diagramUrl":"http://localhost:8080/jboss-brms/org.drools.guvnor.Guvnor/package/org.jbpm.evaluation.carinsurance/LATEST/org.jbpm.evaluation.carinsurance.hello-image.png"},{"id":"org.jbpm.evaluation.carinsurance.Quote","name":"Quote179","version":0,"packageName":"org.jbpm.evaluation.carinsurance","deploymentId":"N/A","suspended":false,"formUrl":"http://localhost:8080/business-central-server/rs/form/process/org.jbpm.evaluation.carinsurance.Quote/render","diagramUrl":"http://localhost:8080/jboss-brms/org.drools.guvnor.Guvnor/package/org.jbpm.evaluation.carinsurance/LATEST/org.jbpm.evaluation.carinsurance.Quote-image.png"}]}
 var url="http://localhost:8080/business-central-server/rs/process/definitions";
-var http_request = new XMLHttpRequest();
+var http_request_get = new XMLHttpRequest();
 
-http_request.open("GET", url, true);
-http_request.onreadystatechange = function () 
+http_request_get.open("GET", url, true);
+http_request_get.onreadystatechange = function () 
 {
     var done = 4, ok = 200;
   
-    if (http_request.readyState == done && http_request.status == ok) 
+    if (http_request_get.readyState == done && http_request_get.status == ok) 
     {
-        data = JSON.parse(http_request.response);
+        data = JSON.parse(http_request_get.response);
        
         var output="<ul>";
         console.log(data);
@@ -60,15 +71,15 @@ http_request.onreadystatechange = function ()
             output+="<li>" + "Availabe Process Business Process is :- " + data.definitions[i].name + "<br>" + data.definitions[i].packageName+"</li>";
         	action = "http://localhost:8080/business-central-server/rs/process/definition/" + data.definitions[i].id + "/new_instance";
         	document.getElementById("placeholder").innerHTML=output;
-            //document.getElementById("action").innerHTML=action;
+            document.getElementById("action").innerHTML=action;
         }
         output+="</ul>";
     }
 }
-http_request.send(null);
+http_request_get.send(null);
 
 </script>
 
-<input type="button" value="START QUOTE" onclick="createFormAndSubmit()">
+<input type="button" value="START QUOTE" onclick="createFormAndSubmit(action)">
 
 </body></html>

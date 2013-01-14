@@ -1,44 +1,73 @@
 <html>
-<body>
+<head>
+	<script type = "text/javascript" src = "jquery.js"></script>
+</head>
+<body>  
 
 <div id="placeholder"></div>
 <div><a href="http://www.redhat.com"  id="link">Link</a></div>
+
+<h1>(loading title...)</h1> 
+<iframe src = "#" style = "width: 740px; height: 580px">
+</iframe>
+  
+<script type = "text/javascript">
+
+$("iframe").on("load", function (event) {
+	var url = event.target.contentDocument.URL;
+
+	console.log(url); 
+		
+	if (url.indexOf('render') != -1) {  
+		$('h1').text("Please complete this task");   
+	} else if (url.indexOf('complete') != -1) {  
+		$('h1').text("Completed task, finding next action");
+		document.location.reload(true);
+	} else {  
+		alert("Erm, I have no idea what is going on."); 
+	}    
+    
+})
+
+</script>
+
 <script>
 var url="http://localhost:8080/business-central-server/rs/tasks/admin/participation";
-var data = {};
+var data = {}
 
 var http_request = new XMLHttpRequest();
-
 http_request.open("GET", url, true);
-
-http_request.onreadystatechange = function () 
-{
+http_request.onreadystatechange = function () {
     var done = 4, ok = 200;
-  
+    ifrm = $('iframe');
+    
+
     if (http_request.readyState == done && http_request.status == ok) 
     {
-        data = JSON.parse(http_request.response);
-       
-        var output="<ul>";
-        console.log(data);
-        for (var i in data.tasks)
-        {
-            output+="<li>" + "ID= " + data.tasks[i].processInstanceId + "   " + data.tasks[i].url + "</li>";
-            //document.getElementById("placeholder").innerHTML=output;
-            document.getElementById("link").innerHTML= data.tasks[i].url;
-            document.getElementById("link").href= data.tasks[i].url;
-        }
-        output+="</ul>";
-        ifrm = document.createElement("IFRAME");
-        ifrm.setAttribute("src", data.tasks[i].url);
-        ifrm.style.width = 740+"px";
-        ifrm.style.height = 580+"px";
-        document.body.appendChild(ifrm);
+        var data = JSON.parse(http_request.response);
 
-       
-        
+        if (data.tasks.length == 0) {
+	        ifrm.hide(); 
+	        $('h1').text('Process complete!');   
+	        $('body').append('Looks like you are all done. Would you like to start a <a href = "quote.html">new quote</a>?')
+            
+        } else { 
+	        var output="<ul>";
+	       
+	        for (var i in data.tasks)
+	        {
+	            output+="<li>" + "ID= " + data.tasks[i].processInstanceId + "   " + data.tasks[i].url + "</li>";
+	            //document.getElementById("placeholder").innerHTML=output;
+	            document.getElementById("link").innerHTML= data.tasks[i].url;
+	            document.getElementById("link").href= data.tasks[i].url;
+	        }
+	        output+="</ul>";
+	 
+	        ifrm.attr("src", data.tasks[i].url);
+        }
     }
 }
+
 http_request.send(null);
 </script>
 </body></html>
