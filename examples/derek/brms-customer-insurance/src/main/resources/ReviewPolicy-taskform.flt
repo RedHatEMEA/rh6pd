@@ -1,14 +1,9 @@
 <html>
-
+<head>
+	<title>taskform</title>
+	<link href="http://localhost:8080/webapp/6pdstyle.css" rel="stylesheet" type="text/css">
+</head>
 <body>
-<style type="text/css">
-body {
-background-image:url('http://localhost/grey_tile.png'); 
-background-size:1200px 500px;
-background-repeat:no-repeat;
-}
-
-</style>
 
 <img src="/webapp/redhat_logo.png" alt="Red Hat logo" />
 

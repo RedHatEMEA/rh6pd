@@ -4,12 +4,7 @@
 </head>
 <body>  
 
-<div id="placeholder"></div>
-<div><a href="http://www.redhat.com"  id="link">Link</a></div>
-
-<h1>(loading title...)</h1> 
-<iframe src = "#" style = "width: 740px; height: 580px">
-</iframe>
+<iframe src = "#" style = "width: 740px; height: 680px"></iframe>
   
 <script type = "text/javascript">
 
@@ -19,12 +14,12 @@ $("iframe").on("load", function (event) {
 	console.log(url); 
 		
 	if (url.indexOf('render') != -1) {  
-		$('h1').text("Please complete this task");   
+		//$('h1').text("Please complete this task");   
 	} else if (url.indexOf('complete') != -1) {  
-		$('h1').text("Completed task, finding next action");
+		//$('h1').text("Completed task, finding next action");
 		document.location.reload(true);
 	} else {  
-		alert("Erm, I have no idea what is going on."); 
+		alert("JBoss 6PD Error: Insurance Demo tasks.html: this is not a task"); 
 	}    
     
 })
@@ -41,25 +36,24 @@ http_request.onreadystatechange = function () {
     var done = 4, ok = 200;
     ifrm = $('iframe');
     
-
     if (http_request.readyState == done && http_request.status == ok) 
     {
         var data = JSON.parse(http_request.response);
 
-        if (data.tasks.length == 0) {
-	        ifrm.hide(); 
-	        $('h1').text('Process complete!');   
-	        $('body').append('Looks like you are all done. Would you like to start a <a href = "quote.html">new quote</a>?')
-            
-        } else { 
+        if (data.tasks.length == 0) 
+        {
+	        //ifrm.hide(); 
+	        //$('h1').text('Process complete!');   
+	        //$('body').append('Looks like you are all done. Would you like to start a <a href = "quote.html">new quote</a>?')
+            window.location = "complete.html";
+        } 
+        else 
+        { 
 	        var output="<ul>";
 	       
 	        for (var i in data.tasks)
 	        {
 	            output+="<li>" + "ID= " + data.tasks[i].processInstanceId + "   " + data.tasks[i].url + "</li>";
-	            //document.getElementById("placeholder").innerHTML=output;
-	            document.getElementById("link").innerHTML= data.tasks[i].url;
-	            document.getElementById("link").href= data.tasks[i].url;
 	        }
 	        output+="</ul>";
 	 
@@ -67,7 +61,7 @@ http_request.onreadystatechange = function () {
         }
     }
 }
-
 http_request.send(null);
 </script>
-</body></html>
+</body>
+</html>

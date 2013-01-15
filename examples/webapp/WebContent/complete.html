@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>taskform</title>
+	<link href="http://localhost:8080/webapp/6pdstyle.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<img src="/webapp/redhat_logo.png" alt="Red Hat logo" />
+
+<div id="container">
+
+	<div id="header">
+	<topbox> CUSTOMER INSURANCE DEMO : Quote Complete</topbox>
+	</div>
+	
+	<div id="content">
+		<img src="complete.png" alt="JBoss"width="160" height="150"/>
+        <fieldset>
+            	<legend>Looks like you are all done.</legend>
+            
+            	
+
+				<div id="placeholder"></div>
+				<div id="action"></div>
+				<div id="post_response"></div>
+				 Would you like to start a new quote?
+
+				<script>
+				http_request_get.open("GET", url, true);
+				http_request_get.send(null);
+				</script>
+
+				<div class="button_div">
+				<a href = "quote.html">new quote</a>
+                </div>
+                    
+            	<div class="clear"></div>
+            	
+          </fieldset>
+	</div>
+	<div id="footer">
+	</div>
+</div>
+
+
+ 
+
+</body>
+</html>
