@@ -6,16 +6,11 @@
 	<artifactId>rh6pd-webJsInterface</artifactId>
 	<packaging>war</packaging>
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>rh6pd.webJsInterface</groupId>
 	
-	<repositories>
-
 	<parent>
 		<groupId>rh6pd</groupId>
 		<artifactId>rh6pd</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-
-	  <dependencies>
-	 
-	<groupId>rh6pd.webJsInterface</groupId>
 </project>
