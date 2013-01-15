@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+
+body {
+	font: 100% arial;
+	color: #666666;
+	text-align: justify;
+	background: #ffffff;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #1C75BC;
+}
+
+a:hover {
+	color: #1C75BC;
+}
+
+h1,h2,h3 {
+	text-align: left;
+	margin: 10px 0px 0px 0px;
+	color: #1C75BC;
+}
+
+h1 {
+	font: bold 18px arial;
+}
+
+h2 {
+	font: bold 15px arial;
+}
+
+h3 {
+	font: bold 13px arial;
+}
+
+img {
+	border: none;
+}
+
+#container {
+	border: 1px solid #cccccc;
+	border-top: 0;
+	margin: 0px auto;
+	width: 900px;
+	background: #efefef;
+	clear: both;
+	overflow: hidden;
+}
+
+#column-left {
+	float: left;
+	width: 250px;
+	font-size: 0.8em;
+	overflow: hidden;
+	background: #efefef;
+}
+
+#column-left p {
+	margin: 10px;
+	font-size: 12px;
+}
+
+#column-right {
+	float: left;
+	background: #ffffff;
+	width: 900px;
+	height: auto;
+	overflow: hidden;
+}
+
+#column-left a {
+	color: #1C75BC;
+}
+
+#column-left a:hover {
+	color: #cccccc;
+}
+
+#header {
+	width: 100%;
+	height: 120px;
+	text-align: left;
+	background: #000000 repeat-x bottom left;
+	border-bottom: 1px solid #DA1E00;
+}
+
+#header-inner {
+	width: 900px;
+	height: 120px;
+	margin: 0 auto;
+	position: relative;
+	
+}
+
+#header-logo {
+	position: absolute;
+	top: 30px;
+	left: 0px;
+}
+
+#content {
+	width: 840px;
+	height: 440px;
+	overflow: hidden;
+	margin: 20px;
+	text-align: justify;
+	font-size: 12px;
+	color: #545454;
+}
+
+#content p {
+	margin: 5px 0px 22px 0px;
+	line-height: 18px;
+}
+
+#content ul {
+	margin: 0px 10px;
+}
+
+#content li {
+	background: #ffffff no-repeat center left;
+	padding-left: 20px;
+}
+
+#footer {
+	clear: both;
+	width: 100%;
+	height: 100px;
+	color: #000000;
+	background: #fff; 
+	border-top: 1px solid #DA1E00; 
+}
+
+#footer-inner {
+	width: 900px;
+	height: 100px;
+	margin: 0 auto;
+	color: #000000;
+	font: 10px "Trebuchet MS", Tahoma, Verdana;
+}
+
+#footer a {
+	color: #000000;
+	font-size: 10px;
+}
+
+#footer a:hover {
+	color: #cccccc;
+}
+
+#footer-left {
+	float: left;
+	line-height: 110%;
+	text-align: left;
+	padding: 7px;
+	padding-left: 0px;
+}
+
+#footer-right {
+	float: right;
+	text-align: right;
+	padding: 7px;
+	padding-right: 0px;
+}
