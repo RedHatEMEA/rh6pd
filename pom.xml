@@ -30,6 +30,7 @@
 		<module>rh6pd-web</module> 
  		<module>rh6pd-processController</module>
  		<module>rh6pd-webJsInterface</module>
+ 		<module>rh6pd-database</module>
 	</modules> 
 
 </project>
