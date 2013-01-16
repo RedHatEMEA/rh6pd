@@ -3,9 +3,9 @@
 <body>
 <style type="text/css">
 body {
-background-image:url('http://localhost/grey_tile.png');
-background-size:1200px 500px;
-background-repeat:no-repeat;
+	background-image:url('rh6pd/resources/images/imagesgrey_tile.png');
+	background-size:1200px 500px;
+	background-repeat:no-repeat;
 }
 </style>
 

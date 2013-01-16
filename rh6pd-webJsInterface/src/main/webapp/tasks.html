@@ -1,22 +1,26 @@
 <html>
 <head>
-	<script type = "text/javascript" src = "jquery.js"></script>
+	<script type = "text/javascript" src = "resources/javascript/jquery.js"></script>
+	<link rel = "stylesheet" type = "text/css" href = "resources/stylesheets/6pdstyle.css" />
+	<title>Tasks</title>   
 </head>
 <body>  
 
-<iframe src = "#" style = "width: 740px; height: 680px"></iframe>
+<div style = "text-align: center">  
+	<iframe style = "width: 700px; height: 850px; border: 0;" src = "#"></iframe>
+</div>
   
 <script type = "text/javascript">
-
+ 
 $("iframe").on("load", function (event) {
 	var url = event.target.contentDocument.URL;
-
-	console.log(url); 
+ 
+	console.log("iFrame has loaded URL: " + url); 
 		
 	if (url.indexOf('render') != -1) {  
 		//$('h1').text("Please complete this task");   
 	} else if (url.indexOf('complete') != -1) {  
-		//$('h1').text("Completed task, finding next action");
+		//$('h1').text("Completed task, finding next action"); 
 		document.location.reload(true);
 	} else {  
 		alert("JBoss 6PD Error: Insurance Demo tasks.html: this is not a task"); 
@@ -40,11 +44,12 @@ http_request.onreadystatechange = function () {
     {
         var data = JSON.parse(http_request.response);
 
+        console.log(data); 
+
         if (data.tasks.length == 0) 
         {
-	        //ifrm.hide(); 
-	        //$('h1').text('Process complete!');   
-	        //$('body').append('Looks like you are all done. Would you like to start a <a href = "quote.html">new quote</a>?')
+	        ifrm.hide();   
+	        console.log("Process complete", data);
             window.location = "complete.html";
         } 
         else 

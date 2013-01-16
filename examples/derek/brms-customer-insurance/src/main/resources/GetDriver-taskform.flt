@@ -1,127 +1,48 @@
 <html>
 <head>
 	<title>taskform</title>
-	<link href="http://localhost:8080/webapp/6pdstyle.css" rel="stylesheet" type="text/css">
+	<link href="/rh6pd/resources/stylesheets/6pdstyle.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/rh6pd/resources/javascript/jquery.js"></script>
 </head>
 <body>
 
-<img src="/webapp/redhat_logo.png" alt="Red Hat logo" />
+<img src="rh6pd/resources/images/redhat_logo.png" alt="Red Hat logo" />
 
-<script type='text/javascript'>
-	function notEmpty(elem){
-		if(elem.value.length == 0){
-			return false;
-		}
-		return true;
-	}
-	
-	function isNumeric(elem){
-		var numericExpression = /^[0-9]+$/;
-		if(elem.value.match(numericExpression)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isAlphabet(elem){
-		var alphaExp = /^[a-zA-Z0-9\_ .-@]+$/;
-		if(elem.value.match(alphaExp)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isAlphanumeric(elem){
-		var alphaExp = /^[a-zA-Z0-9\_ .-@]+$/;
-		if(elem.value.match(alphaExp)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isFloat(elem){
-   		if(elem.value.indexOf(".") < 0){
-     		return false;
-   		} else {
-      		if(parseFloat(elem.value)) {
-              return true;
-          	} else {
-              return false;
-          	}
-   		}
-	}
-	
-	function taskFormValidator() {
-		var i=0;
-		var myInputs = new Array();
-
-					myInputs[i] = document.getElementById("Name");
-					i++;
-				
-					myInputs[i] = document.getElementById("Age");
-					i++;
-				
-		
-		var j=0;
-
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Name");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Age");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-		return true;
-	}
-</script>
+<script type = " text/javascript" src = "/rh6pd/resources/javascript/brmsValidationJavascript.js"></script>
 
 <div id="container">
 	<div id="header">
 		<topbox> CUSTOMER INSURANCE DEMO : Get Driver Information</topbox>
-	</div>
+	</div> 
 	<div id="content">
-	<img src="/webapp/driver.jpg" alt="Car Insurance" width="200" height="100"/>
+	<img src="/rh6pd/resources/images/driver.jpg" alt="Car Insurance" width="200" height="100"/>
 	
           <fieldset>
             <legend>Enter Driver Details</legend>
-            <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
-
-                            		<label for="name">Name</label>
-                            		<div class="div_texbox">
-                              		<input name="Name" type="text" class="textbox" id="Name" value="" />
-                            		</div>
-                            
-                            		<label for="name">Street</label>
-                            		<div class="div_texbox">
-                              		<input name="Address1" type="text" class="textbox" id="Address1" value="" />
-                            		</div>
-                            		
-                            		<label for="name">City</label>
-                            		<div class="div_texbox">
-                              		<input name="Address2" type="text" class="textbox" id="Address1" value="" />
-                            		</div>
-                            
-                            		<label for="name">Age</label>
-                            		<div class="div_texbox">
-                              		<input name="Age" type="text" class="textbox" id="Age" value="" />
-                            		</div>	
-                            		
-                            		
-                            
+            <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorDriver()">
+	    		<label for="name">Name</label>
+	    		<div class="div_texbox">
+	      			<input onchange = "softValidateField('Name')" name="Name" type="text" class="textbox" id="Name" value="Mr John Smith" />
+	    		</div>
+	    
+	    		<label for="name">Street</label>
+	    		<div class="div_texbox"> 
+	      			<input onchange = "softValidateField('Street')" name="Address1" type="text" class="textbox" id="Street" value="100 High Street" />
+	    		</div> 
+	    		
+	    		<label for="name">City</label>
+	    		<div class="div_texbox">
+	      			<input onchange = "softValidateField('City')" name="Address2" type="text" class="textbox" id="City" value="London" />
+	    		</div>
+	    
+	    		<label for="name">Age</label> 
+	    		<div class="div_texbox"> 
+	      			<input onchange = "softValidateField('Age')" name="Age" type="text" class="textbox" id="Age" value="45" />
+	    		</div>	 
               <div class="button_div">
                 <input name="Submit" type="submit" value="NEXT" class="buttons" />
               </div>
-            </form>
+            </form> 
             <div class="clear"></div>
           </fieldset>
 	</div>

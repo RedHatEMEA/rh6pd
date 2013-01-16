@@ -1,14 +1,14 @@
 <html>
 <head>
-	<title>taskform</title>
-	<link href="http://localhost:8080/webapp/6pdstyle.css" rel="stylesheet" type="text/css">
+	<title>taskform</title>   
+	<link href="/rh6pd/resources/stylesheets/6pdstyle.css" rel="stylesheet" type="text/css"> 
+	<script type="text/javascript" src="/rh6pd/resources/javascript/jquery.js"></script>
 </head>
 <body>
 
-<img src="/webapp/redhat_logo.png" alt="Red Hat logo" />
+<img src="/rh6pd/resources/images/redhat_logo.png" alt="Red Hat logo" />
 
-
-
+<script type = " text/javascript" src = "/rh6pd/resources/javascript/brmsValidationJavascript.js"></script> 
 <script>
  function loadModel()
  {
@@ -34,7 +34,7 @@
       }
     }
    }
-}
+} 
 
 function removeSelectboxOption()
 {
@@ -46,143 +46,52 @@ function removeSelectboxOption()
 }
 </script>
 
-
-<script type='text/javascript'>
-	function notEmpty(elem){
-		if(elem.value.length == 0){
-			return false;
-		}
-		return true;
-	}
-	
-	function isNumeric(elem){
-		var numericExpression = /^[0-9]+$/;
-		if(elem.value.match(numericExpression)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isAlphabet(elem){
-		var alphaExp = /^[a-zA-Z0-9\_ .-@]+$/;
-		if(elem.value.match(alphaExp)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isAlphanumeric(elem){
-		var alphaExp = /^[a-zA-Z0-9\_ .-@]+$/;
-		if(elem.value.match(alphaExp)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	function isFloat(elem){
-   		if(elem.value.indexOf(".") < 0){
-     		return false;
-   		} else {
-      		if(parseFloat(elem.value)) {
-              return true;
-          	} else {
-              return false;
-          	}
-   		}
-	}
-	
-	function taskFormValidator() {
-		var i=0;
-		var myInputs = new Array();
-
-					myInputs[i] = document.getElementById("Model");
-					i++;
-				
-					myInputs[i] = document.getElementById("Reg");
-					i++;
-				
-					myInputs[i] = document.getElementById("Make");
-					i++;
-				
-		
-		var j=0;
-
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Model");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Reg");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-						if(notEmpty(myInputs[j]) && !isAlphanumeric(myInputs[j])) {
-							alert("Please enter valid Make");
-							myInputs[j].focus();
-							return false;
-						}	
-					j++;
-				
-		return true;
-	}
-</script>
-
 <div id="container">
 	<div id="header">
 		<topbox> CUSTOMER INSURANCE DEMO : Get Car Information</topbox>
 	</div>
 	<div id="content">
 		
-	<img src="/webapp/car.jpg" alt="Car Information" width="200" height="100"/>
+	<img src="/rh6pd/resources/images/car.jpg" alt="Car Information" width="200" height="100"/>
 	
           <fieldset>
             <legend>Enter Car Details</legend>
-            <form name="form" action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator()">
-
-									<label for="name">Make</label>
-									<div class="div_texbox">
-									<select id = "Make" name="Make" onChange="loadModel()">
-									<option value="Select" selected = "selected">Select Make</option>
-								    <option value="BMW">BMW</option>
-								    <option value="FORD">FORD</option>
-								    <option value="HONDA">HONDA</option>
-								    </select>
-								    </div>
-									
-								    <label for="name">Model</label>
-									<div class="div_texbox">
-									<select name="Model">
-									<option value="Select">Select Model</option>
-									</select>
-									</div>
-							
-                            		<label for="name">Reg</label>
-                            		<div class="div_texbox">
-                              		<input name="Reg" type="text" class="textbox" id="Reg" value="" />
-                            		</div>	
-                            
-                            			
-                            
+            <form name="form" action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorCar()">
+					<label for="name">Make</label>
+					<div class="div_texbox"> 
+						<select onchange = "softValidateField('Make')" id = "Make" name="Make" onChange="loadModel()">
+						<option value="Select" >Select Make</option>
+					    <option value="BMW">BMW</option>
+					    <option selected="true" value="FORD">FORD</option>
+					    <option value="HONDA">HONDA</option>
+					    </select>
+				    </div>
+					
+				    <label for="name">Model</label>
+					<div class="div_texbox">  
+						<select onchange = "softValidateField('Model')" id = "Model" name="Model">
+						<option value="Select">Select Model</option>
+						</select>
+					</div>
+			
+            		<label for="name">Reg</label>  
+            		<div class="div_texbox"> 
+              		<input onchange = "softValidateField('Reg')" name="Reg" type="text" class="textbox" id="Reg" value="ABC 123" />
+            		</div>	
               <div class="button_div">
                 <input name="Submit" type="submit" value="NEXT" class="buttons" />
               </div>
             </form>
-            <div class="clear"></div>
+            <div class="clear"></div> 
           </fieldset>
 	</div>
 	<div id="footer">
 	</div>
 </div>
 <script type = "text/javascript">
-document.getElementById("Make").value = "Select";
+document.getElementById("Make").value = "FORD";
+loadModel();
+document.getElementById("Model").value = "Fiesta";
 </script>
 </body>
 </html>
