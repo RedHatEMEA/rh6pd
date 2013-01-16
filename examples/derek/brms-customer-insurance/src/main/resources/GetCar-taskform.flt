@@ -59,7 +59,7 @@ function removeSelectboxOption()
             <form name="form" action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorCar()">
 					<label for="name">Make</label>
 					<div class="div_texbox"> 
-						<select onchange = "softValidateField('Make')" id = "Make" name="Make" onChange="loadModel()">
+						<select onChange = "softValidateField('Make');loadModel()" id = "Make" name="Make" >
 						<option value="Select" >Select Make</option>
 					    <option value="BMW">BMW</option>
 					    <option selected="true" value="FORD">FORD</option>
