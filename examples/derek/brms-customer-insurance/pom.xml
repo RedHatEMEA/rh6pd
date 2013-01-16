@@ -26,4 +26,21 @@
   		<version>5.3.3.Final</version>
   	</dependency>
   </dependencies>
+    
+    <build>  
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>  
+                    <exclude>**/*</exclude>  
+                </excludes> 
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    	<!-- 
+    	This final name does not include the version number of the artifact
+    	because the BRMS server has problems with redeployment.
+    	 -->  
+        <finalName>rh6pd-businessRulesModel</finalName>
+  </build>
 </project>
