@@ -4,7 +4,7 @@ body {
 	text-align: justify;
 	background: #ffffff;
 	margin: 0;
-	background-image: url("../images/grey_tile.png");
+	/* background-image: url("../images/grey_tile.png"); */
 	background-repeat: repeat-x; 
 	background-color: #333; 
 }
@@ -15,6 +15,11 @@ a {
 }
 
 a:hover {
+	color: #1C75BC;
+}
+
+topbox {
+	font: bold 18px "verdana", sans-serif;
 	color: #1C75BC;
 }
 
@@ -38,7 +43,14 @@ h3 {
 
 img {
 	border: none;
-} 
+}
+
+iframe {
+	text-align: center; 
+	width: 700px; 
+	height: 850px; 
+	border: 0;
+}
 
 #container {
 	border: 1px solid #cccccc;
@@ -64,6 +76,7 @@ img {
 }
 
 #column-right {
+	width: 650px;
 	float: left;
 	background: #ccc;
 	height: auto;
@@ -127,6 +140,7 @@ img {
 	width: 100%;
 	height: 100px;
 	color: #000000;
+	border-top: 1px solid #DA1E00;
 }
 
 #footer-inner {
