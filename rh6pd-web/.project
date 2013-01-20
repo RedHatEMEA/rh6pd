@@ -62,5 +62,6 @@
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 		<nature>org.jboss.tools.ws.jaxrs.nature</nature>
 		<nature>org.jboss.tools.cdi.core.cdinature</nature>
+		<nature>org.jboss.tools.jsf.jsfnature</nature>
 	</natures>
 </projectDescription>
