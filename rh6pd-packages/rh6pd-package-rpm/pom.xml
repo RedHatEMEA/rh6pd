@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>rh6pd-package-rpm</artifactId>
+  <packaging>rpm</packaging>
+
+  <properties>
+    <dir.rh6pd>../../</dir.rh6pd>
+    <dir.install>/opt/rh6pd/</dir.install>
+  </properties>
+
+  <build>
+<plugins>
+	<plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>rpm-maven-plugin</artifactId>
+		        <version>2.1-alpha-2</version>
+		        <extensions>true</extensions>
+		        <configuration>
+		        <group>Upsilon developers</group>
+		        <copyright>GPL</copyright>
+		        <distribution>Fedora</distribution>
+		        <version>${releaseVersion}</version>
+	<name>rh6pd</name> 
+    <version>${project.version}</version>
+<mappings> 
+    <mapping>
+        <directory>${dir.install}/rh6pd-businessRules</directory>
+        <sources>
+            <source>
+                <location>${dir.rh6pd}/rh6pd-businessRules/target/</location>
+                <includes>
+                    <include>*.jar</include>
+                </includes>
+            </source>
+            <source>
+                <location>${dir.rh6pd}/rh6pd-businessRules/src/main/resources/</location>
+            </source>
+        </sources>
+    </mapping>
+    <mapping>
+        <directory>${dir.install}/documentation/</directory>
+        <sources>
+            <source>
+                <location>${dir.rh6pd}/documentation/installationGuide</location>
+            </source>
+            <source>
+                <location>${dir.rh6pd}/documentation/presentersGuide</location>
+            </source>
+
+        </sources>
+    </mapping>
+
+    <mapping>
+        <directory>${dir.install}/rh6pd-webJsInterface/</directory>
+        <sources>
+            <source>
+                <location>${dir.rh6pd}/rh6pd-webJsInterface/target/</location>
+                <includes>
+					<include>*.war</include>
+				</includes>
+            </source>
+        </sources>
+    </mapping>
+</mappings>
+	</configuration>
+	</plugin>
+</plugins>
+  </build>
+  <parent>
+  	<groupId>rh6pd</groupId>  
+  	<artifactId>rh6pd-packages</artifactId>
+  	<version>0.1.0</version>
+  </parent>
+</project>

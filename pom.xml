@@ -9,7 +9,8 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+		<releaseVersion>0.1.0</releaseVersion>
+	</properties>  
 
 	<build>
 	    <plugins>
@@ -27,10 +28,10 @@
 
 	<modules>	
 		<module>rh6pd-businessRules</module>
-		<module>rh6pd-web</module> 
  		<module>rh6pd-processController</module>
  		<module>rh6pd-webJsInterface</module>
  		<module>rh6pd-database</module>
+        <module>rh6pd-packages</module>
 	</modules> 
 
 </project>

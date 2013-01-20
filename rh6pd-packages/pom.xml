@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>rh6pd</groupId>
+  <artifactId>rh6pd-packages</artifactId>
+  <version>0.2.0</version>   
+  <packaging>pom</packaging>
+
+  <parent>
+    <artifactId>rh6pd</artifactId> 
+    <groupId>rh6pd</groupId> 
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+ 
+  <modules>
+      <module>rh6pd-package-rpm</module>
+      <module>rh6pd-package-zip</module> 
+  </modules>
+
+  <build>
+  	<plugins> 
+  	<!-- FIXME, this does not appear to work. -->
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>versions-maven-plugin</artifactId>
+  			<version>2.0</version>
+  			<executions>
+  			<execution>
+            <id>update</id>
+            <phase>pre-package</phase>
+            <goals> 
+              <goal>use-latest-versions</goal>
+            </goals> 
+          </execution>
+  			</executions>
+  		</plugin>
+  	</plugins>
+  </build>
+</project>
