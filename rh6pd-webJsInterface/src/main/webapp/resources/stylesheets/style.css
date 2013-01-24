@@ -47,8 +47,8 @@ img {
 
 iframe {
 	text-align: center; 
-	width: 700px; 
-	height: 850px; 
+	width: 880px; 
+	height: 530px; 
 	border: 0;
 }
 
@@ -56,7 +56,7 @@ iframe {
 	border: 1px solid #cccccc;
 	border-top: 0;
 	margin: 0px auto;
-	width: 600px;
+	width: 900px;
 	background: #efefef;
 	clear: both; 
 	overflow: hidden;
@@ -76,7 +76,7 @@ iframe {
 }
 
 #column-right {
-	width: 650px;
+	width: 900px;
 	float: left;
 	background: #ccc;
 	height: auto;
@@ -93,15 +93,15 @@ iframe {
 
 #header {
 	width: 100%;
-	height: 120px;
+	height: 100px;
 	text-align: left;
 	background: #000000 repeat-x bottom left;
 	border-bottom: 1px solid #DA1E00;
 }
 
 #header-inner {
-	width: 600px;
-	height: 120px;
+	width: 900px;
+	height: 100px;
 	margin: 0 auto;
 	position: relative;
 	
@@ -114,7 +114,7 @@ iframe {
 }
 
 #content {
-	height: 440px;
+	height: 540px;
 	overflow: hidden;
 	margin: 20px;
 	text-align: justify;
@@ -138,14 +138,14 @@ iframe {
 #footer {
 	clear: both;
 	width: 100%;
-	height: 100px;
+	height: 75px;
 	color: #000000;
 	border-top: 1px solid #DA1E00;
 }
 
 #footer-inner {
-	width: 600px;
-	height: 100px;
+	width: 900px;
+	height: 75px;
 	margin: 0 auto; 
 	color: #999;
 	font: 10px "Trebuchet MS", Tahoma, Verdana, sans-serif;

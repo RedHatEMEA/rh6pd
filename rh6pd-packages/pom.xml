@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>rh6pd</groupId>
   <artifactId>rh6pd-packages</artifactId>
-  <version>0.2.0</version>   
+  <version>0.1.0</version>   
   <packaging>pom</packaging>
 
   <parent>
