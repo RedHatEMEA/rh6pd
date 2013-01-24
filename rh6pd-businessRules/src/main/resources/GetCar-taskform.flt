@@ -1,12 +1,10 @@
 <html>
 <head>
 	<title>taskform</title>   
-	<link href="/rh6pd/resources/stylesheets/6pdstyle.css" rel="stylesheet" type="text/css"> 
+	<link href="/rh6pd/resources/stylesheets/style.css" rel="stylesheet" type="text/css"> 
 	<script type="text/javascript" src="/rh6pd/resources/javascript/jquery.js"></script>
 </head>
 <body>
-
-
 
 <script type = " text/javascript" src = "/rh6pd/resources/javascript/brmsValidationJavascript.js"></script> 
 <script>
@@ -45,53 +43,48 @@ function removeSelectboxOption()
    }
 }
 </script>
-
-<div id="container">
-	<div id="header">
-		<topbox> CUSTOMER INSURANCE DEMO : Get Car Information</topbox>
-	</div>
-	<div id="content">
 		
-	<img src="/rh6pd/resources/images/car.jpg" alt="Car Information" width="200" height="100"/>
-	
-          <fieldset>
-            <legend>Enter Car Details</legend>
-            <form name="form" action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorCar()">
-					<label for="name">Make</label>
-					<div class="div_texbox"> 
-						<select onChange = "softValidateField('Make');loadModel()" id = "Make" name="Make" >
-						<option value="Select" >Select Make</option>
-					    <option value="BMW">BMW</option>
-					    <option selected="true" value="FORD">FORD</option>
-					    <option value="HONDA">HONDA</option>
-					    </select>
-				    </div>
-					
-				    <label for="name">Model</label>
-					<div class="div_texbox">  
-						<select onchange = "softValidateField('Model')" id = "Model" name="Model">
-						<option value="Select">Select Model</option>
-						</select>
-					</div>
-			
-            		<label for="name">Reg</label>  
-            		<div class="div_texbox"> 
-              		<input onchange = "softValidateField('Reg')" name="Reg" type="text" class="textbox" id="Reg" value="ABC 123" />
-            		</div>	
-              <div class="button_div">
-                <input name="Submit" type="submit" value="NEXT" class="buttons" />
-              </div>
-            </form>
-            <div class="clear"></div> 
-          </fieldset>
-	</div>
-	<div id="footer">
-	</div>
+<img src="/rh6pd/resources/images/car.jpg" alt="Car Information" width="200" height="100"/>
+
+<fieldset>
+	<legend>Enter Car Details</legend>
+    <form name="form" action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorCar()">
+		
+		<label for="name">Make</label>
+		<div class="div_texbox"> 
+			<select onChange = "softValidateField('Make');loadModel()" id = "Make" name="Make" >
+			<option value="Select" >Select Make</option>
+		    <option value="BMW">BMW</option>
+		    <option selected="true" value="FORD">FORD</option>
+		    <option value="HONDA">HONDA</option>
+		    </select>
+		</div>
+		
+		<label for="name">Model</label>
+		<div class="div_texbox">  
+			<select onchange = "softValidateField('Model')" id = "Model" name="Model">
+			<option value="Select">Select Model</option>
+			</select>
+		</div>
+		
+		<label for="name">Registration Mark</label>  
+		<div class="div_texbox"> 
+		<input onchange = "softValidateField('Reg')" name="Reg" type="text" class="textbox" id="Reg" value="ABC 123" />
+		</div>	
+        
+        <div class="button_div">
+            <input id="button" name="Submit" type="submit" value="NEXT" class="buttons" />
+        </div>
+	</form>
+    <div class="clear"></div> 
+</fieldset>
 </div>
+
 <script type = "text/javascript">
 document.getElementById("Make").value = "FORD";
 loadModel();
 document.getElementById("Model").value = "Fiesta";
 </script>
+
 </body>
 </html>

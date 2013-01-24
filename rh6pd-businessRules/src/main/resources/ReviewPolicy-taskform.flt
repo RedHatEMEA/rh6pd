@@ -1,239 +1,152 @@
 <html>
 <head>
-	<title>taskform</title>
-	<link href="/resources/stylesheets/6pdstyle.css" rel="stylesheet" type="text/css">
+	<title>taskform</title>   
+	<link href="/rh6pd/resources/stylesheets/style.css" rel="stylesheet" type="text/css"> 
+	<script type="text/javascript" src="/rh6pd/resources/javascript/jquery.js"></script>
 </head>
 <body>
 
-
-
 <script type = " text/javascript" src = "/rh6pd/resources/javascript/brmsValidationJavascript.js"></script>
-<style type="text/css">
-	#container
-	{
-		margin: 0 auto;
-		width: 600px;
-		background:#fff;
-	}
 
-	#header
-	{
-		background: #666;
-		padding: 20px;
-		font-family:Arial, Helvetica, sans-serif;
-		font-size: 125%;
-		letter-spacing: -1px;
-		font-weight: bold;
-		line-height: 1.1;
-		color:#666;
-	}
-
-	#header h1 { margin: 0; }
-
-	#content
-	{
-		clear: left;
-		padding: 20px;
-	}
-
-	#content h2
-	{
-		color: #000;
-		font-size: 160%;
-		margin: 0 0 .5em;
-	}
-
-	#footer
-	{
-		background: #ccc;
-		text-align: right;
-		padding: 20px;
-		height: 1%;
-	}
+<img src="/rh6pd/resources/images/newPolicy.jpg" alt="Car Insurance" width="200" height="80" />
 	
-	fieldset {
-		border:1px dashed #CCC;
-		padding:10px;
-		margin-top:20px;
-		margin-bottom:20px;
-	}
+<fieldset>
 
-
-	topbox {
-		font-family:Arial, Helvetica, sans-serif;
-		font-size: 90%;
-		letter-spacing: -1px;
-		font-weight: bold;
-		line-height: 1.1;
-		color:#fff;
-	}
-	legend {
-		font-family:Arial, Helvetica, sans-serif;
-		font-size: 90%;
-		letter-spacing: -1px;
-		font-weight: bold;
-		line-height: 1.1;
-		color:#fff;
-		background: #666;
-		border: 1px solid #333;
-		padding: 2px 6px;
-	}
-	.form {
-		margin:0;
-		padding:0;
-	}
-	label {
-		width:140px;
-		height:32px;
-		margin-top:3px;
-		margin-right:2px;
-		padding-top:11px;
-		padding-left:6px;
-		background-color:#CCCCCC;
-		float:left;
-		display: block;
-		font-family:Arial, Helvetica, sans-serif;
-		font-size: 115%;
-		letter-spacing: -1px;
-		font-weight: normal;
-		line-height: 1.1;
-		color:#666;
-	}
-	.div_texbox {
-		width:347px;
-		float:right;
-		background-color:#E6E6E6;
-		height:35px;
-		margin-top:3px;
-		padding-top:5px;
-		padding-bottom:3px;
-		padding-left:5px;
-	}
-	.div_checkbox {
-		width:347px;
-		float:right;
-		background-color:#E6E6E6;
-		height:35px;
-		margin-top:3px;
-		padding-top:5px;
-		padding-bottom:3px;
-		padding-left:5px;
-	}
-	.textbox {
-		background-color:#FFFFFF;
-		background-repeat: no-repeat;
-		background-position:left;
-		width:285px;
-		font:normal 18px Arial;
-		color: #999999;
-		padding:3px 5px 3px 19px;
-	}
-	.checkbox {
-		background-color:#FFFFFF;
-		background-repeat: no-repeat;
-		background-position:left;
-		width:285px;
-		font:normal 18px Arial;
-		color: #999999;
-		padding:3px 5px 3px 19px;
-	}
-	.textbox:focus, .textbox:hover {
-		background-color:#F0FFE6;
-	}
-	.button_div {
-		width:287px;
-		float:right;
-		background-color:#fff;
-		border:1px solid #ccc;
-		text-align:right;
-		height:35px;
-		margin-top:3px;
-		padding:5px 32px 3px;
-	}
-	.buttons {
-		background: #e3e3db;
-		font-size:12px; 
-		color: #989070; 
-		padding: 6px 14px;
-		border-width: 2px;
-		border-style: solid;
-		border-color: #fff #d8d8d0 #d8d8d0 #fff;
-		text-decoration: none;
-		text-transform:uppercase;
-		font-weight:bold;
-	}
-</style>
-<div id="container">
-	<div id="header">
-		<topbox> CUSTOMER INSURANCE DEMO : Review Policy </topbox>
-	</div>
-	<div id="content">
-	<img src="/rh6pd/resources/images/insurance_policy.jpg" alt="Car Insurance" width="200" height="80" align="right"/>
+	<legend>Policy Details</legend>
 	
-          <fieldset>
-            <legend>Policy Details</legend> 
-            <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidator">
-
-									<div><legend> About You </legend></div>
-									
-                            		<label for="name">Name</label>
-                            		<div class="div_checkbox">
-                              		${Name}
-                            		</div>
-                            		
-                            		<label for="name">Street</label>
-                            		<div class="div_checkbox">
-                              		${Address1}
-                            		</div>
-                            		
-                            		<label for="name">City</label>
-                            		<div class="div_checkbox">
-                              		${Address2}
-                            		</div>
-                            
-                            		<label for="name">Age</label>
-                            		<div class="div_checkbox">
-                              		${Age}
-                            		</div>
-                            
-                            		<label for="name">Driver Risk</label>
-                            		<div class="div_checkbox">
-                              		${DriverRisk}
-                            		</div>
-                            		
-                            		<div><legend> About Your Car </legend></div>
-                            	    <label for="name">Make</label>
-                            		<div class="div_checkbox">
-                              		${Make}
-                            		</div>
-                            		
-                            		<label for="name">Model</label>
-                            		<div class="div_checkbox">
-                              		${Model}
-                            		</div>
-                            		
-                                    <label for="name">CarRisk</label>
-                            		<div class="div_checkbox">
-                              		${CarRisk}
-                            		</div>
-	                            
-                   					<div><legend> Premium </legend></div>
-                                    <label for="name">Price</label>
-                            		<div class="div_checkbox">
-                              		${Price}
-                            		</div>
-            <div class="clear"></div>
-          </fieldset>
-                            
-              <div class="button_div">
-                <input name="Submit" type="submit" value="Accept" class="buttons" />
-              </div>
-            </form>
-            <div class="clear"></div>
-          </fieldset>
-	</div>
-	<div id="footer"> 
-	</div>
+    
+	<form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorDriver()">
+	<table>
+	<tr>
+		<td>
+			<div><legend> About You </legend></div>
+		</td>
+		
+		<td>
+			<div><legend> About Your Car </legend></div>
+		</td>
+		
+		<td>   
+		     <legend>Your Price</legend>            		
+		</td>
+		
+	</tr>
+	
+	<tr>
+		<td>
+			<label for="name">Name</label>
+			<div class="div_texbox">
+				<input onchange = "softValidateField('Name')" name="Name" type="text" class="textbox" id="Name" value="${Name}" />
+			</div>
+		</td>
+		
+		<td>
+			<label for="name">Make</label>
+	     	<div class="div_textbox">
+	        <input onchange = "softValidateField('Make')" name="Make" type="text" class="textbox" id="Make" value="${Make}" /
+	    	</div> 
+	    </td>
+	    
+	    <td>     
+	    	<label for="name">UK Pounds</label>
+		    <div class="div_textbox">
+		         <input onchange = "softValidateField('Price')" name="Price" type="text" class="textbox" id="Price" value="${Price}" /
+		    </div>                 
+		</td>
+	    
+	</tr>
+	<tr>
+		<td>
+			<label for="name">Street</label>
+			<div class="div_texbox"> 
+				<input onchange = "softValidateField('Street')" name="Address1" type="text" class="textbox" id="Street" value="${Address1}"/>
+			</div> 
+		</td>
+		
+		<td>     
+	    	<label for="name">Model</label>
+	     	<div class="div_textbox">
+	         	<input onchange = "softValidateField('Model')" name="Model" type="text" class="textbox" id="Model" value="${Model}" /
+	     	</div>         	    
+		</td>
+		
+		<td>
+		</td>
+	
+	</tr>
+	
+	<tr>
+		<td>	
+			<label for="name">City</label>
+			<div class="div_texbox">
+				<input onchange = "softValidateField('City')" name="Address2" type="text" class="textbox" id="City" value="${Address2}" />
+			</div>
+		</td>
+		
+		<td>	
+			<label for="name">Reg</label>
+			<div class="div_texbox">
+				<input onchange = "softValidateField('Reg')" name="Reg" type="text" class="textbox" id="Reg" value="${Reg}" />
+			</div>
+		</td>
+		
+		<td>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+		<label for="name">Age</label> 
+		<div class="div_texbox"> 
+			<input onchange = "softValidateField('Age')" name="Age" type="text" class="textbox" id="Age" value="${Age}" />
+		</div>	 
+		</td>
+	</tr> 
+	
+	<tr>
+		<td> 
+	    <label for="name">Driver Risk</label>
+	    <div class="div_textbox">
+	    	<input onchange = "softValidateField('Risk')" name="Risk" type="text" class="textbox" id="Risk" value="${DriverRisk}" /
+	    </div>
+		</td>
+		
+		<td>              	    
+	     <label for="name">Car Risk</label>
+	     <div class="div_textbox">
+	         <input onchange = "softValidateField('CarRisk')" name="CarRisk" type="text" class="textbox" id="CarRisk" value="${CarRisk}" /
+	     </div>          
+		</td>
+		
+		<td>
+		</td>
+	
+	</tr>
+	
+	<tr>
+		
+		
+		
+		<td>
+		</td>
+		
+		
+	</tr>
+	
+	<tr>                      
+	     <td>
+	     	<div class="button_div">
+	        	<input id="button" name="Submit" type="submit" value="ACCEPT" class="buttons" />
+	     	</div>
+	     </td>
+    </tr>
+	
+	</table>
+	
+    </form> 
+    <div class="clear"></div>
+    </fieldset>      
 </div>
+	
 </body>
 </html>

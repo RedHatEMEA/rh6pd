@@ -12,8 +12,10 @@ var http_request_get = new XMLHttpRequest();
 
 function createFormAndSubmit(action)
 {
+	//alert("starting post")
 	var http_request_post = new XMLHttpRequest();
 	http_request_post.open("POST", action, true);
+	//alert("action is " + action)
 	http_request_post.onreadystatechange = function () 
 	{
 	    var done = 4, ok = 200;
@@ -28,8 +30,15 @@ function createFormAndSubmit(action)
 	    }
 	}
 	http_request_post.send(null);
-	window.location = "tasks.html"; 
+
+	var intervalID = window.setInterval(next, 500);
 }
+
+next = function ()
+{
+	//alert ("go");
+	window.location = "tasks.html"; 
+	}
 
 http_request_get.onreadystatechange = function () 
 {
@@ -51,8 +60,9 @@ http_request_get.onreadystatechange = function ()
         {
             output+="<li>" + data.definitions[i].name + "<br>" + data.definitions[i].packageName+"</li>";
         	action = "http://localhost:8080/business-central-server/rs/process/definition/" + data.definitions[i].id + "/new_instance";
+        	//document.getElementById("action").innerHTML=action;
         	document.getElementById("placeholder").innerHTML=output;
-        	$('#startQuoteButton').removeAttr('disabled'); 
+        	$('#button').removeAttr('disabled'); 
         }
         output+="</ul>";
     }
@@ -84,12 +94,9 @@ http_request_get.onreadystatechange = function ()
         <fieldset>
             	<legend>Available business processes</legend>
             
-            	
-
 				<div id="placeholder"></div>
 				<div id="action"></div>
 				<div id="post_response"></div>
-
 
 				<script>
 				http_request_get.open("GET", url, true);
@@ -97,7 +104,7 @@ http_request_get.onreadystatechange = function ()
 				</script>
 
 				<div class="button_div">
-				<input id = "startQuoteButton" type="button" disabled="disabled" value="START QUOTE" onclick="createFormAndSubmit(action)">   		
+				<input  id="button" type="button" disabled="disabled" value="START QUOTE" onclick="createFormAndSubmit(action)">   		
                 </div>
                     
             	<div class="clear"></div>
@@ -106,16 +113,15 @@ http_request_get.onreadystatechange = function ()
 	</div>
 	</div>
 	</div>
-	</div>
+	</div>	
 	
 	
 	<div id="footer"> 
 		<div id="footer-inner">
 
 			<div id="footer-left">
-				<p>Brought to you by <a href="http://www.redhat.com" target="new">Red Hat</a></p>
-			</div>
-
+				<p>Brought to you by the JBoss Six Products Demo Team at <a href="http://www.redhat.com" target="new">Red Hat UKI</a></p>
+				</div>
 			
 		</div>  
 	</div>

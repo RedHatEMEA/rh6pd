@@ -31,7 +31,6 @@
           <header>policy</header>
           <constraintValueType>1</constraintValueType>
           <factField>this</factField>
-          <fieldType>Policy</fieldType>
           <operator>!= null</operator>
         </condition-column52>
       </conditions>
@@ -48,7 +47,6 @@
           <header>from</header>
           <constraintValueType>1</constraintValueType>
           <factField>age</factField>
-          <fieldType>Numeric</fieldType>
           <operator>&gt;=</operator>
         </condition-column52>
         <condition-column52>
@@ -57,7 +55,6 @@
           <header>to</header>
           <constraintValueType>1</constraintValueType>
           <factField>age</factField>
-          <fieldType>Numeric</fieldType>
           <operator>&lt;=</operator>
         </condition-column52>
       </conditions>
@@ -96,18 +93,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>17</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>18</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>21</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>21</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>10</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>10</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -131,18 +128,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>22</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>22</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>25</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>25</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>9</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>9</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -166,18 +163,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>26</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>26</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>35</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>35</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>8</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>8</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -201,18 +198,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>36</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>36</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>45</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>45</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>7</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>7</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -236,18 +233,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>46</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>46</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>55</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>55</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>6</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>6</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -271,18 +268,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>56</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>56</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>65</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>65</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>5</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>5</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -306,18 +303,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>66</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>66</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>75</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>75</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>4</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>4</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -341,18 +338,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>76</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>76</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>85</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>85</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>3</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>3</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -376,18 +373,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>86</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>86</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>95</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>95</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>2</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>2</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>
@@ -411,18 +408,18 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>96</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>96</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>100</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>105</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueNumeric>1</valueNumeric>
-        <dataType>NUMERIC</dataType>
+        <valueString>1</valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
     </list>

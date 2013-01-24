@@ -1,53 +1,47 @@
 <html>
 <head>
 	<title>taskform</title>
-	<link href="/rh6pd/resources/stylesheets/6pdstyle.css" rel="stylesheet" type="text/css">
+	<link href="/rh6pd/resources/stylesheets/style.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="/rh6pd/resources/javascript/jquery.js"></script>
 </head>
 <body>
 
+<script type ="text/javascript" src="/rh6pd/resources/javascript/brmsValidationJavascript.js">
+</script>
 
 
-<script type = " text/javascript" src = "/rh6pd/resources/javascript/brmsValidationJavascript.js"></script>
+<img src="/rh6pd/resources/images/driver.jpg" alt="Car Insurance" width="200" height="100"/>
 
-<div id="container">
-	<div id="header">
-		<topbox> CUSTOMER INSURANCE DEMO : Get Driver Information</topbox>
-	</div> 
-	<div id="content">
-	<img src="/rh6pd/resources/images/driver.jpg" alt="Car Insurance" width="200" height="100"/>
+<fieldset>
+	<legend>Enter Driver Details</legend>
+  	
+  	<form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorDriver()">
 	
-          <fieldset>
-            <legend>Enter Driver Details</legend>
-            <form action="complete" method="POST" enctype="multipart/form-data" onsubmit="return taskFormValidatorDriver()">
-	    		<label for="name">Name</label>
-	    		<div class="div_texbox">
-	      			<input onchange = "softValidateField('Name')" name="Name" type="text" class="textbox" id="Name" value="Mr John Smith" />
-	    		</div>
-	    
-	    		<label for="name">Street</label>
-	    		<div class="div_texbox"> 
-	      			<input onchange = "softValidateField('Street')" name="Address1" type="text" class="textbox" id="Street" value="100 High Street" />
-	    		</div> 
-	    		
-	    		<label for="name">City</label>
-	    		<div class="div_texbox">
-	      			<input onchange = "softValidateField('City')" name="Address2" type="text" class="textbox" id="City" value="London" />
-	    		</div>
-	    
-	    		<label for="name">Age</label> 
-	    		<div class="div_texbox"> 
-	      			<input onchange = "softValidateField('Age')" name="Age" type="text" class="textbox" id="Age" value="45" />
-	    		</div>	 
-              <div class="button_div">
-                <input name="Submit" type="submit" value="NEXT" class="buttons" />
-              </div>
-            </form> 
-            <div class="clear"></div>
-          </fieldset>
-	</div>
-	<div id="footer">
-	</div>
-</div>
+	<label for="name">Name</label>
+		<div class="div_texbox">
+  			<input onchange = "softValidateField('Name')" name="Name" type="text" class="textbox" id="Name" value="Mr John Smith" />
+		</div>
+
+		<label for="name">Street</label>
+		<div class="div_texbox"> 
+  			<input onchange = "softValidateField('Street')" name="Address1" type="text" class="textbox" id="Street" value="100 High Street" />
+		</div> 
+		
+		<label for="name">City</label>
+		<div class="div_texbox">
+  			<input onchange = "softValidateField('City')" name="Address2" type="text" class="textbox" id="City" value="London" />
+		</div>
+
+		<label for="name">Age</label> 
+		<div class="div_texbox"> 
+  			<input onchange = "softValidateField('Age')" name="Age" type="text" class="textbox" id="Age" value="45" />
+		</div>	 
+      <div class="button_div">
+        <input id="button" name="Submit" type="submit" value="NEXT" class="buttons" />
+      </div>
+    </form> 
+    <div class="clear"></div>
+</fieldset>
+	
 </body>
 </html>

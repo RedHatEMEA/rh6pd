@@ -30,7 +30,7 @@
   <itemDefinition id="_address1Item" structureRef="String" />
   <itemDefinition id="_address2Item" structureRef="Object" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote222" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote224" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -143,7 +143,6 @@
     <scriptTask id="_8" name="Update Rules" scriptFormat="http://www.java.com/java" >
       <script>System.out.println("*** Starting Update Rules ***");
 // Get variables
-
 driverRiskInt  = policy.getDriverRisk();
 driverRisk      =  new Integer (driverRiskInt).toString();
 
@@ -181,6 +180,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput" name="DriverRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input" name="Address2" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput" name="Reg" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput" name="Price" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput" name="CarRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput" name="Make" />
@@ -196,6 +196,7 @@ System.out.println("*** Exiting Update Rules ***");</script>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput</dataInputRefs>
@@ -231,6 +232,10 @@ System.out.println("*** Exiting Update Rules ***");</script>
       <dataInputAssociation>
         <sourceRef>address1</sourceRef>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>reg</sourceRef>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
         <sourceRef>price</sourceRef>
@@ -306,6 +311,7 @@ kcontext.setVariable("carRisk",carRisk);
 kcontext.setVariable("price",price);
 kcontext.setVariable("make",make);
 kcontext.setVariable("model",model);
+kcontext.setVariable("reg",reg);
 
 System.out.println("*** Exiting	 Set Price ***");</script>
     </scriptTask>

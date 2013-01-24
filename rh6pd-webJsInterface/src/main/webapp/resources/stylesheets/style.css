@@ -2,11 +2,8 @@ body {
 	font: 100% "verdana", sans-serif;
 	color: #666666;
 	text-align: justify;
-	background: #ffffff;
 	margin: 0;
-	/* background-image: url("../images/grey_tile.png"); */
 	background-repeat: repeat-x; 
-	background-color: #333; 
 }
 
 a {
@@ -52,11 +49,39 @@ iframe {
 	border: 0;
 }
 
+fieldset {
+	border:1px dashed #CCC;
+	padding:10px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+legend {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 90%;
+	letter-spacing: -1px;
+	font-weight: bold;
+	line-height: 1.1;
+	color:#fff;
+	background: #666;
+	border: 1px solid #333;
+	padding: 2px 6px;
+}
+
 #container {
 	border: 1px solid #cccccc;
 	border-top: 0;
 	margin: 0px auto;
 	width: 900px;
+	background: #efefef;
+	clear: both; 
+	overflow: hidden;
+}
+#policy_container
+{
+	border: 1px solid #cccccc;
+	border-top: 0;
+	margin: 0px auto;
+	width: 600px;
 	background: #efefef;
 	clear: both; 
 	overflow: hidden;
@@ -176,10 +201,25 @@ iframe {
 	padding-right: 0px;
 }
 
-#launchDemoButton {
+
+
+#button {
 	background-color: red;
 	color: white;
-	font-size: 120%;
+	font-size: 100%;
 	border-radius: .5em; 
 	padding: .5em; 
+	
 }
+
+.div_checkbox {
+	width:347px;
+	float:right;
+	background-color:#E6E6E6;
+	height:35px;
+	margin-top:3px;
+	padding-top:5px;
+	padding-bottom:3px;
+	padding-left:5px;
+}
+

@@ -57,8 +57,16 @@ http_request.onreadystatechange = function () {
     
     if (http_request.readyState == done && http_request.status == ok) 
     {
-        var data = JSON.parse(http_request.response);
+        //var data = JSON.parse(http_request.response);
+        try {
+        	data = JSON.parse(http_request.response);
+        } catch (err) {
+            $("#content").html('<p>Caught error parsing intial JSON response from server. Have you logged into the jBPM Console? </p><p>The error was: ' + err + '</p>'); 
+            return; 
+        }
 
+
+        
         console.log(data); 
 
         if (data.tasks.length == 0) 
@@ -93,8 +101,8 @@ http_request.send(null);
 		<div id="footer-inner">
 
 			<div id="footer-left">
-				<p>Brought to you by <a href="http://www.redhat.com" target="new">Red Hat</a></p>
-			</div>
+				<p>Brought to you by the JBoss Six Products Demo Team at <a href="http://www.redhat.com" target="new">Red Hat UKI</a></p>
+				</div>
 
 			
 		</div>  
