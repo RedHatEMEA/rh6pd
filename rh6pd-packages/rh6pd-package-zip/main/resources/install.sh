@@ -1,7 +1,7 @@
 #!/bin/sh
 # Install script for the car insurance demo.
 #
-DEMO="Car Insurance Demo"
+DEMO="Car Insurance Demo."
 JBOSS_HOME=./target/jboss-eap-6.0
 SERVER_DIR=$JBOSS_HOME/standalone/deployments/
 SERVER_CONF=$JBOSS_HOME/standalone/configuration/
