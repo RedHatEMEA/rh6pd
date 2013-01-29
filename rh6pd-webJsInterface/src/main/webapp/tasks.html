@@ -32,15 +32,19 @@ $("iframe").on("load", function (event) {
  
 	console.log("iFrame has loaded URL: " + url); 
 		
-	if (url.indexOf('render') != -1) {  
+	if (url.indexOf('render') != -1) 
+	{  
 		//$('h1').text("Please complete this task");   
-	} else if (url.indexOf('complete') != -1) {  
+	} 
+	else if (url.indexOf('complete') != -1) {  
 		//$('h1').text("Completed task, finding next action"); 
 		document.location.reload(true);
-	} else {  
+	}
+	else 
+	{  
 		alert("JBoss 6PD Error: Insurance Demo tasks.html: this is not a task"); 
 	}    
-    
+	
 })
 
 </script>
