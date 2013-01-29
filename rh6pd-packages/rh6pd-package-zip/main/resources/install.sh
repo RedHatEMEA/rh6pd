@@ -1,7 +1,5 @@
 #!/bin/sh
-# Install script for the car insurance demo.
-#
-DEMO="Car Insurance Demo."
+DEMO="Car Insurance Demo"
 JBOSS_HOME=./target/jboss-eap-6.0
 SERVER_DIR=$JBOSS_HOME/standalone/deployments/
 SERVER_CONF=$JBOSS_HOME/standalone/configuration/
@@ -12,7 +10,7 @@ BRMS=brms-p-5.3.1.GA-deployable-ee6.zip
 EAP_REPO=jboss-eap-6.0.1-maven-repository
 VERSION=5.3.1
 
-# clear the screen
+
 clear
 
 echo
@@ -117,8 +115,8 @@ echo " - configuring deployment timeout extention and added security domain brms
 echo
 cp support/standalone.xml $SERVER_CONF
 
-echo " - limiting verbose JackRabbit logging in jboss-log4j.xml file..."
-echo
+#echo " - limiting verbose JackRabbit logging in jboss-log4j.xml file..."
+#echo
 cp support/jboss-log4j.xml $SERVER_CONF
 
 # Add execute permissions to the standalone.sh script.
@@ -149,6 +147,12 @@ echo " - adding netty dep to business-central-server.war and jbpm-human-task.war
 echo
 cp support/MANIFEST.MF $SERVER_DIR/business-central-server.war/WEB-INF/classes/META-INF/
 cp support/MANIFEST.MF $SERVER_DIR/jbpm-human-task.war/WEB-INF/classes/META-INF/
+
+echo " - install additional libraries for 6PD."
+echo
+cp support/lib/xstream-1.4.1.jar   $SERVER_DIR/business-central-server.war/WEB-INF/lib
+cp support/lib/xmlpull-1.1.3.1.jar $SERVER_DIR/business-central-server.war/WEB-INF/lib
+cp support/lib/xpp3_min-1.1.4c.jar $SERVER_DIR/business-central-server.war/WEB-INF/lib
 
 echo "JBoss Six Products - Car Insurance Demo ${VERSION} ${DEMO} Setup Complete."
 echo
