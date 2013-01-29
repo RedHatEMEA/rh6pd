@@ -1,0 +1,10 @@
+rule "updateCar"
+ruleflow-group "update"
+no-loop
+dialect "mvel"
+when
+car : Car( )
+then
+ 	System.out.println("Updating Car");
+	update(car);
+end

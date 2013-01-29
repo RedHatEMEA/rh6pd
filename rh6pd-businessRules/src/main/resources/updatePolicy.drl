@@ -1,0 +1,12 @@
+rule "updatePolicy"
+ruleflow-group "update"
+no-loop
+dialect "mvel"
+when
+policy : Policy( )
+
+then
+ 	System.out.println("Updating Policy");
+	update(policy);
+	
+end
