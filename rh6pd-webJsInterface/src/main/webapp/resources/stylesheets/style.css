@@ -19,6 +19,11 @@ topbox {
 	font: bold 18px "verdana", sans-serif;
 	color: #1C75BC;
 }
+link {
+	font: bold 12px "verdana", sans-serif;
+	color: #1C75BC;
+	text-decoration:underline;
+}
 
 h1,h2,h3 {
 	text-align: left;
