@@ -28,9 +28,9 @@
   <itemDefinition id="_driverRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_carRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_address1Item" structureRef="String" />
-  <itemDefinition id="_address2Item" structureRef="Object" />
+  <itemDefinition id="_address2Item" structureRef="String" />
 
-  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote224" tns:packageName="org.jbpm.evaluation.carinsurance" >
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Quote" name="Quote225" tns:packageName="org.jbpm.evaluation.carinsurance" >
 
     <!-- process variables -->
     <property id="name" itemSubjectRef="_nameItem"/>
@@ -163,10 +163,12 @@ System.out.println("Update Policy: Car risk is " + carRisk );
 //policy.setCarRisk(carRiskInt);
 
 //System.out.println(policy);
-
+//Insert into session.
+//kcontext.setVariable("car",car);
+//kcontext.setVariable("policy",policy);
 // Update working memory
-kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
-
+//kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
+//insert(policy);
 
 System.out.println("*** Exiting Update Rules ***");</script>
     </scriptTask>
@@ -179,8 +181,8 @@ System.out.println("*** Exiting Update Rules ***");</script>
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput" name="Model" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput" name="DriverRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input" name="Address2" />
-        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput" name="Reg" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput" name="Price" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput" name="CarRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput" name="Make" />
@@ -195,8 +197,8 @@ System.out.println("*** Exiting Update Rules ***");</script>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</dataInputRefs>
-          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput</dataInputRefs>
@@ -230,12 +232,12 @@ System.out.println("*** Exiting Update Rules ***");</script>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
-        <sourceRef>address1</sourceRef>
-        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</targetRef>
-      </dataInputAssociation>
-      <dataInputAssociation>
         <sourceRef>reg</sourceRef>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>address1</sourceRef>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
         <sourceRef>price</sourceRef>
@@ -465,6 +467,8 @@ System.out.println("setCar Section 2 done");
 
 //Insert into session.
 kcontext.setVariable("car",car);
+kcontext.setVariable("policy",policy);
+
 kcontext.setVariable("make",make);
 kcontext.setVariable("model",model);
 kcontext.setVariable("reg",reg);
@@ -476,10 +480,13 @@ System.out.println("setCar Section 3 done");
 
 // Insert into working memory
 insert(car);
-kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
+insert(policy);
+//kcontext.getKnowledgeRuntime().update(kcontext.getKnowledgeRuntime().getFactHandle(policy), policy);
 
 System.out.println("*** Exiting	 Set Car ***");</script>
     </scriptTask>
+    <businessRuleTask id="_19" name="Update" g:ruleFlowGroup="update" >
+    </businessRuleTask>
 
     <!-- connections -->
     <sequenceFlow id="_17-_4" sourceRef="_17" targetRef="_4" />
@@ -488,13 +495,14 @@ System.out.println("*** Exiting	 Set Car ***");</script>
     <sequenceFlow id="_14-_8" sourceRef="_14" targetRef="_8" />
     <sequenceFlow id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" sourceRef="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" targetRef="_9" />
     <sequenceFlow id="_12-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" sourceRef="_12" targetRef="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" />
-    <sequenceFlow id="_8-_11" sourceRef="_8" targetRef="_11" />
+    <sequenceFlow id="_19-_11" sourceRef="_19" targetRef="_11" />
     <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" />
     <sequenceFlow id="_6-_13" sourceRef="_6" targetRef="_13" />
     <sequenceFlow id="_16-_14" sourceRef="_16" targetRef="_14" />
     <sequenceFlow id="_4-_15" sourceRef="_4" targetRef="_15" />
     <sequenceFlow id="_1-_17" sourceRef="_1" targetRef="_17" />
     <sequenceFlow id="_13-_16" sourceRef="_13" targetRef="_16" />
+    <sequenceFlow id="_8-_19" sourceRef="_8" targetRef="_19" />
 
   </process>
 
@@ -513,22 +521,22 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <dc:Bounds x="797" y="342" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_8" >
-        <dc:Bounds x="42" y="244" width="146" height="71" />
+        <dc:Bounds x="31" y="255" width="146" height="71" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_9" >
         <dc:Bounds x="786" y="253" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <dc:Bounds x="631" y="238" width="126" height="78" />
+        <dc:Bounds x="638" y="245" width="126" height="78" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_11" >
-        <dc:Bounds x="275" y="245" width="142" height="70" />
+        <dc:Bounds x="330" y="255" width="142" height="70" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_12" >
-        <dc:Bounds x="478" y="251" width="97" height="60" />
+        <dc:Bounds x="512" y="261" width="97" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_13" >
-        <dc:Bounds x="190" y="126" width="107" height="60" />
+        <dc:Bounds x="205" y="131" width="107" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_14" >
         <dc:Bounds x="494" y="123" width="143" height="72" />
@@ -540,7 +548,10 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <dc:Bounds x="87" y="16" width="82" height="59" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_16" >
-        <dc:Bounds x="342" y="133" width="100" height="52" />
+        <dc:Bounds x="336" y="134" width="100" height="52" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="216" y="268" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_17-_4" >
         <di:waypoint x="128" y="45" />
@@ -556,30 +567,30 @@ System.out.println("*** Exiting	 Set Car ***");</script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_14-_8" >
         <di:waypoint x="565" y="159" />
-        <di:waypoint x="115" y="279" />
+        <di:waypoint x="104" y="290" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_B09AA1BF-19DA-4F57-B074-F36CB7E94178-_9" >
-        <di:waypoint x="694" y="277" />
+        <di:waypoint x="701" y="284" />
         <di:waypoint x="826" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_12-_B09AA1BF-19DA-4F57-B074-F36CB7E94178" >
-        <di:waypoint x="526" y="281" />
-        <di:waypoint x="694" y="277" />
+        <di:waypoint x="560" y="291" />
+        <di:waypoint x="701" y="284" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_8-_11" >
-        <di:waypoint x="115" y="279" />
-        <di:waypoint x="346" y="280" />
+      <bpmndi:BPMNEdge bpmnElement="_19-_11" >
+        <di:waypoint x="256" y="292" />
+        <di:waypoint x="401" y="290" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_11-_12" >
-        <di:waypoint x="346" y="280" />
-        <di:waypoint x="526" y="281" />
+        <di:waypoint x="401" y="290" />
+        <di:waypoint x="560" y="291" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_6-_13" >
         <di:waypoint x="564" y="47" />
-        <di:waypoint x="243" y="156" />
+        <di:waypoint x="258" y="161" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_16-_14" >
-        <di:waypoint x="392" y="159" />
+        <di:waypoint x="386" y="160" />
         <di:waypoint x="565" y="159" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_4-_15" >
@@ -591,8 +602,12 @@ System.out.println("*** Exiting	 Set Car ***");</script>
         <di:waypoint x="128" y="45" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_13-_16" >
-        <di:waypoint x="243" y="156" />
-        <di:waypoint x="392" y="159" />
+        <di:waypoint x="258" y="161" />
+        <di:waypoint x="386" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_19" >
+        <di:waypoint x="104" y="290" />
+        <di:waypoint x="256" y="292" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

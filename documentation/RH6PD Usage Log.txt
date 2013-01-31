@@ -21,3 +21,7 @@ SA Training 9th January 2013
 ===========================
 Organized a meeting of the UK JBoss solutions architects to get the first version of the insurance car quote from 6PD on their laptops.
 
+Log Entry by Keith Lynch 29th Jan 2013
+ATOC (Association of Train Operating Companies) with ATOS (as in ATOS Origin the SI) - 8th of Nov 2012
+===========================
+Used a custom fork worked on by Ally and James to illusrtate the human task service and the process designer
