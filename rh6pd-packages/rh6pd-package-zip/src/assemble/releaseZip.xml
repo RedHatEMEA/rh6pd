@@ -1,0 +1,52 @@
+<assembly>
+	<id>rh6pd-package-zip</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+
+	<fileSets>
+		<fileSet>
+			<directory>../../documentation/demoGuide</directory>
+			<outputDirectory>documentation</outputDirectory>
+			<includes>
+				<include>*.odt</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<directory>src/main/resources/</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>install.sh</include>
+				<include>start</include>
+			</includes>
+		</fileSet>
+
+
+		<fileSet>
+			<directory>../../rh6pd-businessRules/target/</directory>
+			<outputDirectory>support/</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../../rh6pd-webJsInterface/target/</directory>
+			<outputDirectory>support/</outputDirectory>
+			<includes>
+				<include>*.war</include>
+			</includes>
+		</fileSet>
+
+		<fileSet>
+			<directory>src/main/resources/support</directory>
+			<outputDirectory>support/</outputDirectory>
+		</fileSet>
+
+		<fileSet>
+			<directory>src/main/resources/installs</directory>
+			<outputDirectory>installs/</outputDirectory>
+		</fileSet>
+
+	</fileSets>
+</assembly>

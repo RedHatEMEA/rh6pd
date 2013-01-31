@@ -6,7 +6,7 @@ import java.io.Serializable;
  * This object represents a car in the  insurance policy.
  *
  */
-public class Car implements Serializable
+public class Car implements Serializable 
 {
     private static final long serialVersionUID = 1L;
 	private String carMake    = "Car: Not Set Yet";

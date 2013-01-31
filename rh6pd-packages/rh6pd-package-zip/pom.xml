@@ -16,7 +16,7 @@
             </goals>
             <configuration>
               	<descriptors>
-                	<descriptor>src/assemble/bin.xml</descriptor>
+                	<descriptor>src/assemble/releaseZip.xml</descriptor>
             	</descriptors>  
               	<appendAssemblyId>false</appendAssemblyId> 
             	<finalName>rh6pd-${project.version}</finalName> 

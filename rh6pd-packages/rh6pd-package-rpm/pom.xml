@@ -41,12 +41,8 @@
         <directory>${dir.install}/documentation/</directory>
         <sources>
             <source>
-                <location>${dir.rh6pd}/documentation/installationGuide</location>
+                <location>${dir.rh6pd}/documentation/demoGuide</location>
             </source>
-            <source>
-                <location>${dir.rh6pd}/documentation/presentersGuide</location>
-            </source>
-
         </sources>
     </mapping>
 
