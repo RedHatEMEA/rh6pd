@@ -28,7 +28,7 @@
 
 	<modules>	
 		<module>rh6pd-businessRules</module>
- 		<module>rh6pd-processController</module>
+ 		
  		<module>rh6pd-webJsInterface</module>
  		<module>rh6pd-database</module>
         <module>rh6pd-packages</module>
