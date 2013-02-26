@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_nameItem" structureRef="String" />
+  <itemDefinition id="_policyItem" structureRef="org.jbpm.evaluation.carinsurance.Policy" />
+
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Pass" name="rh6pd-car-insurance-pass" tns:packageName="org.jbpm.evaluation.carinsurance" tns:version="14" >
+
+    <!-- process variables -->
+    <property id="name" itemSubjectRef="_nameItem"/>
+    <property id="policy" itemSubjectRef="_policyItem"/>
+
+    <!-- nodes -->
+    <endEvent id="_17" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <startEvent id="_1" name="Start" />
+    <scriptTask id="_16" name="getPolicy" scriptFormat="http://www.java.com/java" >
+      <script>policy = (org.jbpm.evaluation.carinsurance.Policy)kcontext.getVariable("policy");
+System.out.println("  policy is now " + policy );
+</script>
+    </scriptTask>
+    <businessRuleTask id="_19" name="Retract" g:ruleFlowGroup="retract" >
+    </businessRuleTask>
+    <userTask id="_18" name="GetName" >
+      <ioSpecification>
+        <dataInput id="_18_TaskNameInput" name="TaskName" />
+        <dataInput id="_18_GroupIdInput" name="GroupId" />
+        <dataOutput id="_18_NameOutput" name="Name" />
+        <inputSet>
+          <dataInputRefs>_18_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_18_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_18_NameOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_18_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GetName</from>
+          <to xsi:type="tFormalExpression">_18_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_18_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_18_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_18_NameOutput</sourceRef>
+        <targetRef>name</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_15" name="SetPolicy" scriptFormat="http://www.java.com/java" >
+      <script>
+
+policy = new Policy();
+insert(policy);
+kcontext.setVariable("policy",policy);
+
+System.out.println("policy  is " + policy  );
+</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_19-_17" sourceRef="_19" targetRef="_17" />
+    <sequenceFlow id="_18-_16" sourceRef="_18" targetRef="_16" />
+    <sequenceFlow id="_16-_19" sourceRef="_16" targetRef="_19" />
+    <sequenceFlow id="_15-_18" sourceRef="_15" targetRef="_18" />
+    <sequenceFlow id="_1-_15" sourceRef="_1" targetRef="_15" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="org.jbpm.evaluation.carinsurance.Pass" >
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="467" y="249" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="36" y="21" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="432" y="23" width="100" height="52" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="445" y="133" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="284" y="23" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="135" y="20" width="101" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_19-_17" >
+        <di:waypoint x="485" y="157" />
+        <di:waypoint x="491" y="273" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_16" >
+        <di:waypoint x="334" y="47" />
+        <di:waypoint x="482" y="49" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_19" >
+        <di:waypoint x="482" y="49" />
+        <di:waypoint x="485" y="157" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_18" >
+        <di:waypoint x="185" y="47" />
+        <di:waypoint x="334" y="47" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_15" >
+        <di:waypoint x="60" y="45" />
+        <di:waypoint x="185" y="47" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

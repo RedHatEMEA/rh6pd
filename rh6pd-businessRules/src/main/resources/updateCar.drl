@@ -5,6 +5,6 @@ dialect "mvel"
 when
 car : Car( )
 then
- 	System.out.println("Updating Car");
+ 	System.out.println("*** Update Rules: updating car");
 	update(car);
 end

@@ -5,6 +5,6 @@ dialect "mvel"
 when
 driver : Driver( )
 then
- 	System.out.println("Updating Driver");
+ 	System.out.println("*** Update Rules: updating driver");
 	update(driver);	
 end

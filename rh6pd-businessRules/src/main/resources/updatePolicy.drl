@@ -6,7 +6,7 @@ when
 policy : Policy( )
 
 then
- 	System.out.println("Updating Policy");
+ 	System.out.println("*** Update Rules: updating policy");
 	update(policy);
 	
 end
