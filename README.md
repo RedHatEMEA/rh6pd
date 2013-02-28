@@ -23,6 +23,18 @@ The  car insurance quote is implemented with JBoss Business Rules Management Sys
 #Build Information#
 To build the project :-
 
+  first clone from our V0.1.0 release tag to get the last working version of the car insurance demo.
+
+        create a new directory
+        cd into that directory 
+        	git init 
+        	git remote add origin git@github.com:RedHatUKI/rh6pd.git
+        	git fetch
+        	git checkout tags/v0.1.0
+        This will create a completely seperate instance at version 0.1.0 for testing.
+        You will not be able to commit any changes to the master branch from here but 
+        will give you a good view of the project
+      
   maven install - will create a zip file in the rh6pd/rh6pd-packages target directory
 
 	to install the car insurance demo - use the demo guide found in rh6pd/documentation/demoguide/demoguide.odt
