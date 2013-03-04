@@ -2,20 +2,31 @@ package org.jbpm.evaluation.carinsurance;
 
 import java.io.Serializable;
 
-/**
- * This represents the driver who is applying
- * for an insurance Policy.
- *
- */
+// This represents the driver who is applying for an insurance Policy.
+
 public class Driver implements Serializable
 {
-    private static final long serialVersionUID = 1L; 
+    
 	private String  driverName        = "Driver: Not Set Yet";
 	private Integer driverAge         =  0;
 	private String  driverSsn         = "Driver: Not Set Yet";	
 	private String  driverLicence     = "Driver: Not Set Yet";
 	private Integer driverCreditScore = 0;
-
+	private String 	id;
+	
+	// Constructor
+	public Driver () {}
+	
+	public Driver(String id) {
+		this.id = id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getId() {
+		return id;
+	}
 	
 	// Driver name
 	public String getName() {
@@ -55,6 +66,27 @@ public class Driver implements Serializable
 	}
 	public void setCreditScore(Integer driverCreditScore) {
 		this.driverCreditScore = driverCreditScore;
+	}
+	
+	// Methods to support Hibernate persistence
+	public boolean equals(final Object object) {
+		if (object == this ) {
+			return true;
+		}
+		
+		if ( object == null || !(object instanceof Driver) ) {
+			return false;
+			
+		}
+		
+		final Driver other = (Driver) object;
+		
+		return (   this.id.equals( other.getId() )  );
+					
+	}
+	
+	public int hashCode() {
+		return this.id.hashCode();
 	}
 	
 }

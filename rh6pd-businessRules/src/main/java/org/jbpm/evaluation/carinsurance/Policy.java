@@ -10,22 +10,35 @@ import java.util.Date;
  */
 public class Policy implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    
   	private Date    policyDate   = new Date();
   	
   	// COMPREHENSIVE, FIRE_THEFT, THIRD_PARTY
   	private String  policyType           = "Policy: Not Set Yet"; 
-    
-	private int     policyTotalRisk      = 0;
+    private int     policyTotalRisk      = 0;
+	// Risk determined by driver age.
 	private int     policyDriverRisk     = 0;
+	// Car risk determined by car type, make model etc.
 	private int     policyCarRisk        = 0;
 	private int     policyHistoryRisk    = 0;
 	private int     policyAccidentRisk   = 0;
-
 	private int     policyPrice          = 0;
 	private int     policyDiscount       = 0;
+	private String 	id;
 	
-
+	// Constructor
+	public Policy () {}
+	
+	public Policy(String id) {
+		this.id = id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getId() {
+		return id;
+	}
 	
 	// Policy Date
 	public Date getDate(){
@@ -105,7 +118,27 @@ public class Policy implements Serializable
 	public void setDiscount(int policyDiscount){
 		this.policyDiscount = policyDiscount;
 	}
-
+	
+	// Methods to support Hibernate persistence
+	public boolean equals(final Object object) {
+		if (object == this ) {
+			return true;
+		}
+		
+		if ( object == null || !(object instanceof Policy) ) {
+			return false;
+			
+		}
+		
+		final Policy other = (Policy) object;
+		
+		return (   this.id.equals( other.getId() )  );
+					
+	}
+	
+	public int hashCode() {
+		return this.id.hashCode();
+	}
 	//Ends
 
 }
