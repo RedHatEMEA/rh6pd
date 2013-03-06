@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JBoss, Home of Professional Open Source
+    Copyright 2012, Red Hat, Inc. and/or its affiliates, and individual
+    contributors by the @authors tag. See the copyright.txt in the 
+    distribution for a full listing of individual contributors.
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,  
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ -->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd
+   http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
+    <portlet>
+        <description>A simple portlet usinf JSF2 and RF4.</description>
+        <portlet-name>rh6pdQuotePortlet</portlet-name>
+        <display-name>rh6pd-quote-portlet</display-name>
+        <portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+        <init-param>
+            <name>javax.portlet.faces.defaultViewId.view</name>
+            <value>/pages/main.xhtml</value>
+        </init-param>
+        <init-param>
+            <name>javax.portlet.faces.defaultViewId.edit</name>
+            <value>/pages/edit.xhtml</value>
+        </init-param>
+        <init-param>
+            <name>javax.portlet.faces.defaultViewId.help</name>
+            <value>/pages/help.xhtml</value>
+        </init-param>
+        <init-param>
+            <name>javax.portlet.faces.preserveActionParams</name>
+            <value>true</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>VIEW</portlet-mode>
+            <portlet-mode>EDIT</portlet-mode>
+            <portlet-mode>HELP</portlet-mode>
+        </supports>
+        <portlet-info>
+            <title>JSF2+RF4 Hello World Portlet</title>
+        </portlet-info>
+        <container-runtime-option>
+            <name>org.gatein.pc.remotable</name>
+            <value>true</value>
+        </container-runtime-option>
+    </portlet>
+</portlet-app>
