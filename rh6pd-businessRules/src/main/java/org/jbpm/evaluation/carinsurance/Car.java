@@ -63,7 +63,7 @@ public class Car implements Serializable
 	
 	// Methods to support Hibernate persistence
 	public boolean equals(final Object object) {
-		..if (object == this ) {
+		if (object == this ) {
 			return true;
 		}
 		
