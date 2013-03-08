@@ -24,7 +24,6 @@
 	<artifactId>rh6pd-portal</artifactId>
 	<packaging>war</packaging>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>rh6pd.portal</groupId>
 	
 	<parent>
 		<groupId>rh6pd</groupId>
@@ -120,21 +119,3 @@
     </build>
 
 </project>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

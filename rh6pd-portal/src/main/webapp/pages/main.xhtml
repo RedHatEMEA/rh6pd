@@ -47,32 +47,24 @@
             html generated from the application server using an ajax call.
         </p>
         <h:form id="rh6pdQuote">
-            <h:panelGrid columns="2">
-                <h:outputLabel value="#{msgs.Greeting}" for="greeting"/>
-                <rich:select id="greeting" value="#{rh6pdQuote.greeting}">
-                    <f:selectItems value="#{rh6pdQuote.greetings}" />
-                    <f:ajax render="output" event="selectitem"/>
-                </rich:select>
-                
-                <h:outputLabel value="#{msgs.Name}" for="nameInput"/>
-                <h:inputText id="nameInput" value="#{rh6pdQuote.name}">
-                    <f:validateLength minimum="1" maximum="50" />
-                    <f:ajax render="output" event="keyup"/>
-                </h:inputText>
-            </h:panelGrid>
-            <p>
-                <h:panelGroup id="output">
-                    <strong><h:outputText value="#{rh6pdQuote.greeting} #{rh6pdQuote.name}!" rendered="#{not empty rh6pdQuote.name}"/></strong>
-                </h:panelGroup>
-            </p>
-            <p>
-                <h:commandButton id="reset" value="#{msgs.Reset}" actionListener="#{rh6pdQuote.reset}">
-                    <f:ajax render="@form" />
-                </h:commandButton> - #{msgs.ResetComment}
-            </p>
-            <p>
-                <h:commandButton id="reload" value="#{msgs.Reload}" /> - #{msgs.ReloadComment}
-            </p>
+        <p> hello world </p>
+            <div id="tabbed_box_1" class="tabbed_box">  
+			    <h4>Browse Site <small>Select a Tab</small></h4>  
+			    <div class="tabbed_area">  
+			      
+			        <ul class="tabs">  
+			            <li><a href="" id="tab_1" class="active">Archives</a></li>  
+			            <li><a href="" id="tab_2">Topics</a></li>  
+			            <li><a href="" id="tab_3">Pages</a></li>  
+			        </ul>  
+			          
+			        <div id="content_1" class="content">Content for Tab 1</div>  
+			        <div id="content_2" class="content">Content for Tab 2</div>  
+			        <div id="content_3" class="content">Content for Tab 3</div>  
+			      
+			    </div>  
+			  
+			</div>  
         </h:form>
     </h:body>
 </f:view>

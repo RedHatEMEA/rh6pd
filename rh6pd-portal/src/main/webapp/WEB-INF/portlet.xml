@@ -20,7 +20,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd
    http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
     <portlet>
-        <description>A simple portlet usinf JSF2 and RF4.</description>
+        <description>RH6PD Quote Portal</description>
         <portlet-name>rh6pdQuotePortlet</portlet-name>
         <display-name>rh6pd-quote-portlet</display-name>
         <portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
@@ -48,7 +48,7 @@
             <portlet-mode>HELP</portlet-mode>
         </supports>
         <portlet-info>
-            <title>JSF2+RF4 Hello World Portlet</title>
+            <title>RH6PD Quote Portlet Info</title>
         </portlet-info>
         <container-runtime-option>
             <name>org.gatein.pc.remotable</name>
