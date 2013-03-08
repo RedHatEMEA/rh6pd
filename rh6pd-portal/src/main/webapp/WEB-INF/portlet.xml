@@ -22,11 +22,15 @@
     <portlet>
         <description>RH6PD Quote Portal</description>
         <portlet-name>rh6pdQuotePortlet</portlet-name>
+        
+        
         <display-name>rh6pd-quote-portlet</display-name>
+        
         <portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
+                     
         <init-param>
             <name>javax.portlet.faces.defaultViewId.view</name>
-            <value>/pages/main.xhtml</value>
+            <value>/pages/quote.xhtml</value>
         </init-param>
         <init-param>
             <name>javax.portlet.faces.defaultViewId.edit</name>
