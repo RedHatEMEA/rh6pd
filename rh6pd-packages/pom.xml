@@ -12,9 +12,17 @@
   </parent>
  
   <modules>
-      <module>rh6pd-package-rpm</module>
       <module>rh6pd-package-zip</module> 
   </modules>
+
+  <profiles>
+	<profile>
+		<id>rpm</id>
+		<modules>
+      		<module>rh6pd-package-rpm</module>
+		</modules>
+	</profile>
+  </profiles>
 
   <build>
   	<plugins> 
