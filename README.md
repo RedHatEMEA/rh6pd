@@ -34,7 +34,8 @@ To build the project :-
         This will create a completely seperate instance at version 0.1.0 for testing.
         You will not be able to commit any changes to the master branch from here but 
         will give you a good view of the project
-      
+
+## zip ##
   maven install - will create a zip file in the rh6pd/rh6pd-packages target directory
 
 	to install the car insurance demo - use the demo guide found in rh6pd/documentation/demoguide/demoguide.odt
@@ -42,3 +43,5 @@ To build the project :-
         
 	There is also a video of the demo being presented in the same documentation directory - BRMS Car Insurance Demo.m4v
 
+## rpm ##
+To build an RPM, run `maven clean install -P rpm` - the `rpm` profile needs to be activated.
