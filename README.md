@@ -54,7 +54,7 @@ From the root of your Git repo, run;
 
 	maven install 
 	
-This will create a zip file in the (rh6pd-packages/rh6pd-package-zip/target/) directory
+This will create a zip file in the [rh6pd-packages/rh6pd-package-zip/target/](rh6pd-packages/rh6pd-package-zip/target/) directory
 
 From now, you can install the car insurance demo - use the demo guide found in 
 "rh6pd/documentation/demoguide/demoguide.odt"
