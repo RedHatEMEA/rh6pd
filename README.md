@@ -62,7 +62,7 @@ From now, you can install the car insurance demo - use the demo guide found in
 You will need to pull the latest version of EAP 6 and BRMS to run the demo.
 
 There is also a video of the demo being presented: 
-[documentation/demoGuide/BRMS Car Insurance Demo.m4v](BRMS Car Insurance Demo.m4v)
+[documentation/demoGuide/BRMS Car Insurance Demo.m4v](documentation/demoGuide/BRMS Car Insurance Demo.m4v)
 
 ## rpm ##
 To build an RPM, run `maven clean install -P rpm` - the `rpm` profile needs to be activated.
