@@ -32,12 +32,12 @@ tags here; https://github.com/RedHatEMEA/rh6pd/tags
 At the time of writing, the most recent tag is 0.1.0-1. You can clone this tag 
 in to your own repo like this; 
 
-        mkdir rh6pd/
-        cd rh6pd 
-       	git init 
-       	git remote add origin git@github.com:RedHatUKI/rh6pd.git
-       	git fetch
-       	git checkout tags/v0.1.0
+	mkdir rh6pd/
+	cd rh6pd 
+	git init 
+	git remote add origin git@github.com:RedHatUKI/rh6pd.git
+	git fetch
+	git checkout tags/v0.1.0
 
 This will create a completely seperate instance at version 0.1.0 for testing.
 You will not be able to commit any changes to the master branch from here but 
@@ -54,7 +54,7 @@ From the root of your Git repo, run;
 
 	maven install 
 	
-This will create a zip file in the [rh6pd-packages/rh6pd-package-zip/target/](rh6pd-packages/rh6pd-package-zip/target/) directory
+This will create a zip file in the [rh6pd-packages/rh6pd-package-zip/](rh6pd-packages/rh6pd-package-zip/)/target directory
 
 From now, you can install the car insurance demo - use the demo guide found in 
 "rh6pd/documentation/demoguide/demoguide.odt"
@@ -62,7 +62,7 @@ From now, you can install the car insurance demo - use the demo guide found in
 You will need to pull the latest version of EAP 6 and BRMS to run the demo.
 
 There is also a video of the demo being presented: 
-"documentation/BRMS Car Insurance Demo.m4v"
+[documentation/demoGuide/BRMS Car Insurance Demo.m4v](BRMS Car Insurance Demo.m4v)
 
 ## rpm ##
 To build an RPM, run `maven clean install -P rpm` - the `rpm` profile needs to be activated.
