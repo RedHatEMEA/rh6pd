@@ -13,7 +13,7 @@ public class Car implements Serializable
 	private String carModel   = "Car: Not Set Yet";	
 	private int    carYear    = 0;
 	private String carRegMark = "Car: Not Set Yet" ;
-	private String id;
+	private String id = "";
 	
 	// Constructor
 	public Car () {}

@@ -18,7 +18,7 @@
 			<outputDirectory>/</outputDirectory>
 			<includes>
 				<include>install.sh</include>
-				<include>start</include>
+				<include>start.sh</include>
 			</includes>
 		</fileSet>
 

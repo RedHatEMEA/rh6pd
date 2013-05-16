@@ -11,7 +11,7 @@ public class History implements Serializable
 
 	private Integer historyAccidents = 0;
 	private Integer historyTickets   = 0;
-	private String 	id;
+	private String 	id = "";
 	
 	// Constructor
 	public History () {}

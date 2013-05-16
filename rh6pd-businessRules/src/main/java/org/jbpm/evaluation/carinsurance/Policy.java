@@ -24,7 +24,7 @@ public class Policy implements Serializable
 	private int     policyAccidentRisk   = 0;
 	private int     policyPrice          = 0;
 	private int     policyDiscount       = 0;
-	private String 	id;
+	private String 	id = "";
 	
 	// Constructor
 	public Policy () {}

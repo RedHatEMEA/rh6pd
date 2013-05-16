@@ -12,7 +12,7 @@ public class Driver implements Serializable
 	private String  driverSsn         = "Driver: Not Set Yet";	
 	private String  driverLicence     = "Driver: Not Set Yet";
 	private Integer driverCreditScore = 0;
-	private String 	id;
+	private String 	id = "";
 	
 	// Constructor
 	public Driver () {}
