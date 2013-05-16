@@ -62,6 +62,12 @@ fi
 echo Unpacking JBoss Enterprise BRMS $VERSION...
 echo
 cd installs
+
+if [[ ! -f "$BRMS" ]]; then
+	echo "Could not find $BRMS in the install directory"
+	exit
+fi
+
 unzip -q $BRMS
 
 echo " - deploying JBoss Enterprise BRMS Manager WAR..."
