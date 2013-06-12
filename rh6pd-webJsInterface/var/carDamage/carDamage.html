@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Car Damage</title>
+<style type = "text/css">
+div#carContainer {
+		text-align: center;
+}
+
+div.defectSelector {
+	position: absolute;
+	background-color: LimeGreen;
+	border: 1px solid black;
+	cursor: pointer;
+}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type = "text/javascript">
+function defectSelector(x, y, id) {
+	this.el = $('<div>No Damage</div>');
+	this.el.css('left', x + 'px');
+	this.el.css('top', y + 'px');
+	this.el.addClass('defectSelector')
+	this.text = "???";
+
+	$('div#carContainer').append(this.el);
+
+	function click() {
+		var sel = $(this);
+
+		switch (sel.text()) {
+		case 'Major':
+			sel.text('None');
+			sel.css('background-color', 'LimeGreen');
+			break;
+		case 'Minor':
+			sel.text('Major');
+			sel.css('background-color', 'Salmon');
+			break;
+		case 'None':
+		default:
+			sel.text('Minor')
+			sel.css('background-color', 'orange');
+		}
+	}
+
+	this.el.click(click);
+}
+</script>
+</head>
+<body>
+
+		<div id = "carContainer">
+			<img src = "carDamage.png" />
+		</div>
+		<script type = "text/javascript">
+new defectSelector(150, 200, "bonet");
+new defectSelector(600, 200, "door1");
+new defectSelector(800, 200, "door1");
+new defectSelector(1200, 200, "boot");
+
+new defectSelector(800, 700, "roof");
+
+
+		</script>
+</body>
+</html>
