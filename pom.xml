@@ -28,10 +28,12 @@
 
 	<modules>	
 		<module>rh6pd-businessRules</module>
- 		<module>rh6pd-webJsInterface</module>
- 		<module>rh6pd-database</module>
-        <module>rh6pd-packages</module>
-        <module>rh6pd-portal</module>
+		<module>rh6pd-webJsInterface</module>
+		<module>rh6pd-database</module>
+		<module>rh6pd-packages</module>
+		<module>rh6pd-portal</module>
+		<module>rh6pd-integration</module>
+		<module>rh6pd-integrationHarness</module>
 	</modules> 
 
 </project>
