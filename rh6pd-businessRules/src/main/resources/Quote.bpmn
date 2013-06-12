@@ -25,8 +25,6 @@
   <itemDefinition id="_carItem" structureRef="org.jbpm.evaluation.carinsurance.Car" />
   <itemDefinition id="_yearItem" structureRef="Integer" />
   <itemDefinition id="_carRiskItem" structureRef="String" />
-  <itemDefinition id="_driverRiskIntItem" structureRef="Integer" />
-  <itemDefinition id="_carRiskIntItem" structureRef="Integer" />
   <itemDefinition id="_address1Item" structureRef="String" />
   <itemDefinition id="_address2Item" structureRef="String" />
 
@@ -46,8 +44,6 @@
     <property id="car" itemSubjectRef="_carItem"/>
     <property id="year" itemSubjectRef="_yearItem"/>
     <property id="carRisk" itemSubjectRef="_carRiskItem"/>
-    <property id="driverRiskInt" itemSubjectRef="_driverRiskIntItem"/>
-    <property id="carRiskInt" itemSubjectRef="_carRiskIntItem"/>
     <property id="address1" itemSubjectRef="_address1Item"/>
     <property id="address2" itemSubjectRef="_address2Item"/>
 
@@ -149,8 +145,8 @@
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput" name="Model" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput" name="DriverRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input" name="Address2" />
-        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput" name="Reg" />
+        <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input" name="Address1" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput" name="Price" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput" name="CarRisk" />
         <dataInput id="_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput" name="Make" />
@@ -165,8 +161,8 @@
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_ModelInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_DriverRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</dataInputRefs>
-          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput</dataInputRefs>
+          <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_PriceInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_CarRiskInput</dataInputRefs>
           <dataInputRefs>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_MakeInput</dataInputRefs>
@@ -200,12 +196,12 @@
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address2Input</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
-        <sourceRef>address1</sourceRef>
-        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</targetRef>
-      </dataInputAssociation>
-      <dataInputAssociation>
         <sourceRef>reg</sourceRef>
         <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_RegInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>address1</sourceRef>
+        <targetRef>_B09AA1BF-19DA-4F57-B074-F36CB7E94178_Address1Input</targetRef>
       </dataInputAssociation>
       <dataInputAssociation>
         <sourceRef>price</sourceRef>
