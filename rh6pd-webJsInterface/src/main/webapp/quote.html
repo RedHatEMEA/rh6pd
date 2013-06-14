@@ -1,129 +1,64 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<html>
 <head>
-	<title>Red Hat | New Quote</title>
-	<link href="resources/stylesheets/style.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="resources/javascript/jquery.js"></script>
-</head>    
+<title>Red Hat | New Quote</title>
+	<link href="resources/stylesheets/style.css" rel="stylesheet" type="text/css"></link>
+	<script type="text/javascript" src="resources/javascript/jquery.js"></script> 
+	<script type="text/javascript" src = "resources/javascript/brmsQuote.js"></script>
+</head>
 
-<script>
-var action = "EMPTY";
-var url="http://localhost:8080/business-central-server/rs/process/definitions";
-var http_request_get = new XMLHttpRequest();
-
-function createFormAndSubmit(action)
-{
-	//alert("starting post")
-	var http_request_post = new XMLHttpRequest();
-	http_request_post.open("POST", action, true);
-	//alert("action is " + action)
-	http_request_post.onreadystatechange = function () 
-	{
-	    var done = 4, ok = 200;
-	  
-	    if (http_request_post.readyState == done && http_request_post.status == ok) 
-	    {
-	        data = JSON.parse(http_request_post.response);
-	        var output="<ul>";
-	        console.log(data);
-		    document.getElementById("post_response").innerHTML = data.id;
-	        output+="</ul>";
-	    }
-	}
-	http_request_post.send(null);
-
-	var intervalID = window.setInterval(next, 500);
-}
-
-next = function ()
-{
-	//alert ("go");
-	window.location = "tasks.html"; 
-	}
-
-http_request_get.onreadystatechange = function () 
-{
-    var done = 4, ok = 200;
-  
-    if (http_request_get.readyState == done && http_request_get.status == ok) 
-    {
-        try {
-        	data = JSON.parse(http_request_get.response);
-        } catch (err) {
-            $("#content").html('<p>Caught error parsing intial JSON response from server. Have you logged into the jBPM Console? </p><p>The error was: ' + err + '</p>'); 
-            return; 
-        }
-       
-        var output="<ul>";
-        console.log(data);
-     
-        for (var i in data.definitions) 
-        {
-            output+="<li>" + data.definitions[i].name + "<br>" + data.definitions[i].packageName+"</li>";
-        	action = "http://localhost:8080/business-central-server/rs/process/definition/" + data.definitions[i].id + "/new_instance";
-        	//document.getElementById("action").innerHTML=action;
-        	document.getElementById("placeholder").innerHTML=output;
-        	$('#button').removeAttr('disabled'); 
-        }
-        output+="</ul>";
-    }
-}
-</script>
-
-<body>
-<div id="header">
+<body> 
+	<div id="header">
 		<div id="header-inner">
 			<a href="index.html"><img src="resources/images/redhat_logo.png" alt="Red Hat" id="header-logo" /></a>
 		</div>
 	</div>
 
-<div id="container">
-	<div id="content-wrapper">
-
+	<div id="container">
+		<div id="content-wrapper">
+ 
 			<div id="column-left"></div>
 
 			<div id="column-right">
 				<div id="content">
-	
-	<div>
-	<topbox> CUSTOMER INSURANCE DEMO : Start Quote</topbox>
-	</div>
-	
-	
-		<img src="resources/images/auto_insurance-car.png" alt="JBoss"width="400" height="150"/>
-	
-        <fieldset>
-            	<legend>Available business processes</legend>
-            
-				<div id="placeholder"></div>
-				<div id="action"></div>
-				<div id="post_response"></div>
 
-				<script>
-				http_request_get.open("GET", url, true);
-				http_request_get.send(null);
-				</script>
+					<div> 
+						<div class = "topbox"> CUSTOMER INSURANCE DEMO : Start Quote</div>
+					</div>
 
-				<div class="button_div">
-				<input  id="button" type="button" disabled="disabled" value="START QUOTE" onclick="createFormAndSubmit(action)">   		
-                </div>
-                    
-            	<div class="clear"></div>
-            	
-          </fieldset>
+					<div style="background-color: white; border: 1px solid black; margin-botom: 2em;">
+						<img src="resources/images/auto_insurance-car.png" alt="JBoss" width="400" height="150" />
+					</div>
+
+					<h2>Available business processes</h2>
+
+					<div id="placeholder"></div>
+					<div id="action"></div>
+					<div id="post_response"></div>
+
+					<script type="text/javascript">$(document).ready(function() { onPageLoad(); })</script>
+
+					<div class="button_div">
+						<input id="button" type="button" disabled="disabled" value="Start Quote &raquo;" onclick="javascript:createFormAndSubmit(action)" />
+					</div>
+
+					<div class="clear"></div>
+
+				</div>
+			</div>
+		</div>
 	</div>
-	</div>
-	</div>
-	</div>	
-	
-	
-	<div id="footer"> 
+ 
+
+	<div id="footer">
 		<div id="footer-inner">
 
 			<div id="footer-left">
-				<p>Brought to you by the JBoss Six Products Demo Team at <a href="http://www.redhat.com" target="new">Red Hat UKI</a></p>
-				</div>
-			
-		</div>  
+				<p>
+					Brought to you by the JBoss Six Products Demo Team at <a href="http://www.redhat.com" target="new">Red Hat UKI</a>
+				</p>
+			</div>
+
+		</div>
 	</div>
 </body>
 </html>

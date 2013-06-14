@@ -15,7 +15,7 @@ a:hover {
 	color: #1C75BC;
 }
 
-topbox {
+div.topbox {
 	font: bold 18px "verdana", sans-serif;
 	color: #1C75BC;
 }
@@ -61,8 +61,7 @@ fieldset {
 	margin-bottom:20px;
 }
 legend {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size: 90%;
+	font-size: 90%; 
 	letter-spacing: -1px;
 	font-weight: bold;
 	line-height: 1.1;
@@ -209,12 +208,21 @@ legend {
 
 
 #button {
-	background-color: red;
+	border: 0; 
+	background-color: rgb(204, 0, 0);
 	color: white;
 	font-size: 100%;
 	border-radius: .5em; 
 	padding: .5em; 
-	
+	cursor: pointer;	
+}
+
+#button:hover {
+	text-decoration: underline;
+}
+
+#button:disabled {
+	background-color: gray !important;
 }
 
 .div_checkbox {
