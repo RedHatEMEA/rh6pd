@@ -119,13 +119,45 @@ function highlightField(field, isStatusGood) {
 	} 
 }
 
+this.validatedFields = [];
+
+function tryEnableButton(fieldId) { 
+	this.validatedFields[fieldId] = true;
+	
+	for (var i = 0; i < this.validatedFields.length; i++) {
+		if (validatedFields[i] == false) {
+			return;
+		}
+	}
+	
+	$('#button').removeAttr('disabled');
+}
+
+function disableButton(element) { 
+	this.validatedFields[element] = false;
+	$('#button').attr('disabled', 'disabled');
+}
+
 function validateField(fieldId, acceptsOnlyNumbers, acceptsLetters, acceptsSpaces) {
 	var field = $('#' + fieldId);
+	var validationError = null;
+	 
+	try {
+		if (field.val() == '') { 
+			highlightField(field, false);
+			throw "Failed to validate field: " + fieldId; 
+		}   
+	} catch (err) {
+		validationError = err;
+	}
 	
-	if (field.val() == '') {
-		highlightField(field, false);
-		throw "Failed to validate field: " + field; 
-	}  
+	if (validationError == null) {
+		tryEnableButton(fieldId);
+		return;
+	} else {
+		disableButton(fieldId);
+		throw validationError;
+	}
 }
   
 function softValidateField(fieldId, acceptsOnlyNumbers, acceptsLetters, acceptsSpaces) {
