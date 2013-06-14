@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.omg.org/bpmn20"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_nameItem" structureRef="String" />
+  <itemDefinition id="_ageItem" structureRef="String" />
+  <itemDefinition id="_driverItem" structureRef="String" />
+  <itemDefinition id="_policyItem" structureRef="String" />
+  <itemDefinition id="_creditItem" structureRef="String" />
+  <itemDefinition id="_driverRiskItem" structureRef="String" />
+  <itemDefinition id="_priceItem" structureRef="String" />
+  <itemDefinition id="_makeItem" structureRef="String" />
+  <itemDefinition id="_modelItem" structureRef="String" />
+  <itemDefinition id="_regItem" structureRef="String" />
+  <itemDefinition id="_carItem" structureRef="String" />
+  <itemDefinition id="_yearItem" structureRef="String" />
+  <itemDefinition id="_carRiskItem" structureRef="String" />
+  <itemDefinition id="_address1Item" structureRef="String" />
+  <itemDefinition id="_address2Item" structureRef="String" />
+  <itemDefinition id="_policynumberItem" structureRef="String" />
+  <itemDefinition id="_partyItem" structureRef="String" />
+  <itemDefinition id="_frontdamageItem" structureRef="String" />
+  <itemDefinition id="_rhsdamageItem" structureRef="String" />
+  <itemDefinition id="_lhsdamageItem" structureRef="String" />
+  <itemDefinition id="_reardamageItem" structureRef="String" />
+  <itemDefinition id="_repairpriceItem" structureRef="String" />
+  <itemDefinition id="_approvalItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="org.jbpm.evaluation.carinsurance.Claim" name="rh6pd-car-insurance-claim" tns:packageName="org.jbpm.evaluation.carinsurance" >
+
+    <!-- process variables -->
+    <property id="name" itemSubjectRef="_nameItem"/>
+    <property id="age" itemSubjectRef="_ageItem"/>
+    <property id="driver" itemSubjectRef="_driverItem"/>
+    <property id="policy" itemSubjectRef="_policyItem"/>
+    <property id="credit" itemSubjectRef="_creditItem"/>
+    <property id="driverRisk" itemSubjectRef="_driverRiskItem"/>
+    <property id="price" itemSubjectRef="_priceItem"/>
+    <property id="make" itemSubjectRef="_makeItem"/>
+    <property id="model" itemSubjectRef="_modelItem"/>
+    <property id="reg" itemSubjectRef="_regItem"/>
+    <property id="car" itemSubjectRef="_carItem"/>
+    <property id="year" itemSubjectRef="_yearItem"/>
+    <property id="carRisk" itemSubjectRef="_carRiskItem"/>
+    <property id="address1" itemSubjectRef="_address1Item"/>
+    <property id="address2" itemSubjectRef="_address2Item"/>
+    <property id="policynumber" itemSubjectRef="_policynumberItem"/>
+    <property id="party" itemSubjectRef="_partyItem"/>
+    <property id="frontdamage" itemSubjectRef="_frontdamageItem"/>
+    <property id="rhsdamage" itemSubjectRef="_rhsdamageItem"/>
+    <property id="lhsdamage" itemSubjectRef="_lhsdamageItem"/>
+    <property id="reardamage" itemSubjectRef="_reardamageItem"/>
+    <property id="repairprice" itemSubjectRef="_repairpriceItem"/>
+    <property id="approval" itemSubjectRef="_approvalItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <userTask id="_2" name="GetDriver2" >
+      <ioSpecification>
+        <dataInput id="_2_TaskNameInput" name="TaskName" />
+        <dataInput id="_2_GroupIdInput" name="GroupId" />
+        <dataOutput id="_2_NameOutput" name="Name" />
+        <inputSet>
+          <dataInputRefs>_2_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_2_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_2_NameOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_2_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GetDriver2</from>
+          <to xsi:type="tFormalExpression">_2_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_2_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_2_NameOutput</sourceRef>
+        <targetRef>name</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_3" name="GetPolicy" >
+      <ioSpecification>
+        <dataInput id="_3_TaskNameInput" name="TaskName" />
+        <dataInput id="_3_GroupIdInput" name="GroupId" />
+        <dataOutput id="_3_PolicyNumberOutput" name="PolicyNumber" />
+        <inputSet>
+          <dataInputRefs>_3_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_3_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_PolicyNumberOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_3_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GetPolicy</from>
+          <to xsi:type="tFormalExpression">_3_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_3_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_PolicyNumberOutput</sourceRef>
+        <targetRef>policynumber</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_4" name="GetParty" >
+      <ioSpecification>
+        <dataInput id="_4_TaskNameInput" name="TaskName" />
+        <dataInput id="_4_GroupIdInput" name="GroupId" />
+        <dataOutput id="_4_PartyOutput" name="Party" />
+        <inputSet>
+          <dataInputRefs>_4_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_4_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_4_PartyOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_4_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GetParty</from>
+          <to xsi:type="tFormalExpression">_4_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_4_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_PartyOutput</sourceRef>
+        <targetRef>party</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_5" name="GetDamage" >
+      <ioSpecification>
+        <dataInput id="_5_TaskNameInput" name="TaskName" />
+        <dataInput id="_5_GroupIdInput" name="GroupId" />
+        <dataOutput id="_5_FrontDamageOutput" name="FrontDamage" />
+        <dataOutput id="_5_LHSideDamageOutput" name="LHSideDamage" />
+        <dataOutput id="_5_RearDamageOutput" name="RearDamage" />
+        <dataOutput id="_5_RHSideDamageOutput" name="RHSideDamage" />
+        <inputSet>
+          <dataInputRefs>_5_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_5_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_5_FrontDamageOutput</dataOutputRefs>
+          <dataOutputRefs>_5_LHSideDamageOutput</dataOutputRefs>
+          <dataOutputRefs>_5_RearDamageOutput</dataOutputRefs>
+          <dataOutputRefs>_5_RHSideDamageOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_5_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GetDamage</from>
+          <to xsi:type="tFormalExpression">_5_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_5_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_FrontDamageOutput</sourceRef>
+        <targetRef>frontdamage</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_LHSideDamageOutput</sourceRef>
+        <targetRef>lhsdamage</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_RearDamageOutput</sourceRef>
+        <targetRef>reardamage</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_RHSideDamageOutput</sourceRef>
+        <targetRef>rhsdamage</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_6" name="SearchBestPrice" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("*** SearchBestPrice : name is " + name );
+			System.out.println("*** SearchBestPrice : policy number  is " + policynumber );
+			System.out.println("*** SearchBestPrice : party is "          + party );
+			System.out.println("*** SearchBestPrice : front damage is "   + frontdamage );
+			System.out.println("*** SearchBestPrice : lhs damage is "     + lhsdamage );
+			System.out.println("*** SearchBestPrice : rhs damage is "     + rhsdamage );
+			System.out.println("*** SearchBestPrice : rear damage  is "   + reardamage );
+			System.out.println("*** SearchBestPrice : repair price is "   + repairprice );
+       </script>
+    </scriptTask>
+    <userTask id="_7" name="ApproveRepair" >
+      <ioSpecification>
+        <dataInput id="_7_TaskNameInput" name="TaskName" />
+        <dataInput id="_7_GroupIdInput" name="GroupId" />
+        <dataOutput id="_7_ApprovalOutput" name="Approval" />
+        <inputSet>
+          <dataInputRefs>_7_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_7_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_7_ApprovalOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_7_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ApproveRepair</from>
+          <to xsi:type="tFormalExpression">_7_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_7_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">HR</from>
+          <to xsi:type="tFormalExpression">_7_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_7_ApprovalOutput</sourceRef>
+        <targetRef>approval</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>admin</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_8" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_9" name="SetDriver2" scriptFormat="http://www.java.com/java" >
+      <script>kcontext.setVariable("name",name);</script>
+    </scriptTask>
+    <scriptTask id="_10" name="SetPolicy" scriptFormat="http://www.java.com/java" >
+      <script>kcontext.setVariable("policynumber",policynumber);</script>
+    </scriptTask>
+    <scriptTask id="_11" name="SetParty" scriptFormat="http://www.java.com/java" >
+      <script>kcontext.setVariable("party",party);</script>
+    </scriptTask>
+    <scriptTask id="_12" name="SetDamage" scriptFormat="http://www.java.com/java" >
+      <script>kcontext.setVariable("frontdamage",frontdamage);
+kcontext.setVariable("rhsdamage",frontdamage);
+kcontext.setVariable("lhsdamage",frontdamage);
+kcontext.setVariable("reardamage",frontdamage);</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_9-_3" sourceRef="_9" targetRef="_3" />
+    <sequenceFlow id="_10-_4" sourceRef="_10" targetRef="_4" />
+    <sequenceFlow id="_11-_5" sourceRef="_11" targetRef="_5" />
+    <sequenceFlow id="_12-_6" sourceRef="_12" targetRef="_6" />
+    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" />
+    <sequenceFlow id="_7-_8" sourceRef="_7" targetRef="_8" />
+    <sequenceFlow id="_2-_9" sourceRef="_2" targetRef="_9" />
+    <sequenceFlow id="_3-_10" sourceRef="_3" targetRef="_10" />
+    <sequenceFlow id="_4-_11" sourceRef="_4" targetRef="_11" />
+    <sequenceFlow id="_5-_12" sourceRef="_5" targetRef="_12" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="org.jbpm.evaluation.carinsurance.Claim" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="49" y="37" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="136" y="40" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="136" y="135" width="96" height="52" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="126" y="237" width="95" height="53" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="129" y="335" width="99" height="59" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="127" y="450" width="115" height="58" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="299" y="443" width="118" height="65" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="482" y="448" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="299" y="40" width="105" height="47" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="293" y="132" width="120" height="56" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="300" y="234" width="117" height="59" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="310" y="331" width="106" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="73" y="61" />
+        <di:waypoint x="186" y="64" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_3" >
+        <di:waypoint x="351" y="63" />
+        <di:waypoint x="184" y="161" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_4" >
+        <di:waypoint x="353" y="160" />
+        <di:waypoint x="173" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_5" >
+        <di:waypoint x="358" y="263" />
+        <di:waypoint x="178" y="364" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_6" >
+        <di:waypoint x="363" y="358" />
+        <di:waypoint x="184" y="479" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
+        <di:waypoint x="184" y="479" />
+        <di:waypoint x="358" y="475" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_8" >
+        <di:waypoint x="358" y="475" />
+        <di:waypoint x="506" y="472" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_9" >
+        <di:waypoint x="186" y="64" />
+        <di:waypoint x="351" y="63" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_10" >
+        <di:waypoint x="184" y="161" />
+        <di:waypoint x="353" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_11" >
+        <di:waypoint x="173" y="263" />
+        <di:waypoint x="358" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_12" >
+        <di:waypoint x="178" y="364" />
+        <di:waypoint x="363" y="358" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
